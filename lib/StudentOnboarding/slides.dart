@@ -21,7 +21,7 @@ class _IntroScreenState extends State<IntroScreen> {
         title: "Connect a ride",
         description: "Check updates of rides around your standpoint to connect a ride ",
         pathImage: "images/photo_eraser.png",
-        backgroundColor: AppColors.color1,
+        backgroundColor: AppColors.color2,
       ),
     );
     slides.add(
@@ -29,7 +29,7 @@ class _IntroScreenState extends State<IntroScreen> {
         title: "PENCIL",
         description: "Input a complete detail of your journey and get to join the ride",
         pathImage: "images/photo_pencil.png",
-        backgroundColor: AppColors.color1,
+        backgroundColor: AppColors.color2,
       ),
     );
     slides.add(
@@ -37,7 +37,7 @@ class _IntroScreenState extends State<IntroScreen> {
         title: "RULER",
         description:"Your ride meets you at the pick up point of choice",
         pathImage: "images/photo_ruler.png",
-        backgroundColor: AppColors.color1,
+        backgroundColor: AppColors.color2,
       ),
     );
   }
@@ -51,6 +51,7 @@ class _IntroScreenState extends State<IntroScreen> {
     return new IntroSlider(
       slides: this.slides,
       onDonePress: this.onDonePress,
+        backgroundColorAllSlides: AppColors.color1,
     );
   }
 }
