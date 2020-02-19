@@ -1,12 +1,9 @@
 
-import 'package:deebus/Constants/Strings.dart';
 import 'package:deebus/Utils/Navigators.dart';
-import 'package:deebus/Utils/Styles.dart';
-import 'package:deebus/login.dart';
+import 'package:deebus/StudentOnboarding/UserAuthentication/login.dart';
 import 'package:flutter/material.dart';
-
-import 'Constants/AppColors.dart';
-import 'Constants/AssetsStrings.dart';
+import '../Constants/AppColors.dart';
+import '../Constants/AssetsStrings.dart';
 
 class SplashScreen extends StatefulWidget {
 
@@ -37,12 +34,8 @@ class _SplashScreenState extends State<SplashScreen> {
           child: ListView(
             shrinkWrap: true,
             children: <Widget>[
+              // change image to that of deebus
               Image.asset(callkitlogo, height: 120, width: 120,),
-
-              Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Center(child: Text(appName, style: textStyleBigBold,)),
-              ),
 
             ],
 
