@@ -1,6 +1,6 @@
 
+import 'package:deebus/StudentOnboarding/slides.dart';
 import 'package:deebus/Utils/Navigators.dart';
-import 'package:deebus/StudentOnboarding/UserAuthentication/login.dart';
 import 'package:flutter/material.dart';
 import '../Constants/AppColors.dart';
 import '../Constants/AssetsStrings.dart';
@@ -16,7 +16,7 @@ class _SplashScreenState extends State<SplashScreen> {
 //  Animation<double> animationTurns = Tween<double>(begin: 0, end: 0.5).animate(animation);
   @override
   void initState() {
-    splashTime().then((onValue) => navigateReplace(context, Login()));
+    splashTime().then((onValue) => navigateReplace(context, IntroScreen()));
     super.initState();
   }
 
