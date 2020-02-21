@@ -1,5 +1,4 @@
- import 'package:deebus/Constants/AssetsStrings.dart';
-import 'package:deebus/StudentOnboarding/UserAuthentication/Login%20Page.dart';
+import 'package:deebus/Constants/AssetsStrings.dart';
 import 'package:deebus/Utils/Styles.dart';
 import 'package:flutter/material.dart';
 
@@ -11,17 +10,24 @@ class Login extends StatefulWidget {
 class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: ListView(
+    return Scaffold(
+      body: Center(
+        child: ListView(
           children: <Widget>[
-            Image.asset(deebusLogoBlue,),
+            SizedBox(height: 30.0),
+            Image.asset(deebusLogoBlue, height: 100, width: 100,),
             Text("Get on Board", style: textStyleBigBold,),
             Text("Sign up with DeeBus", style: textStyleBigLight,),
-//            SizedBox(10.0),
+            SizedBox(height: 10.0),
+            TextFormField(
+              decoration: InputDecoration(
+                hintText: "Username"
+              ),
+            )
 
           ],
+        ),
       ),
     );
   }
 }
-

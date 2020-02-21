@@ -1,6 +1,5 @@
 import 'package:deebus/Constants/AppColors.dart';
 import 'package:deebus/Constants/AssetsStrings.dart';
-import 'package:deebus/Constants/Strings.dart';
 import 'package:deebus/StudentOnboarding/UserAuthentication/login.dart';
 import 'package:deebus/Utils/Navigators.dart';
 import 'package:deebus/Utils/Styles.dart';
@@ -67,7 +66,7 @@ class _IntroScreenState extends State<IntroScreen> {
 
   void onDonePress() {
     // Do what you want
-    navigatePush(context, Login());
+    navigateReplace(context, Login());
   }
 
   @override
