@@ -1,6 +1,8 @@
 
+import 'package:deebus/Constants/Strings.dart';
 import 'package:deebus/StudentOnboarding/slides.dart';
 import 'package:deebus/Utils/Navigators.dart';
+import 'package:deebus/Utils/Styles.dart';
 import 'package:flutter/material.dart';
 import '../Constants/AppColors.dart';
 import '../Constants/AssetsStrings.dart';
@@ -28,14 +30,14 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: AppColors.color3,
+        backgroundColor: AppColors.color4,
         body: Center(
 
           child: ListView(
             shrinkWrap: true,
             children: <Widget>[
               // change image to that of deebus
-              Image.asset(callkitlogo, height: 120, width: 120,),
+              Image.asset(deebusLogoWhite, height: 120, width: 120,),
 
             ],
 

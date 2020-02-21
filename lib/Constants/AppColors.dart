@@ -21,7 +21,7 @@ class AppColors{
   static final Color color1 = Color(0xffffffff);
 
   static final Color color2 = Color(0xff2d98f0);
-
+  static final Color color4 = Color(0xff6372c1);
   static final MaterialColor color3 = MaterialColor(0xffe2edff, color);
 
 }
