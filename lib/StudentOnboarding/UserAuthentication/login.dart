@@ -15,7 +15,12 @@ class _LoginState extends State<Login> {
         child: ListView(
           children: <Widget>[
             SizedBox(height: 30.0),
-            Image.asset(deebusLogoBlue, height: 100, width: 100,),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: <Widget>[
+                Image.asset(deebusLogoBlue, height: 100, width: 100,),
+              ],
+            ),
             Text("Get on Board", style: textStyleBigBold,),
             Text("Sign up with DeeBus", style: textStyleBigLight,),
             SizedBox(height: 10.0),
@@ -24,7 +29,6 @@ class _LoginState extends State<Login> {
                 hintText: "Username"
               ),
             )
-
           ],
         ),
       ),

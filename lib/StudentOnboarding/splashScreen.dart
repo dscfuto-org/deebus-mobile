@@ -28,20 +28,36 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: AppColors.color4,
-        body: Center(
-
-          child: ListView(
-            shrinkWrap: true,
+        body: Padding(
+          padding: EdgeInsets.all(13.4),
+          child: Stack(
             children: <Widget>[
-              // change image to that of deebus
-              Image.asset(deebusLogoWhite, height: 120, width: 120,),
+              Center(
 
+                child: ListView(
+                  shrinkWrap: true,
+                  children: <Widget>[
+                    // change image to that of deebus
+                    Image.asset(deebusLogoWhite, height: 120, width: 120,),
+                  ],
+
+                ),
+              ),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: <Widget>[
+                  Center(
+                    child: CircularProgressIndicator(
+                      backgroundColor: AppColors.color1,
+                      valueColor: new AlwaysStoppedAnimation(Colors.grey),
+                    ),
+                  ),
+                ],
+              )
             ],
-
           ),
         )
 
     );
   }
 }
-

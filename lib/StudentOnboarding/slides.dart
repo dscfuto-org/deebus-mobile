@@ -1,6 +1,7 @@
 import 'package:deebus/Constants/AppColors.dart';
 import 'package:deebus/Constants/AssetsStrings.dart';
 import 'package:deebus/StudentOnboarding/UserAuthentication/login.dart';
+import 'package:deebus/StudentOnboarding/UserAuthentication/signUp.dart';
 import 'package:deebus/Utils/Navigators.dart';
 import 'package:deebus/Utils/Styles.dart';
 import 'package:flutter/material.dart';
@@ -8,7 +9,7 @@ import 'package:intro_slider/intro_slider.dart';
 import 'package:intro_slider/slide_object.dart';
 
 class IntroScreen extends StatefulWidget {
-  @override
+//  @override
   @override
   _IntroScreenState createState() => _IntroScreenState();
 }
@@ -33,7 +34,6 @@ class _IntroScreenState extends State<IntroScreen> {
         ),
           backgroundColor: AppColors.color1
       ),
-
     );
     slides.add(
       new Slide(
@@ -66,7 +66,7 @@ class _IntroScreenState extends State<IntroScreen> {
 
   void onDonePress() {
     // Do what you want
-    navigateReplace(context, Login());
+    navigateReplace(context, Signup());
   }
 
   @override
