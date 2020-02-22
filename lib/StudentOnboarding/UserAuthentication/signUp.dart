@@ -82,10 +82,12 @@ class _SignupState extends State<Signup> {
                 ),
               ),
               SizedBox(height: 10.0),
-              RaisedButton(
+              FlatButton(
+                shape: new RoundedRectangleBorder(
+                ),
                   onPressed: null,
-                elevation: 5,
-                color: AppColors.color4,
+                color: prefix0.AppColors.color4,
+                textColor: Colors.white,
                 child: Text("Continue", style: textStyleBigLight,),
               )
 
