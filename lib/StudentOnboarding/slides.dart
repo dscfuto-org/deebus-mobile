@@ -1,6 +1,5 @@
 import 'package:deebus/Constants/AppColors.dart';
 import 'package:deebus/Constants/AssetsStrings.dart';
-import 'package:deebus/StudentOnboarding/UserAuthentication/login.dart';
 import 'package:deebus/StudentOnboarding/UserAuthentication/signUp.dart';
 import 'package:deebus/Utils/Navigators.dart';
 import 'package:deebus/Utils/Styles.dart';

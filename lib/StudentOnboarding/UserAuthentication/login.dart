@@ -26,9 +26,25 @@ class _LoginState extends State<Login> {
             SizedBox(height: 10.0),
             TextFormField(
               decoration: InputDecoration(
+//                border: ,
                 hintText: "Username"
               ),
-            )
+            ),
+            new TextField(
+              decoration: new InputDecoration(
+                  border: new OutlineInputBorder(
+                      borderSide: new BorderSide(color: Colors.teal)),
+                  hintText: 'Tell us about yourself',
+                  helperText: 'Keep it short, this is just a demo.',
+                  labelText: 'Life story',
+                  prefixIcon: const Icon(
+                    Icons.person,
+                    color: Colors.green,
+                  ),
+                  prefixText: ' ',
+                  suffixText: 'USD',
+                  suffixStyle: const TextStyle(color: Colors.green)),
+            ),
           ],
         ),
       ),
