@@ -46,13 +46,8 @@ flutter:
     - assets/images/
 
   fonts:
-    - family: Sofia Pro
+    - family: Ubuntu
       fonts:
-        - asset: assets/fonts/SofiaProRegular.ttf
-        - asset: assets/fonts/SofiaProLight.ttf
-        - asset: assets/fonts/SofiaProMedium.ttf
-        - asset: assets/fonts/SofiaProBold.ttf
-        - asset: assets/fonts/SofiaProSemiBold.ttf
         - asset: assets/fonts/Ubuntu-B.ttf
         - asset: assets/fonts/Ubuntu-BI.ttf
         - asset: assets/fonts/Ubuntu-C.ttf

@@ -1,5 +1,4 @@
 import 'package:deebus/Constants/AppColors.dart' as prefix0;
-import 'package:deebus/Constants/AppColors.dart';
 import 'package:deebus/Constants/AssetsStrings.dart';
 import 'package:deebus/Utils/Styles.dart';
 import 'package:flutter/material.dart';
@@ -82,15 +81,11 @@ class _SignupState extends State<Signup> {
                 ),
               ),
               SizedBox(height: 10.0),
-              FlatButton(
-                shape: new RoundedRectangleBorder(
-                ),
+              RaisedButton(
                   onPressed: null,
-                color: prefix0.AppColors.color4,
-                textColor: Colors.white,
-                child: Text("Continue", style: textStyleBigLight,),
+                elevation: 5,
+                child: Text("Continue"),
               )
-
             ],
           ),
         ),
