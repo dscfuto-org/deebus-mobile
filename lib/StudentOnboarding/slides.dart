@@ -1,6 +1,5 @@
 import 'package:deebus/Constants/AppColors.dart';
 import 'package:deebus/Constants/AssetsStrings.dart';
-import 'package:deebus/StudentOnboarding/UserAuthentication/login.dart';
 import 'package:deebus/StudentOnboarding/UserAuthentication/signUp.dart';
 import 'package:deebus/Utils/Navigators.dart';
 import 'package:deebus/Utils/Styles.dart';
@@ -25,7 +24,7 @@ class _IntroScreenState extends State<IntroScreen> {
       new Slide(
         centerWidget: Column(
           children: <Widget>[
-            Image.asset(deebusLogoWhite, height: 300, width: 300,),
+            Image.asset(firstVector, height: 300, width: 300,),
             Text("Connect a Ride", style: textStyleBigBold,),
             Text(
               "Check updates of rides around \n your standpoint to connect\n a ride",
@@ -39,7 +38,7 @@ class _IntroScreenState extends State<IntroScreen> {
       new Slide(
         centerWidget: Column(
           children: <Widget>[
-            Image.asset(deebusLogoWhite, height: 300, width: 300,),
+            Image.asset(secondVector, height: 300, width: 300,),
             Text("Complete Connect", style: textStyleBigBold,),
             Text(
               "Input a complete details of your\njourney and get to join the ride",
@@ -53,7 +52,7 @@ class _IntroScreenState extends State<IntroScreen> {
       new Slide(
         centerWidget: Column(
           children: <Widget>[
-            Image.asset(deebusLogoWhite, height: 300, width: 300,),
+            Image.asset(thirdVector, height: 300, width: 300,),
             Text("Get on Board", style: textStyleBigBold,),
             Text("Your ride meets you at the pick up\npoint of choice",
               style: textStyleBigLight, textAlign: TextAlign.center)
