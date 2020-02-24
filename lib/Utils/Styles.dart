@@ -2,13 +2,13 @@
 import 'package:flutter/material.dart';
 
 
-TextStyle textStyleBigLight = new TextStyle(fontSize: 21.0, fontWeight: FontWeight.w100);
+TextStyle textStyleBigLight = new TextStyle(fontSize: 21.0, fontWeight: FontWeight.w100, fontFamily: 'Ubuntu');
 
-TextStyle textStyleSmallLight = new TextStyle(fontSize: 14.0);
+TextStyle textStyleSmallLight = new TextStyle(fontSize: 14.0, fontFamily: 'Ubuntu');
 
-TextStyle textStyleBigBold = new TextStyle(fontSize: 25.0, fontWeight: FontWeight.w700);
+TextStyle textStyleBigBold = new TextStyle(fontSize: 25.0, fontWeight: FontWeight.w700, fontFamily: 'Ubuntu');
 
 
-TextStyle textStyleSmallRegular = new TextStyle(fontSize: 14.0);
+TextStyle textStyleSmallRegular = new TextStyle(fontSize: 14.0, fontFamily: 'Ubuntu');
 
 TextStyle textStyleBigRegular = new TextStyle(fontSize: 16.0);
