@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:deebus/StudentOnboarding/UserAuthentication/signUp.dart';
 import 'package:deebus/Constants/AppColors.dart' as prefix0;
 
+import 'emailConfirn.dart';
+
 class Login extends StatefulWidget {
   @override
   _LoginState createState() => _LoginState();
@@ -82,7 +84,7 @@ class _LoginState extends State<Login> {
                 shape: new RoundedRectangleBorder(
                   borderRadius: new BorderRadius.circular(14.0),
                 ),
-                onPressed: () => {navigatePush(context, widget)},
+                onPressed: () => {navigateReplace(context, EmailConfirm())},
                 color: prefix0.AppColors.color4,
                 textColor: Colors.white,
                 child: Text(
