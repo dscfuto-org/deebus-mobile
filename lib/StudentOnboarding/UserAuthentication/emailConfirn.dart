@@ -1,6 +1,6 @@
+import 'package:deebus/Constants/AppColors.dart';
 import 'package:deebus/Utils/Navigators.dart';
 import 'package:flutter/material.dart';
-import 'package:deebus/Constants/AppColors.dart' as prefix0;
 
 class EmailConfirm extends StatefulWidget {
   @override
@@ -22,7 +22,7 @@ class EmailConfirmState extends State<EmailConfirm> {
         leading: IconButton(
           icon: Icon(
             Icons.arrow_back,
-            color: prefix0.AppColors.color4,
+            color: AppColors.color4,
             size: 35.0,
           ),
           onPressed: () => navigateBack(context),
@@ -56,7 +56,7 @@ class EmailConfirmState extends State<EmailConfirm> {
                   borderRadius: new BorderRadius.circular(14.0),
                 ),
                 textColor: Colors.white,
-                color: prefix0.AppColors.color4,
+                color: AppColors.color4,
                 onPressed: () {},
                 child: Padding(
                   padding: EdgeInsets.all(20.0),

@@ -1,10 +1,9 @@
+import 'package:deebus/Constants/AppColors.dart';
 import 'package:deebus/Constants/AssetsStrings.dart';
 import 'package:deebus/Utils/Navigators.dart';
 import 'package:deebus/Utils/Styles.dart';
 import 'package:flutter/material.dart';
 import 'package:deebus/StudentOnboarding/UserAuthentication/signUp.dart';
-import 'package:deebus/Constants/AppColors.dart' as prefix0;
-
 import 'emailConfirn.dart';
 
 class Login extends StatefulWidget {
@@ -16,7 +15,7 @@ class _LoginState extends State<Login> {
   OutlineInputBorder focusedBorder() {
     OutlineInputBorder outlineInputBorder = new OutlineInputBorder(
         borderRadius: BorderRadius.circular(10),
-        borderSide: new BorderSide(color: prefix0.AppColors.color4));
+        borderSide: new BorderSide(color: AppColors.color4));
     return outlineInputBorder;
   }
 
@@ -53,11 +52,11 @@ class _LoginState extends State<Login> {
                   border: new OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
                       borderSide:
-                      new BorderSide(color: prefix0.AppColors.color4)),
+                      new BorderSide(color: AppColors.color4)),
                   enabledBorder: new OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
                       borderSide:
-                      new BorderSide(color: prefix0.AppColors.color4)),
+                      new BorderSide(color: AppColors.color4)),
                   focusedBorder: focusedBorder(),
                   hintText: 'Email Address',
                 ),
@@ -69,11 +68,11 @@ class _LoginState extends State<Login> {
                   border: new OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
                       borderSide:
-                      new BorderSide(color: prefix0.AppColors.color4)),
+                      new BorderSide(color: AppColors.color4)),
                   enabledBorder: new OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
                       borderSide:
-                      new BorderSide(color: prefix0.AppColors.color4)),
+                      new BorderSide(color: AppColors.color4)),
                   focusedBorder: focusedBorder(),
                   hintText: 'Password',
                 ),
@@ -85,7 +84,7 @@ class _LoginState extends State<Login> {
                   borderRadius: new BorderRadius.circular(14.0),
                 ),
                 onPressed: () => {navigatePush(context, EmailConfirm())},
-                color: prefix0.AppColors.color4,
+                color: AppColors.color4,
                 textColor: Colors.white,
                 child: Text(
                   "Sign in",
@@ -106,7 +105,7 @@ class _LoginState extends State<Login> {
                     child: new Text(
                       "Sign Up",
                       style: new TextStyle(
-                          color: prefix0.AppColors.color4,
+                          color: AppColors.color4,
                           fontSize: 18.0,
                           fontWeight: FontWeight.w500),
                     ),
