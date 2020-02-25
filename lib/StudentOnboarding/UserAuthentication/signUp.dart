@@ -1,6 +1,6 @@
-import 'package:deebus/Constants/AppColors.dart' as prefix0;
 import 'package:deebus/Constants/AppColors.dart';
 import 'package:deebus/Constants/AssetsStrings.dart';
+import 'package:deebus/StudentOnboarding/UserAuthentication/emailConfirn.dart';
 import 'package:deebus/StudentOnboarding/UserAuthentication/login.dart';
 import 'package:deebus/Utils/Navigators.dart';
 import 'package:deebus/Utils/Styles.dart';
@@ -16,7 +16,7 @@ class _SignupState extends State<Signup> {
   OutlineInputBorder focusedBorder() {
     OutlineInputBorder outlineInputBorder = new OutlineInputBorder(
         borderRadius: BorderRadius.circular(10),
-        borderSide: new BorderSide(color: prefix0.AppColors.color4));
+        borderSide: new BorderSide(color: AppColors.color4));
     return outlineInputBorder;
   }
 
@@ -53,11 +53,11 @@ class _SignupState extends State<Signup> {
                   border: new OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
                       borderSide:
-                          new BorderSide(color: prefix0.AppColors.color4)),
+                          new BorderSide(color: AppColors.color4)),
                   enabledBorder: new OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
                       borderSide:
-                          new BorderSide(color: prefix0.AppColors.color4)),
+                          new BorderSide(color: AppColors.color4)),
                   focusedBorder: focusedBorder(),
                   hintText: 'Full Name',
                 ),
@@ -68,11 +68,11 @@ class _SignupState extends State<Signup> {
                   border: new OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
                       borderSide:
-                          new BorderSide(color: prefix0.AppColors.color4)),
+                          new BorderSide(color: AppColors.color4)),
                   enabledBorder: new OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
                       borderSide:
-                          new BorderSide(color: prefix0.AppColors.color4)),
+                          new BorderSide(color: AppColors.color4)),
                   focusedBorder: focusedBorder(),
                   hintText: 'Email Address',
                 ),
@@ -83,11 +83,11 @@ class _SignupState extends State<Signup> {
                   border: new OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
                       borderSide:
-                          new BorderSide(color: prefix0.AppColors.color4)),
+                          new BorderSide(color:AppColors.color4)),
                   enabledBorder: new OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
                       borderSide:
-                          new BorderSide(color: prefix0.AppColors.color4)),
+                          new BorderSide(color: AppColors.color4)),
                   focusedBorder: focusedBorder(),
                   hintText: 'Phone number',
                 ),
@@ -98,8 +98,10 @@ class _SignupState extends State<Signup> {
                 shape: new RoundedRectangleBorder(
                   borderRadius: new BorderRadius.circular(14.0),
                 ),
-                onPressed: () => {},
-                color: prefix0.AppColors.color4,
+                onPressed: () => {
+                navigateReplace(context, EmailConfirm())
+                },
+                color: AppColors.color4,
                 textColor: Colors.white,
                 child: Text(
                   "Continue",
@@ -120,7 +122,7 @@ class _SignupState extends State<Signup> {
                     child: new Text(
                       "Sign In",
                       style: new TextStyle(
-                          color: prefix0.AppColors.color4,
+                          color: AppColors.color4,
                           fontSize: 18.0,
                           fontWeight: FontWeight.w500),
                     ),
