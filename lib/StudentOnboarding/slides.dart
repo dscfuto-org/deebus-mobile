@@ -83,13 +83,15 @@ class _IntroScreenState extends State<IntroScreen> {
         fontSize: 15.0,
           fontWeight: FontWeight.bold
       ),
-      nameNextBtn: "Skip",
+      nameNextBtn: "Next",
+      nameSkipBtn: "Skip",
+      onSkipPress: this.onDonePress,
       styleNameSkipBtn: TextStyle(
         color: AppColors.color4,
         fontSize: 15.0,
         fontWeight: FontWeight.bold
       ),
-      isShowSkipBtn: false,
+      isShowSkipBtn: true,
 
 
     );

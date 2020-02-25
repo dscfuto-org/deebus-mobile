@@ -84,7 +84,7 @@ class _LoginState extends State<Login> {
                 shape: new RoundedRectangleBorder(
                   borderRadius: new BorderRadius.circular(14.0),
                 ),
-                onPressed: () => {navigateReplace(context, EmailConfirm())},
+                onPressed: () => {navigatePush(context, EmailConfirm())},
                 color: prefix0.AppColors.color4,
                 textColor: Colors.white,
                 child: Text(
