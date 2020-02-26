@@ -24,6 +24,7 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^0.1.2
   intro_slider: ^2.2.9
+  pin_code_text_field: ^1.5.1
 
 dev_dependencies:
   flutter_test:

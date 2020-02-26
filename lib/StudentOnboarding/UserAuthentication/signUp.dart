@@ -2,6 +2,7 @@ import 'package:deebus/Constants/AppColors.dart';
 import 'package:deebus/Constants/AssetsStrings.dart';
 import 'package:deebus/StudentOnboarding/UserAuthentication/emailConfirn.dart';
 import 'package:deebus/StudentOnboarding/UserAuthentication/login.dart';
+import 'package:deebus/StudentOnboarding/UserAuthentication/otpConfirm.dart';
 import 'package:deebus/Utils/Navigators.dart';
 import 'package:deebus/Utils/Styles.dart';
 import 'package:flutter/material.dart';
@@ -99,7 +100,7 @@ class _SignupState extends State<Signup> {
                   borderRadius: new BorderRadius.circular(14.0),
                 ),
                 onPressed: () => {
-                navigateReplace(context, EmailConfirm())
+                navigateReplace(context, OTPScreen("hhsh"))
                 },
                 color: AppColors.color4,
                 textColor: Colors.white,
