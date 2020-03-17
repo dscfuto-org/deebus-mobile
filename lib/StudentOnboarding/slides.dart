@@ -26,6 +26,7 @@ class _IntroScreenState extends State<IntroScreen> {
           children: <Widget>[
             Image.asset(firstVector, height: 300, width: 300,),
             Text("Connect a Ride", style: textStyleBigBold,),
+            SizedBox(height: 20.0,),
             Text(
               "Check updates of rides around \n your standpoint to connect\n a ride",
               style: textStyleBigLight, textAlign: TextAlign.center,)
@@ -40,6 +41,7 @@ class _IntroScreenState extends State<IntroScreen> {
           children: <Widget>[
             Image.asset(secondVector, height: 300, width: 300,),
             Text("Complete Connect", style: textStyleBigBold,),
+            SizedBox(height: 20.0,),
             Text(
               "Input a complete details of your\njourney and get to join the ride",
               style: textStyleBigLight, textAlign: TextAlign.center)
@@ -54,6 +56,7 @@ class _IntroScreenState extends State<IntroScreen> {
           children: <Widget>[
             Image.asset(thirdVector, height: 300, width: 300,),
             Text("Get on Board", style: textStyleBigBold,),
+            SizedBox(height: 20.0,),
             Text("Your ride meets you at the pick up\npoint of choice",
               style: textStyleBigLight, textAlign: TextAlign.center)
           ],
