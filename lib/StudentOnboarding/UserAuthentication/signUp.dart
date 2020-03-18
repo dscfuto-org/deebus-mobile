@@ -1,8 +1,8 @@
 import 'package:deebus/Constants/AppColors.dart';
 import 'package:deebus/Constants/AssetsStrings.dart';
+import 'package:deebus/StudentOnboarding/UserAuthentication/login.dart';
 //import 'package:deebus/StudentOnboarding/UserAuthentication/login.dart';
 import 'package:deebus/StudentOnboarding/UserAuthentication/otpConfirm.dart';
-import 'package:deebus/User/dashboard.dart';
 import 'package:deebus/Utils/Navigators.dart';
 import 'package:deebus/Utils/Styles.dart';
 import 'package:flutter/material.dart';
@@ -79,7 +79,7 @@ class _SignupState extends State<Signup> {
                 ),
               ),
               SizedBox(height: 20.0),
-              TextField(
+              TextFormField(
                 decoration: new InputDecoration(
                   border: new OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
@@ -100,7 +100,7 @@ class _SignupState extends State<Signup> {
                   borderRadius: new BorderRadius.circular(14.0),
                 ),
                 onPressed: () => {
-                navigateReplace(context, OTPScreen("hhsh"))
+                navigatePush(context, OTPScreen("hhsh"))
                 },
                 color: AppColors.color4,
                 textColor: Colors.white,
@@ -127,7 +127,7 @@ class _SignupState extends State<Signup> {
                           fontSize: 18.0,
                           fontWeight: FontWeight.w500),
                     ),
-                    onPressed: () => {navigateReplace(context, DashBoard())},
+                    onPressed: () => {navigatePush(context, Login())},
                   ),
                 ],
               ),

@@ -1,4 +1,6 @@
 import 'package:deebus/Constants/AppColors.dart';
+import 'package:deebus/User/dashboard.dart';
+import 'package:deebus/Utils/Navigators.dart';
 import 'package:deebus/Utils/Styles.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -109,8 +111,7 @@ class _OTPScreenState extends State<OTPScreen> {
                                       borderRadius: BorderRadius.all(Radius.circular(40.0)),
                                     ),
                                     height: 50,
-                                    onPressed:
-                                        () {},
+                                    onPressed: this.map,
 //                              async{
 //                                if(controller.text.length!=6){
 //                                  setState(() {
@@ -134,7 +135,7 @@ class _OTPScreenState extends State<OTPScreen> {
                         ),
                         SizedBox(height: 20,),
                         Text(
-                            "E-mail has been sent to . Enter code from e-mail",
+                            "E-mail has been sent to your mail. Enter code from e-mail",
                           style: textStyleBigLight,
                         ),
                         SizedBox(height: 10,),
@@ -152,33 +153,9 @@ class _OTPScreenState extends State<OTPScreen> {
                                 child: Text( "Resend", style: textStyleBigLightB,))
                           ],
                         ),
-                        MaterialButton(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.all(Radius.circular(40.0)),
-                          ),
-                          height: 50,
-                          onPressed:
-                              () {},
-//                              async{
-//                                if(controller.text.length!=6){
-//                                  setState(() {
-//                                    hasError = true;
-//                                  });
-//                                } else if(equalsIgnoreCase(widget.tranType, "Withdrawal")){
-//                                  submitWithdrawal();
-//                                }
-//                              },
-                          color: AppColors.color4,
-                          child: Text(
-                            "Continue",
-                            style: TextStyle(
-                                color: Colors.white, fontSize: 16.0),
-                          ),
-                        ),
                       ],
                     )
                   ],
-
                 ),
               ),
             ],
@@ -186,6 +163,8 @@ class _OTPScreenState extends State<OTPScreen> {
         )
     );
   }
+  void map() {
+    // Do what you want
+    navigatePush(context, Dashboard());
+  }
 }
-
-

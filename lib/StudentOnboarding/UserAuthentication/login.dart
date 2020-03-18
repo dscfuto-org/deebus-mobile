@@ -109,7 +109,7 @@ class _LoginState extends State<Login> {
                           fontSize: 18.0,
                           fontWeight: FontWeight.w500),
                     ),
-                    onPressed: () => {navigateReplace(context, Signup())},
+                    onPressed: () => {navigatePush(context, Signup())},
                   ),
                 ],
               ),
