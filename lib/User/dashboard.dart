@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:deebus/Constants/AppColors.dart';
+import 'package:deebus/Constants/AppColors.dart';
 import 'package:deebus/Constants/AppColors.dart' as prefix0;
 import 'package:deebus/User/tests.dart';
 import 'package:deebus/Utils/Navigators.dart';
@@ -174,7 +175,7 @@ class _DashboardState extends State<Dashboard> {
                           children: <Widget>[
                             CircleAvatar(
                               radius: deviceH * 4 / 100,
-                              backgroundColor: Colors.white70,
+                              backgroundColor: AppColors.color4,
                               child: Icon(
                                 Icons.person,
                                 size: 38.0,
@@ -184,34 +185,25 @@ class _DashboardState extends State<Dashboard> {
                             SizedBox(
                               width: 10.0,
                             ),
-                            Text(
-                              'Benjith Kizhisseri',
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 18.0,
-                                  fontFamily: 'Maven',
-                                  fontWeight: FontWeight.w400),
+                            Column(
+                              children: <Widget>[
+                                Text(
+                                  'Odii Marshall',
+                                  style: textStyleBigBold,
+                                ),
+                                Text(
+                                  'Edit Profile',
+                                  style: TextStyle(
+                                      color: Colors.white, fontWeight: FontWeight.w100),
+                                ),
+                              ],
                             )
                           ],
-                        ),
-                        Divider(
-                          color: Colors.white38,
-                          height: 0.5,
-                        ),
-                        Text(
-                          'Do more with your account',
-                          style: TextStyle(
-                              color: Colors.white, fontWeight: FontWeight.w100),
-                        ),
-                        Text(
-                          'Make money driving',
-                          style: TextStyle(
-                              color: Colors.white, fontWeight: FontWeight.w300),
                         ),
                       ],
                     ),
                     decoration: BoxDecoration(
-                      color: Colors.black,
+                      color: AppColors.color4
                     ),
                   ),
                   ListTile(
@@ -219,6 +211,7 @@ class _DashboardState extends State<Dashboard> {
                       'Free Rides',
                       style: textStyleBigLight,
                     ),
+                    leading: Icon(Icons.headset),
                     onTap: () {
                       // Update the state of the app.
                       // ...
@@ -228,7 +221,9 @@ class _DashboardState extends State<Dashboard> {
                     title: Text(
                       'Payments',
                       style: textStyleBigLight,
+
                     ),
+                    leading: Icon(Icons.credit_card),
                     onTap: () {
                       // Update the state of the app.
                       // ...
@@ -239,6 +234,7 @@ class _DashboardState extends State<Dashboard> {
                       'History',
                       style: textStyleBigLight,
                     ),
+                    leading: Icon(Icons.history),
                     onTap: () {
                       // Update the state of the app.
                       // ...
@@ -249,6 +245,7 @@ class _DashboardState extends State<Dashboard> {
                       'Support',
                       style: textStyleBigLight,
                     ),
+                    leading: Icon(Icons.chat),
                     onTap: () {
                       // Update the state of the app.
                       // ...
@@ -259,6 +256,7 @@ class _DashboardState extends State<Dashboard> {
                       'About',
                       style: textStyleBigLight,
                     ),
+                    leading: Icon(Icons.info),
                     onTap: () {
                       // Update the state of the app.
                       // ...
@@ -286,7 +284,7 @@ class _DashboardState extends State<Dashboard> {
 //                              },
                   color: AppColors.color4,
                   child: Text(
-                    "Continue",
+                    "SIGN UP TO DRIVE",
                     style: TextStyle(
                         color: Colors.white, fontSize: 16.0),
                   ),
@@ -327,7 +325,7 @@ class _DashboardState extends State<Dashboard> {
                       height: deviceH * 2 / 100,
                     ),
                     Text(
-                      'Good evening Benjith',
+                      'Good evening Marshall',
                       style: TextStyle(
                           fontSize: 18.0,
                           fontFamily: 'Maven',
