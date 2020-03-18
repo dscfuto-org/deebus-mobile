@@ -13,6 +13,8 @@ class IntroScreen extends StatefulWidget {
 }
 
 class _IntroScreenState extends State<IntroScreen> {
+  final introKey = GlobalKey<IntroductionScreenState>();
+
   // To hold the list of IntroScreen Widgets
   List<PageViewModel> _pageViewModelList = List();
 
@@ -20,30 +22,43 @@ class _IntroScreenState extends State<IntroScreen> {
   List<WelcomeScreen> _screens = List();
 
   PageViewModel _createIntroScreens(WelcomeScreen screen) {
-    return PageViewModel(
-      title: "", // Don not remove this, else Flutter will squawk!
-      bodyWidget: Column(
-        children: <Widget>[
-          Image.asset(
-            screen.image,
-            height: screen.imageHeight,
-            width: screen.imageWidth,
-          ),
-          Text(
-            screen.title,
-            style: textStyleBigBold,
-          ),
-          SizedBox(
-            height: 20.0,
-          ),
-          Text(
-            screen.description,
-            style: textStyleBigLight,
-            textAlign: TextAlign.center,
-          )
-        ],
-      ),
+    // Decoration for each Page or Screen
+    const pageDecoration = PageDecoration(
+      titleTextStyle: TextStyle(fontSize: 28.0, fontWeight: FontWeight.w700),
+      bodyTextStyle: TextStyle(fontSize: 19.0),
+      descriptionPadding: EdgeInsets.fromLTRB(16.0, 0.0, 16.0, 16.0),
+      pageColor: Colors.white,
+      imagePadding: EdgeInsets.zero,
     );
+
+    // The Actual Intro Widget to be rendered
+    return PageViewModel(
+        title: "", // Don not remove this, else Flutter will squawk!
+        bodyWidget: Column(
+          children: <Widget>[
+            Align(
+              child: Image.asset(
+                screen.image,
+                height: screen.imageHeight,
+                width: screen.imageWidth,
+              ),
+              alignment: Alignment.bottomCenter,
+            ),
+            Text(
+              screen.title,
+              style: textStyleBigBold,
+            ),
+            SizedBox(
+              height: 20.0,
+            ),
+            Text(
+              screen.description,
+              style: textStyleBigLight,
+              textAlign: TextAlign.center,
+            )
+          ],
+        ),
+        decoration: pageDecoration);
   }
 
   @override
@@ -54,12 +69,12 @@ class _IntroScreenState extends State<IntroScreen> {
         image: firstVector,
         title: "Connect a Ride",
         description:
-            "Check updates of rides around \n your standpoint to connect\n a ride"));
+        "Check updates of rides around \n your standpoint to connect\n a ride"));
     _screens.add(WelcomeScreen(
         image: secondVector,
         title: "Complete Connect",
         description:
-            "Input a complete details of your\njourney and get to join the ride"));
+        "Input a complete details of your\njourney and get to join the ride"));
     _screens.add(WelcomeScreen(
         image: thirdVector,
         title: "Get on Board",
@@ -70,7 +85,7 @@ class _IntroScreenState extends State<IntroScreen> {
         .forEach((elem) => _pageViewModelList.add(_createIntroScreens(elem)));
   }
 
-  void onDonePress() {
+  void onDonePress(context) {
     // Do what you want
     navigatePush(context, Signup());
   }
@@ -78,6 +93,7 @@ class _IntroScreenState extends State<IntroScreen> {
   @override
   Widget build(BuildContext context) {
     return IntroductionScreen(
+      key: introKey,
       pages: _pageViewModelList,
       initialPage: 0,
       showSkipButton: true,
@@ -92,12 +108,16 @@ class _IntroScreenState extends State<IntroScreen> {
         style: introBtnsTextStyle,
       ),
       dotsFlex: 2,
+      skipFlex: 0,
+      nextFlex: 0,
       globalBackgroundColor: AppColors.color1,
-      onDone: () => this.onDonePress(),
+      onDone: () => this.onDonePress(context),
       dotsDecorator: DotsDecorator(
           size: const Size.square(10.0),
           activeSize: const Size(20.0, 10.0),
-          activeColor: Theme.of(context).accentColor,
+          activeColor: Theme
+              .of(context)
+              .accentColor,
           color: Colors.black26,
           spacing: const EdgeInsets.symmetric(horizontal: 3.0),
           activeShape: RoundedRectangleBorder(
