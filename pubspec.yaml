@@ -24,6 +24,7 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^0.1.2
   intro_slider: ^2.2.9
+  introduction_screen: ^1.0.7
   pin_code_text_field: ^1.5.1
   flutter_launcher_icons: ^0.7.0
   google_maps_flutter: ^0.5.21+1
