@@ -60,7 +60,22 @@ class _SignupState extends State<Signup> {
                       borderSide:
                           new BorderSide(color: AppColors.color4)),
                   focusedBorder: focusedBorder(),
-                  hintText: 'Full Name',
+                  hintText: 'First Name',
+                ),
+              ),
+              SizedBox(height: 20.0),
+              TextFormField(
+                decoration: new InputDecoration(
+                  border: new OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                      borderSide:
+                      new BorderSide(color: AppColors.color4)),
+                  enabledBorder: new OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                      borderSide:
+                      new BorderSide(color: AppColors.color4)),
+                  focusedBorder: focusedBorder(),
+                  hintText: 'Last Name',
                 ),
               ),
               SizedBox(height: 20.0),
@@ -90,23 +105,32 @@ class _SignupState extends State<Signup> {
                       borderSide:
                           new BorderSide(color: AppColors.color4)),
                   focusedBorder: focusedBorder(),
-                  hintText: 'Phone number',
+                  hintText: 'Password',
                 ),
               ),
-              SizedBox(height: 10.0),
-              RaisedButton(
-                padding: EdgeInsets.all(5.0),
-                shape: new RoundedRectangleBorder(
-                  borderRadius: new BorderRadius.circular(14.0),
+              SizedBox(height: 25.0),
+              MaterialButton(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(40.0)),
                 ),
+                height: 50,
                 onPressed: () => {
-                navigatePush(context, OTPScreen("hhsh"))
+                  navigatePush(context, OTPScreen("hhsh"))
                 },
+//                              async{
+//                                if(controller.text.length!=6){
+//                                  setState(() {
+//                                    hasError = true;
+//                                  });
+//                                } else if(equalsIgnoreCase(widget.tranType, "Withdrawal")){
+//                                  submitWithdrawal();
+//                                }
+//                              },
                 color: AppColors.color4,
-                textColor: Colors.white,
                 child: Text(
                   "Continue",
-                  style: textStyleBigLight,
+                  style: TextStyle(
+                      color: Colors.white, fontSize: 16.0),
                 ),
               ),
               SizedBox(
