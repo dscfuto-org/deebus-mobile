@@ -112,6 +112,7 @@ class _IntroScreenState extends State<IntroScreen> {
       nextFlex: 0,
       globalBackgroundColor: AppColors.color1,
       onDone: () => this.onDonePress(context),
+      onSkip: () => this.onDonePress(context),
       dotsDecorator: DotsDecorator(
           size: const Size.square(10.0),
           activeSize: const Size(20.0, 10.0),

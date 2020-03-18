@@ -44,87 +44,88 @@ class _OTPScreenState extends State<OTPScreen> {
 //        backgroundColor: AppColors.color4,
         body: Padding(
           padding: EdgeInsets.all(13.4),
-          child: Stack(
-            children: <Widget>[
-              Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: <Widget>[
-                        Text(
-                          "Enter Code",
-                          style: textStyleBigBold,
-                        ),
-                        SizedBox(height: 20,),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 8.0),
-                          child:
-                          PinCodeTextField(
-                            pinBoxHeight: 50,
-                            pinBoxWidth: 50,
-                            autofocus: false,
-                            controller: controller,
-                            hideCharacter: true,
-                            highlight: true,
-                            highlightColor: AppColors.color4,
-                            pinBoxRadius: 10,
-                            pinBoxColor: Colors.white,
-                            defaultBorderColor: AppColors.color4,
-                            hasTextBorderColor: Colors.green,
-                            maxLength: pinLength,
-                            hasError: hasError,
-                            maskCharacter: "*",
+          child: SingleChildScrollView(
+            physics: ClampingScrollPhysics(),
+            scrollDirection: Axis.vertical,
+            child: Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: <Widget>[
+                      Text(
+                        "Enter Code",
+                        style: textStyleBigBold,
+                      ),
+                      SizedBox(height: 20,),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 8.0),
+                        child:
+                        PinCodeTextField(
+                          pinBoxHeight: 50,
+                          pinBoxWidth: 50,
+                          autofocus: false,
+                          controller: controller,
+                          hideCharacter: true,
+                          highlight: true,
+                          highlightColor: AppColors.color4,
+                          pinBoxRadius: 10,
+                          pinBoxColor: Colors.white,
+                          defaultBorderColor: AppColors.color4,
+                          hasTextBorderColor: Colors.green,
+                          maxLength: pinLength,
+                          hasError: hasError,
+                          maskCharacter: "*",
 
-                            onTextChanged: (text) {
+                          onTextChanged: (text) {
+                            setState(() {
+                              hasError = false;
+                            });
+                          },
+                          onDone: (text){
+                            if(text.length!=4){
                               setState(() {
-                                hasError = false;
+                                hasError = true;
                               });
-                            },
-                            onDone: (text){
-                              if(text.length!=4){
-                                setState(() {
-                                  hasError = true;
-                                });
-                              }
+                            }
 
-                            },
+                          },
 //pinCodeTextFieldLayoutType: PinCodeTextFieldLayoutType.AUTO_ADJUST_WIDTH,
-                            wrapAlignment: WrapAlignment.center,
-                            pinBoxDecoration: ProvidedPinBoxDecoration.defaultPinBoxDecoration,
-                            pinTextStyle: TextStyle(fontSize: 30.0),
-                            pinTextAnimatedSwitcherTransition: ProvidedPinBoxTextAnimation.scalingTransition,
-                            pinTextAnimatedSwitcherDuration: Duration(milliseconds: 300),
-                          ),
+                          wrapAlignment: WrapAlignment.center,
+                          pinBoxDecoration: ProvidedPinBoxDecoration.defaultPinBoxDecoration,
+                          pinTextStyle: TextStyle(fontSize: 30.0),
+                          pinTextAnimatedSwitcherTransition: ProvidedPinBoxTextAnimation.scalingTransition,
+                          pinTextAnimatedSwitcherDuration: Duration(milliseconds: 300),
                         ),
-                        Visibility(
-                          child: Text(
-                            "Wrong PIN!",
-                            style: TextStyle(color: Colors.red),
-                          ),
-                          visible: hasError,
+                      ),
+                      Visibility(
+                        child: Text(
+                          "Wrong PIN!",
+                          style: TextStyle(color: Colors.red),
                         ),
+                        visible: hasError,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: isLoading
+                            ? CircularProgressIndicator(
+                          backgroundColor: AppColors.color2,
+                          valueColor: new AlwaysStoppedAnimation(AppColors.color1),
+                        )
+                            :
                         Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: isLoading
-                              ? CircularProgressIndicator(
-                            backgroundColor: AppColors.color2,
-                            valueColor: new AlwaysStoppedAnimation(AppColors.color1),
-                          )
-                              :
-                          Padding(
-                            padding: const EdgeInsets.all(40.0),
-                            child: Row(
-                              children: <Widget>[
-                                Expanded(
-                                  child: MaterialButton(
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.all(Radius.circular(40.0)),
-                                    ),
-                                    height: 50,
-                                    onPressed: this.map,
+                          padding: const EdgeInsets.all(40.0),
+                          child: Row(
+                            children: <Widget>[
+                              Expanded(
+                                child: MaterialButton(
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.all(Radius.circular(40.0)),
+                                  ),
+                                  height: 50,
+                                  onPressed: this.map,
 //                              async{
 //                                if(controller.text.length!=6){
 //                                  setState(() {
@@ -134,44 +135,43 @@ class _OTPScreenState extends State<OTPScreen> {
 //                                  submitWithdrawal();
 //                                }
 //                              },
-                                    color: AppColors.color4,
-                                    child: Text(
-                                      "Continue",
-                                      style: TextStyle(
-                                          color: Colors.white, fontSize: 16.0),
-                                    ),
+                                  color: AppColors.color4,
+                                  child: Text(
+                                    "Continue",
+                                    style: TextStyle(
+                                        color: Colors.white, fontSize: 16.0),
                                   ),
                                 ),
-                              ],
-                            ),
+                              ),
+                            ],
                           ),
                         ),
-                        SizedBox(height: 20,),
-                        Text(
-                            "OTP has been sent to your mailbox. Enter code from e-mail",
-                          style: textStyleBigLight,
-                        ),
-                        SizedBox(height: 10,),
-                        Text(
-                            "Didn't get the code?",
-                          style: textStyleBigLight,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            FlatButton(onPressed: null,
-                                child: Text( "Call me",
-                                  style: textStyleBigLightB, )),
-                            FlatButton(onPressed: null,
-                                child: Text( "Resend", style: textStyleBigLightB,))
-                          ],
-                        ),
-                      ],
-                    )
-                  ],
-                ),
+                      ),
+                      SizedBox(height: 20,),
+                      Text(
+                        "OTP has been sent to your mailbox. Enter code from e-mail",
+                        style: textStyleBigLight,
+                      ),
+                      SizedBox(height: 10,),
+                      Text(
+                        "Didn't get the code?",
+                        style: textStyleBigLight,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          FlatButton(onPressed: null,
+                              child: Text( "Call me",
+                                style: textStyleBigLightB, )),
+                          FlatButton(onPressed: null,
+                              child: Text( "Resend", style: textStyleBigLightB,))
+                        ],
+                      ),
+                    ],
+                  )
+                ],
               ),
-            ],
+            ),
           ),
         )
     );
