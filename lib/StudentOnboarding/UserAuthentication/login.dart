@@ -5,7 +5,6 @@ import 'package:deebus/Utils/Navigators.dart';
 import 'package:deebus/Utils/Styles.dart';
 import 'package:flutter/material.dart';
 import 'package:deebus/StudentOnboarding/UserAuthentication/signUp.dart';
-import 'emailConfirn.dart';
 
 class Login extends StatefulWidget {
   @override

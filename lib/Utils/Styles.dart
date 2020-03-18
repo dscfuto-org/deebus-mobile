@@ -13,6 +13,7 @@ TextStyle textStyleBigBold = new TextStyle(fontSize: 30.0, fontWeight: FontWeigh
 TextStyle textStyleSmallRegular = new TextStyle(fontSize: 14.0, fontFamily: 'Ubuntu');
 
 TextStyle textStyleBigRegular = new TextStyle(fontSize: 16.0);
+TextStyle textStyleBigRegularB = new TextStyle(fontSize: 20.0);
 
 TextStyle textStyleBigLightB = new TextStyle(fontSize: 16.0, fontWeight: FontWeight.w100, fontFamily: 'Ubuntu', color: prefix0.AppColors.color4);
 

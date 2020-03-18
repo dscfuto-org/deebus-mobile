@@ -1,7 +1,13 @@
 import 'dart:async';
 
 import 'package:deebus/Constants/AppColors.dart';
+import 'package:deebus/Constants/AppColors.dart' as prefix0;
 import 'package:deebus/Constants/AssetsStrings.dart';
+import 'package:deebus/User/About.dart';
+import 'package:deebus/User/FreeRides.dart';
+import 'package:deebus/User/History.dart';
+import 'package:deebus/User/Payments.dart';
+import 'package:deebus/User/Support.dart';
 import 'package:deebus/User/tests.dart';
 import 'package:deebus/Utils/Navigators.dart';
 import 'package:deebus/Utils/Styles.dart';
@@ -164,111 +170,127 @@ class _DashboardState extends State<Dashboard> {
       key: _scafoldKey,
       //The menu bar
       drawer: Drawer(
-        child: Column(
-          children: <Widget>[
-            Expanded(
-              child: ListView(
-                padding: EdgeInsets.zero,
-                children: <Widget>[
-                  DrawerHeader(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
+        child:
+        Container(
+          height: 10,
+          child: Column(
+            children: <Widget>[
+              Expanded(
+                child: ListView(
+                  padding: EdgeInsets.zero,
+                  children: <Widget>[
+                    Container(
+                    height: 110.0,
+                    child: DrawerHeader(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
-                            CircleAvatar(
-                              radius: deviceH * 4 / 100,
-                              backgroundColor: AppColors.color4,
-                              
-                              child: Image.asset(thirdVector),
-                            ),
-                            SizedBox(
-                              width: 10.0,
-                            ),
-                            Column(
-
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
                               children: <Widget>[
-                                Text(
-                                  'Odii Marshall',
-                                  style: textStyleBigRegular,
+                                SizedBox(width: 15.0,),
+                                CircleAvatar(
+                                  radius: deviceH * 4 / 100,
+                                  backgroundColor: AppColors.color4,
+
+                                  child: Icon(Icons.person, color:AppColors.color1,
+                                  size: 60.0,),
                                 ),
-                                Text(
-                                  'Edit Profile',
-                                  style: TextStyle(
-                                      color: Colors.white, fontWeight: FontWeight.w100),
+                                SizedBox(
+                                  width: 10.0,
                                 ),
+                                Column(
+
+                                  children: <Widget>[
+                                    Text(
+                                      'Odii Marshall',
+                                      style: textStyleBigRegularB,
+                                    ),
+                                    SizedBox(height: 10.0,),
+                                    Text(
+                                      'Edit Profile              ',
+                                      style: TextStyle(
+                                          color: Colors.black, fontWeight: FontWeight.w100),
+                                    ),
+                                  ],
+                                )
                               ],
-                            )
+                            ),
                           ],
                         ),
-                      ],
-                    ),
-                    decoration: BoxDecoration(
-                      color: AppColors.color4
+                        decoration: BoxDecoration(
+                            color: AppColors.color1
+                        ),
+                        margin: EdgeInsets.all(0.0),
+                        padding: EdgeInsets.all(0.0)
                     ),
                   ),
-                  ListTile(
-                    title: Text(
-                      'Free Rides',
-                      style: textStyleBigLight,
+                    ListTile(
+                      title: Text(
+                        'Free Rides',
+                        style: textStyleBigLight,
+                      ),
+                      leading: Icon(Icons.headset),
+                      onTap: () {
+                        navigatePush(context, FreeRides());
+                        // Update the state of the app.
+                        // ...
+                      },
                     ),
-                    leading: Icon(Icons.headset),
-                    onTap: () {
-                      // Update the state of the app.
-                      // ...
-                    },
-                  ),
-                  ListTile(
-                    title: Text(
-                      'Payments',
-                      style: textStyleBigLight,
+                    ListTile(
+                      title: Text(
+                        'Payments',
+                        style: textStyleBigLight,
 
+                      ),
+                      leading: Icon(Icons.credit_card),
+                      onTap: () {
+                        // Update the state of the app.
+                        // ...
+                        navigatePush(context, Payments());
+                      },
                     ),
-                    leading: Icon(Icons.credit_card),
-                    onTap: () {
-                      // Update the state of the app.
-                      // ...
-                    },
-                  ),
-                  ListTile(
-                    title: Text(
-                      'History',
-                      style: textStyleBigLight,
+                    ListTile(
+                      title: Text(
+                        'History',
+                        style: textStyleBigLight,
+                      ),
+                      leading: Icon(Icons.history),
+                      onTap: () {
+                        navigatePush(context, History());
+                        // Update the state of the app.
+                        // ...
+                      },
                     ),
-                    leading: Icon(Icons.history),
-                    onTap: () {
-                      // Update the state of the app.
-                      // ...
-                    },
-                  ),
-                  ListTile(
-                    title: Text(
-                      'Support',
-                      style: textStyleBigLight,
+                    ListTile(
+                      title: Text(
+                        'Support',
+                        style: textStyleBigLight,
+                      ),
+                      leading: Icon(Icons.chat),
+                      onTap: () {
+                        navigatePush(context, Support());
+                        // Update the state of the app.
+                        // ...
+                      },
                     ),
-                    leading: Icon(Icons.chat),
-                    onTap: () {
-                      // Update the state of the app.
-                      // ...
-                    },
-                  ),
-                  ListTile(
-                    title: Text(
-                      'About',
-                      style: textStyleBigLight,
+                    ListTile(
+                      title: Text(
+                        'About',
+                        style: textStyleBigLight,
+                      ),
+                      leading: Icon(Icons.info),
+                      onTap: () {
+                        navigatePush(context, About());
+                        // Update the state of the app.
+                        // ...
+                      },
                     ),
-                    leading: Icon(Icons.info),
-                    onTap: () {
-                      // Update the state of the app.
-                      // ...
-                    },
-                  ),
-                ],
+                  ],
+                ),
               ),
-            ),
-            Padding(
+              Padding(
                 padding: EdgeInsets.all(10.0),
                 child: MaterialButton(
                   shape: RoundedRectangleBorder(
@@ -293,9 +315,10 @@ class _DashboardState extends State<Dashboard> {
                         color: Colors.white, fontSize: 16.0),
                   ),
                 ),
-            )
-          ],
-        ),
+              )
+            ],
+          ),
+        )
       ),
       //The body of the app
       body: Stack(
