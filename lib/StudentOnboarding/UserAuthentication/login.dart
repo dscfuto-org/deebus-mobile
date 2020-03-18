@@ -1,5 +1,6 @@
 import 'package:deebus/Constants/AppColors.dart';
 import 'package:deebus/Constants/AssetsStrings.dart';
+import 'package:deebus/User/dashboard.dart';
 import 'package:deebus/Utils/Navigators.dart';
 import 'package:deebus/Utils/Styles.dart';
 import 'package:flutter/material.dart';
@@ -77,18 +78,29 @@ class _LoginState extends State<Login> {
                   hintText: 'Password',
                 ),
               ),
-              SizedBox(height: 10.0),
-              RaisedButton(
-                padding: EdgeInsets.all(5.0),
-                shape: new RoundedRectangleBorder(
-                  borderRadius: new BorderRadius.circular(14.0),
+              SizedBox(height: 25.0),
+              MaterialButton(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(40.0)),
                 ),
-                onPressed: () => {navigatePush(context, EmailConfirm())},
+                height: 50,
+                onPressed: () => {
+                  navigatePush(context, Dashboard())
+                },
+//                              async{
+//                                if(controller.text.length!=6){
+//                                  setState(() {
+//                                    hasError = true;
+//                                  });
+//                                } else if(equalsIgnoreCase(widget.tranType, "Withdrawal")){
+//                                  submitWithdrawal();
+//                                }
+//                              },
                 color: AppColors.color4,
-                textColor: Colors.white,
                 child: Text(
-                  "Sign in",
-                  style: textStyleBigLight,
+                  "Continue",
+                  style: TextStyle(
+                      color: Colors.white, fontSize: 16.0),
                 ),
               ),
               SizedBox(

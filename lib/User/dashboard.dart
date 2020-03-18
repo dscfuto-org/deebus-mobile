@@ -1,14 +1,16 @@
 import 'dart:async';
 
 import 'package:deebus/Constants/AppColors.dart';
-import 'package:deebus/Constants/AppColors.dart' as prefix0;
+import 'package:deebus/Constants/AssetsStrings.dart';
 import 'package:deebus/User/tests.dart';
 import 'package:deebus/Utils/Navigators.dart';
 import 'package:deebus/Utils/Styles.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart';
+import 'package:sliding_up_panel/sliding_up_panel.dart';
 
 //class DashBoard extends StatefulWidget {
 //
@@ -59,10 +61,14 @@ class Dashboard extends StatefulWidget {
 
 class _DashboardState extends State<Dashboard> {
   GlobalKey<ScaffoldState> _scafoldKey = GlobalKey();
+  // ignore: non_constant_identifier_names
   final double CAMERA_ZOOM = 16;
-  final double CAMERA_TILT = 80;
+//  final double CAMERA_TILT = 80;
+  // ignore: non_constant_identifier_names
   final double CAMERA_BEARING = 30;
+  // ignore: non_constant_identifier_names
   final LatLng SOURCE_LOCATION = LatLng(42.747932, -71.167889);
+  // ignore: non_constant_identifier_names
   LatLng DEST_LOCATION = LatLng(37.335685, -122.0605916);
 
   Completer<GoogleMapController> _controller = Completer();
@@ -143,14 +149,14 @@ class _DashboardState extends State<Dashboard> {
 
     CameraPosition initialCameraPosition = CameraPosition(
         zoom: CAMERA_ZOOM,
-        tilt: CAMERA_TILT,
+//        tilt: CAMERA_TILT,
         bearing: CAMERA_BEARING,
         target: SOURCE_LOCATION);
     if (currentLocation != null) {
       initialCameraPosition = CameraPosition(
           target: LatLng(currentLocation.latitude, currentLocation.longitude),
           zoom: CAMERA_ZOOM,
-          tilt: CAMERA_TILT,
+//          tilt: CAMERA_TILT,
           bearing: CAMERA_BEARING);
     }
 
@@ -174,44 +180,33 @@ class _DashboardState extends State<Dashboard> {
                           children: <Widget>[
                             CircleAvatar(
                               radius: deviceH * 4 / 100,
-                              backgroundColor: Colors.white70,
-                              child: Icon(
-                                Icons.person,
-                                size: 38.0,
-                                color: Colors.white54,
-                              ),
+                              backgroundColor: AppColors.color4,
+                              
+                              child: Image.asset(thirdVector),
                             ),
                             SizedBox(
                               width: 10.0,
                             ),
-                            Text(
-                              'Benjith Kizhisseri',
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 18.0,
-                                  fontFamily: 'Maven',
-                                  fontWeight: FontWeight.w400),
+                            Column(
+
+                              children: <Widget>[
+                                Text(
+                                  'Odii Marshall',
+                                  style: textStyleBigRegular,
+                                ),
+                                Text(
+                                  'Edit Profile',
+                                  style: TextStyle(
+                                      color: Colors.white, fontWeight: FontWeight.w100),
+                                ),
+                              ],
                             )
                           ],
-                        ),
-                        Divider(
-                          color: Colors.white38,
-                          height: 0.5,
-                        ),
-                        Text(
-                          'Do more with your account',
-                          style: TextStyle(
-                              color: Colors.white, fontWeight: FontWeight.w100),
-                        ),
-                        Text(
-                          'Make money driving',
-                          style: TextStyle(
-                              color: Colors.white, fontWeight: FontWeight.w300),
                         ),
                       ],
                     ),
                     decoration: BoxDecoration(
-                      color: Colors.black,
+                      color: AppColors.color4
                     ),
                   ),
                   ListTile(
@@ -219,6 +214,7 @@ class _DashboardState extends State<Dashboard> {
                       'Free Rides',
                       style: textStyleBigLight,
                     ),
+                    leading: Icon(Icons.headset),
                     onTap: () {
                       // Update the state of the app.
                       // ...
@@ -228,7 +224,9 @@ class _DashboardState extends State<Dashboard> {
                     title: Text(
                       'Payments',
                       style: textStyleBigLight,
+
                     ),
+                    leading: Icon(Icons.credit_card),
                     onTap: () {
                       // Update the state of the app.
                       // ...
@@ -239,6 +237,7 @@ class _DashboardState extends State<Dashboard> {
                       'History',
                       style: textStyleBigLight,
                     ),
+                    leading: Icon(Icons.history),
                     onTap: () {
                       // Update the state of the app.
                       // ...
@@ -249,6 +248,7 @@ class _DashboardState extends State<Dashboard> {
                       'Support',
                       style: textStyleBigLight,
                     ),
+                    leading: Icon(Icons.chat),
                     onTap: () {
                       // Update the state of the app.
                       // ...
@@ -259,6 +259,7 @@ class _DashboardState extends State<Dashboard> {
                       'About',
                       style: textStyleBigLight,
                     ),
+                    leading: Icon(Icons.info),
                     onTap: () {
                       // Update the state of the app.
                       // ...
@@ -273,6 +274,7 @@ class _DashboardState extends State<Dashboard> {
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.all(Radius.circular(40.0)),
                   ),
+                  minWidth: deviceW,
                   height: 50,
                   onPressed: this.test,
 //                              async{
@@ -286,7 +288,7 @@ class _DashboardState extends State<Dashboard> {
 //                              },
                   color: AppColors.color4,
                   child: Text(
-                    "Continue",
+                    "SIGN UP TO DRIVE",
                     style: TextStyle(
                         color: Colors.white, fontSize: 16.0),
                   ),
@@ -305,7 +307,7 @@ class _DashboardState extends State<Dashboard> {
                 // flex: 5,
                 child: GoogleMap(
                     myLocationEnabled: true,
-                    compassEnabled: true,
+                    compassEnabled: false,
                     buildingsEnabled: false,
                     tiltGesturesEnabled: false,
                     markers: _markers,
@@ -314,135 +316,154 @@ class _DashboardState extends State<Dashboard> {
                     initialCameraPosition: initialCameraPosition,
                     onMapCreated: (GoogleMapController controller) {
                       _controller.complete(controller);
-
                       showPinsOnMap();
                     }),
               ),
-              Container(
-                // color: Colors.red,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: <Widget>[
-                    SizedBox(
-                      height: deviceH * 2 / 100,
-                    ),
-                    Text(
-                      'Good evening Benjith',
-                      style: TextStyle(
-                          fontSize: 18.0,
-                          fontFamily: 'Maven',
-                          fontWeight: FontWeight.w500),
-                    ),
-                    SizedBox(
-                      height: deviceH * 2 / 100,
-                    ),
-                    Divider(
-                      thickness: 2.0,
-                    ),
-                    Padding(
-                      padding:
-                      EdgeInsets.symmetric(horizontal: deviceW * 2 / 100),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        mainAxisSize: MainAxisSize.max,
-                        children: <Widget>[
-                          TextField(
-                            onSubmitted: (val) {
-                              print(val);
-                              if (val.contains(',')) {
-                                destinationLocation = LocationData.fromMap({
-                                  "latitude":
-                                  double.tryParse(val.split(',').first),
-                                  "longitude":
-                                  double.tryParse(val.split(',').last)
-                                });
-                                setSourceAndDestinationIcons();
-                                setInitialLocation();
-                                setPolylines();
-                                showPinsOnMap();
-                              }
-                            },
-                            decoration: InputDecoration(
-                                hintText: 'Where to?',
-                                hintStyle: TextStyle(fontSize: 18.0),
-                                fillColor: Colors.black12,
-                                filled: true,
-                                border: InputBorder.none),
-                          ),
-                          SizedBox(
-                            height: deviceH * 1 / 100,
-                          ),
-                          FlatButton(
-                            // onTap: () {},
-                            onPressed: () {},
-                            child: Column(
-                              children: <Widget>[
-                                SizedBox(
-                                  height: deviceH * 2 / 100,
-                                ),
-                                Row(
-                                  mainAxisAlignment:
-                                  MainAxisAlignment.spaceBetween,
-                                  children: <Widget>[
-                                    Container(
-                                      child: Row(
-                                        children: <Widget>[
-                                          CircleAvatar(
-                                            backgroundColor: AppColors.color4,
-                                            child: Icon(
-                                              Icons.star,
-                                              color: Colors.black,
-                                            ),
-                                          ),
-                                          SizedBox(
-                                            width: deviceW * 3 / 100,
-                                          ),
-                                          Text(
-                                            'Choose a saved place',
-                                            style: TextStyle(
-                                                fontSize: 18.0,
-                                                fontFamily: 'Maven',
-                                                fontWeight: FontWeight.w500),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    Icon(
-                                      Icons.keyboard_arrow_right,
-                                      color: Colors.black45,
-                                    )
-                                  ],
-                                ),
-                                SizedBox(
-                                  height: deviceH * 2 / 100,
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                    )
-                  ],
-                ),
-              )
             ],
           ),
           SafeArea(
-              child: IconButton(
-                  icon: Icon(Icons.menu),
-                  iconSize: 32.0,
-                  onPressed: () => _scafoldKey.currentState.isDrawerOpen == true
+              child: Padding(
+                padding: const EdgeInsets.all(15.0),
+                child: InkWell(
+                  onTap: () => _scafoldKey.currentState.isDrawerOpen == true
                       ? null
-                      : _scafoldKey.currentState.openDrawer()))
+                      : _scafoldKey.currentState.openDrawer(),
+                  child: CircleAvatar(
+                    backgroundColor: AppColors.color4,
+                    child: Icon(
+                      Icons.menu,
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+              )
+          ),
+          SlidingUpPanel(
+            maxHeight: deviceH,
+            minHeight: deviceH*6/14,
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(20.0),
+              topRight: Radius.circular(20.0)
+            ),
+            panel: Container(
+              // color: Colors.red,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: <Widget>[
+                  SizedBox(
+                    height: deviceH * 2 / 100,
+                  ),
+                  Text(
+                    'Good evening Marshall',
+                    style: TextStyle(
+                        fontSize: 18.0,
+                        fontFamily: 'Maven',
+                        fontWeight: FontWeight.w500),
+                  ),
+                  SizedBox(
+                    height: deviceH * 2 / 100,
+                  ),
+                  Divider(
+                    thickness: 2.0,
+                  ),
+                  Padding(
+                    padding:
+                    EdgeInsets.symmetric(horizontal: deviceW * 2 / 100),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      mainAxisSize: MainAxisSize.max,
+                      children: <Widget>[
+                        TextField(
+                          onSubmitted: (val) {
+                            print(val);
+                            if (val.contains(',')) {
+                              destinationLocation = LocationData.fromMap({
+                                "latitude":
+                                double.tryParse(val.split(',').first),
+                                "longitude":
+                                double.tryParse(val.split(',').last)
+                              });
+                              setSourceAndDestinationIcons();
+                              setInitialLocation();
+                              setPolylines();
+                              showPinsOnMap();
+                            }
+                          },
+                          decoration: InputDecoration(
+                              hintText: 'Where to?',
+                              hintStyle: TextStyle(fontSize: 18.0),
+                              fillColor: Colors.black12,
+                              filled: true,
+                              border: InputBorder.none),
+                        ),
+                        SizedBox(
+                          height: deviceH * 1 / 100,
+                        ),
+                        FlatButton(
+                          // onTap: () {},
+                          onPressed: () {},
+                          child: Column(
+                            children: <Widget>[
+                              SizedBox(
+                                height: deviceH * 2 / 100,
+                              ),
+                              Row(
+                                mainAxisAlignment:
+                                MainAxisAlignment.spaceBetween,
+                                children: <Widget>[
+                                  Container(
+                                    child: Row(
+                                      children: <Widget>[
+                                        CircleAvatar(
+                                          backgroundColor: AppColors.color4,
+                                          child: Icon(
+                                            Icons.star,
+                                            color: Colors.black,
+                                          ),
+                                        ),
+                                        SizedBox(
+                                          width: deviceW * 3 / 100,
+                                        ),
+                                        Text(
+                                          'Choose a saved place',
+                                          style: TextStyle(
+                                              fontSize: 18.0,
+                                              fontFamily: 'Maven',
+                                              fontWeight: FontWeight.w500),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  Icon(
+                                    Icons.keyboard_arrow_right,
+                                    color: Colors.black45,
+                                  )
+                                ],
+                              ),
+                              SizedBox(
+                                height: deviceH * 2 / 100,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  )
+                ],
+              ),
+            ),
+          ),
         ],
       ),
     );
   }
 
+  // ignore: unused_field
   static final CameraPosition _ccj = CameraPosition(
     target: LatLng(11.1446454, 75.9452897),
     zoom: 14.4746,
   );
+  // ignore: unused_field
   static final CameraPosition _kLake = CameraPosition(
       bearing: 192.8334901395799,
       target: LatLng(37.43296265331129, -122.08832357078792),
@@ -455,7 +476,7 @@ class _DashboardState extends State<Dashboard> {
     // follows the pin as it moves with an animation
     CameraPosition cPosition = CameraPosition(
       zoom: CAMERA_ZOOM,
-      tilt: CAMERA_TILT,
+//      tilt: CAMERA_TILT,
       bearing: CAMERA_BEARING,
       target: LatLng(currentLocation.latitude, currentLocation.longitude),
     );
@@ -525,4 +546,6 @@ class _DashboardState extends State<Dashboard> {
   void test() {
     {navigatePush(context, Page());}
   }
+
+
 }

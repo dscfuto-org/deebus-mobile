@@ -1,28 +1,32 @@
 
+import 'package:deebus/Constants/AppColors.dart';
+import 'package:deebus/Constants/Strings.dart';
+import 'package:deebus/StudentOnboarding/UserAuthentication/login.dart';
+import 'package:deebus/Utils/Styles.dart';
 import 'package:flutter/material.dart';
 
 import 'Navigators.dart';
 
 
 /// this method pops up an alert dialog
-//void showErrorDialog(BuildContext context, String message, ) {
-//  showDialog(
-//      context: context,
-//      builder: (ctx) => AlertDialog(
-//        title: Text('Notification'),
-//        content: Text(message),
-//        actions: <Widget>[
-//          FlatButton(
-//            child: Text('Okay'),
-//            onPressed: () {
-//              navigateBack(context);
-//              navigateReplace(context, LoginPage());
-//
-//            },
-//          )
-//        ],
-//      ));
-//}
+void showErrorDialog(BuildContext context, String message, ) {
+  showDialog(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        title: Text('Notification'),
+        content: Text(message),
+        actions: <Widget>[
+          FlatButton(
+            child: Text('Okay'),
+            onPressed: () {
+              navigateBack(context);
+              navigateReplace(context, Login());
+
+            },
+          )
+        ],
+      ));
+}
 
 /// this method collects a customized ui and pops it as an alert dialog
 openDialog(Widget widget, BuildContext context){
@@ -34,36 +38,36 @@ openDialog(Widget widget, BuildContext context){
   );
 }
 
-//
-//
-//loadingDialog(BuildContext context){
-//  showDialog(
-//    barrierDismissible: false,
-//      context: context,
-//      builder: (BuildContext context){
-//        return Center(
-//          child: Dialog(
-//            child: Container(
-//              height: 100,
-//              child: Center(
-//                child:  Row(
-//                  mainAxisAlignment: MainAxisAlignment.center,
-//                  children: <Widget>[
-//                    Text(pleaseWaitText, style: textStyleBigSemiBold,),
-//                    SizedBox(width: 10,),
-//                    CircularProgressIndicator(
-//                      backgroundColor: AppColors.color1,
-//                      valueColor: new AlwaysStoppedAnimation(AppColors.color5),
-//                    ),
-//                  ],
-//                )
-//              ),
-//            ),
-//          ),
-//        );
-//      }
-//  );
-//}
+
+
+loadingDialog(BuildContext context){
+  showDialog(
+    barrierDismissible: false,
+      context: context,
+      builder: (BuildContext context){
+        return Center(
+          child: Dialog(
+            child: Container(
+              height: 100,
+              child: Center(
+                child:  Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Text(pleaseWaitText, style: textStyleBigLightB,),
+                    SizedBox(width: 10,),
+                    CircularProgressIndicator(
+                      backgroundColor: AppColors.color1,
+                      valueColor: new AlwaysStoppedAnimation(AppColors.color4),
+                    ),
+                  ],
+                )
+              ),
+            ),
+          ),
+        );
+      }
+  );
+}
 
 
 void showAlertDialog(BuildContext context, String message, ) {

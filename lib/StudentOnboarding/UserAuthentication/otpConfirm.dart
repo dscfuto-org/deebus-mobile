@@ -18,7 +18,7 @@ class OTPScreen extends StatefulWidget {
 class _OTPScreenState extends State<OTPScreen> {
   TextEditingController controller = TextEditingController();
 
-  int pinLength = 6;
+  int pinLength = 4;
 
   bool hasError = false;
   bool isLoading = false;
@@ -28,6 +28,19 @@ class _OTPScreenState extends State<OTPScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: new AppBar(
+        title: Text("Confirm Email"),
+        backgroundColor: Colors.white10,
+        elevation: 0,
+        leading: IconButton(
+          icon: Icon(
+            Icons.arrow_back,
+            color: AppColors.color4,
+            size: 35.0,
+          ),
+          onPressed: () => navigateBack(context),
+        ),
+      ),
 //        backgroundColor: AppColors.color4,
         body: Padding(
           padding: EdgeInsets.all(13.4),
@@ -71,7 +84,7 @@ class _OTPScreenState extends State<OTPScreen> {
                               });
                             },
                             onDone: (text){
-                              if(text.length!=6){
+                              if(text.length!=4){
                                 setState(() {
                                   hasError = true;
                                 });
@@ -135,7 +148,7 @@ class _OTPScreenState extends State<OTPScreen> {
                         ),
                         SizedBox(height: 20,),
                         Text(
-                            "E-mail has been sent to your mail. Enter code from e-mail",
+                            "OTP has been sent to your mailbox. Enter code from e-mail",
                           style: textStyleBigLight,
                         ),
                         SizedBox(height: 10,),
