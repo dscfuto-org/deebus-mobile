@@ -4,6 +4,8 @@ import 'package:deebus/Constants/AppColors.dart';
 import 'package:deebus/Constants/AssetsStrings.dart';
 import 'package:deebus/User/About.dart';
 import 'package:deebus/User/Payments.dart';
+import 'package:deebus/User/Profile.dart';
+import 'package:deebus/User/Support.dart';
 import 'package:deebus/User/tests.dart';
 import 'package:deebus/Utils/Navigators.dart';
 import 'package:deebus/Utils/Styles.dart';
@@ -63,33 +65,43 @@ class Dashboard extends StatefulWidget {
 
 class _DashboardState extends State<Dashboard> {
   GlobalKey<ScaffoldState> _scafoldKey = GlobalKey();
+
   // ignore: non_constant_identifier_names
   final double CAMERA_ZOOM = 16;
+
 //  final double CAMERA_TILT = 80;
   // ignore: non_constant_identifier_names
   final double CAMERA_BEARING = 30;
+
   // ignore: non_constant_identifier_names
   final LatLng SOURCE_LOCATION = LatLng(42.747932, -71.167889);
+
   // ignore: non_constant_identifier_names
   LatLng DEST_LOCATION = LatLng(37.335685, -122.0605916);
 
   Completer<GoogleMapController> _controller = Completer();
   Set<Marker> _markers = Set<Marker>();
+
 // for my drawn routes on the map
   Set<Polyline> _polylines = Set<Polyline>();
   List<LatLng> polylineCoordinates = [];
   PolylinePoints polylinePoints;
   String googleAPIKey = "AIzaSyAl94Ny5NNazeIpGGCG0DdCfDYR59GWKQ8";
+
 // for my custom marker pins
   BitmapDescriptor sourceIcon;
   BitmapDescriptor destinationIcon;
+
 // the user's initial location and current location
 // as it moves
   LocationData currentLocation;
+
 // a reference to the destination location
   LocationData destinationLocation;
+
 // wrapper around the location API
   Location location = Location();
+
   @override
   void initState() {
     super.initState();
@@ -183,33 +195,34 @@ class _DashboardState extends State<Dashboard> {
                             CircleAvatar(
                               radius: deviceH * 4 / 100,
                               backgroundColor: AppColors.color4,
-                              
                               child: Image.asset(thirdVector),
                             ),
                             SizedBox(
                               width: 10.0,
                             ),
-                            Column(
-
-                              children: <Widget>[
-                                Text(
-                                  'Odii Marshall',
-                                  style: textStyleBigRegular,
-                                ),
-                                Text(
-                                  'Edit Profile',
-                                  style: TextStyle(
-                                      color: Colors.white, fontWeight: FontWeight.w100),
-                                ),
-                              ],
+                            InkWell(
+                              child: Column(
+                                children: <Widget>[
+                                  Text(
+                                    'Odii Marshall',
+                                    style: textStyleBigRegular,
+                                  ),
+                                  Text(
+                                    'Edit Profile',
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.w100),
+                                  ),
+                                ],
+                              ),
+                              onTap: () =>
+                                  navigatePush(context, ProfileScreen()),
                             )
                           ],
                         ),
                       ],
                     ),
-                    decoration: BoxDecoration(
-                      color: AppColors.color4
-                    ),
+                    decoration: BoxDecoration(color: AppColors.color4),
                   ),
                   ListTile(
                     title: Text(
@@ -226,7 +239,6 @@ class _DashboardState extends State<Dashboard> {
                     title: Text(
                       'Payments',
                       style: textStyleBigLight,
-
                     ),
                     leading: Icon(Icons.credit_card),
                     onTap: () {
@@ -251,8 +263,7 @@ class _DashboardState extends State<Dashboard> {
                     ),
                     leading: Icon(Icons.chat),
                     onTap: () {
-                      // Update the state of the app.
-                      // ...
+                      navigatePush(context, SupportScreen());
                     },
                   ),
                   ListTile(
@@ -269,14 +280,14 @@ class _DashboardState extends State<Dashboard> {
               ),
             ),
             Padding(
-                padding: EdgeInsets.all(10.0),
-                child: MaterialButton(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(40.0)),
-                  ),
-                  minWidth: deviceW,
-                  height: 50,
-                  onPressed: this.test,
+              padding: EdgeInsets.all(10.0),
+              child: MaterialButton(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(40.0)),
+                ),
+                minWidth: deviceW,
+                height: 50,
+                onPressed: this.test,
 //                              async{
 //                                if(controller.text.length!=6){
 //                                  setState(() {
@@ -286,13 +297,12 @@ class _DashboardState extends State<Dashboard> {
 //                                  submitWithdrawal();
 //                                }
 //                              },
-                  color: AppColors.color4,
-                  child: Text(
-                    "SIGN UP TO DRIVE",
-                    style: TextStyle(
-                        color: Colors.white, fontSize: 16.0),
-                  ),
+                color: AppColors.color4,
+                child: Text(
+                  "SIGN UP TO DRIVE",
+                  style: TextStyle(color: Colors.white, fontSize: 16.0),
                 ),
+              ),
             )
           ],
         ),
@@ -323,28 +333,26 @@ class _DashboardState extends State<Dashboard> {
           ),
           SafeArea(
               child: Padding(
-                padding: const EdgeInsets.all(15.0),
-                child: InkWell(
-                  onTap: () => _scafoldKey.currentState.isDrawerOpen == true
-                      ? null
-                      : _scafoldKey.currentState.openDrawer(),
-                  child: CircleAvatar(
-                    backgroundColor: AppColors.color4,
-                    child: Icon(
-                      Icons.menu,
-                      color: Colors.white,
-                    ),
-                  ),
+            padding: const EdgeInsets.all(15.0),
+            child: InkWell(
+              onTap: () => _scafoldKey.currentState.isDrawerOpen == true
+                  ? null
+                  : _scafoldKey.currentState.openDrawer(),
+              child: CircleAvatar(
+                backgroundColor: AppColors.color4,
+                child: Icon(
+                  Icons.menu,
+                  color: Colors.white,
                 ),
-              )
-          ),
+              ),
+            ),
+          )),
           SlidingUpPanel(
             maxHeight: deviceH,
-            minHeight: deviceH*6/14,
+            minHeight: deviceH * 6 / 14,
             borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(20.0),
-              topRight: Radius.circular(20.0)
-            ),
+                topLeft: Radius.circular(20.0),
+                topRight: Radius.circular(20.0)),
             panel: Container(
               // color: Colors.red,
               child: Column(
@@ -379,9 +387,13 @@ class _DashboardState extends State<Dashboard> {
                             if (val.contains(',')) {
                               destinationLocation = LocationData.fromMap({
                                 "latitude":
-                                double.tryParse(val.split(',').first),
+                                double.tryParse(val
+                                    .split(',')
+                                    .first),
                                 "longitude":
-                                double.tryParse(val.split(',').last)
+                                double.tryParse(val
+                                    .split(',')
+                                    .last)
                               });
                               setSourceAndDestinationIcons();
                               setInitialLocation();
@@ -463,6 +475,7 @@ class _DashboardState extends State<Dashboard> {
     target: LatLng(11.1446454, 75.9452897),
     zoom: 14.4746,
   );
+
   // ignore: unused_field
   static final CameraPosition _kLake = CameraPosition(
       bearing: 192.8334901395799,
@@ -544,8 +557,8 @@ class _DashboardState extends State<Dashboard> {
   }
 
   void test() {
-    {navigatePush(context, Page());}
+    {
+      navigatePush(context, Page());
+    }
   }
-
-
 }
