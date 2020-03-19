@@ -14,7 +14,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
   final _tileTextStyle = TextStyle(
       fontSize: 21.0, fontWeight: FontWeight.w400, fontFamily: "Ubuntu");
   final _padding = EdgeInsets.only(left: 13.0, right: 13.0, bottom: 8.0);
-  final _contentPadding = EdgeInsets.symmetric(horizontal: 15.0, vertical: 2.5);
+  final _contentPadding = EdgeInsets.symmetric(horizontal: 16.0, vertical: 2.5);
 
   @override
   Widget build(BuildContext context) {
