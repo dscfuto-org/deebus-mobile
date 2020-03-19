@@ -13,12 +13,13 @@ class _PaymentScreenState extends State<PaymentScreen> {
       fontWeight: FontWeight.w600, fontSize: 17, fontFamily: "Ubuntu");
   final _tileTextStyle = TextStyle(
       fontSize: 21.0, fontWeight: FontWeight.w400, fontFamily: "Ubuntu");
-  final _padding = EdgeInsets.only(left: 13.0, right: 13.0);
+  final _padding = EdgeInsets.only(left: 13.0, right: 13.0, bottom: 8.0);
+  final _contentPadding = EdgeInsets.symmetric(horizontal: 15.0, vertical: 2.5);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: new AppBar(
+      appBar: AppBar(
         title: Text("Payments"),
         backgroundColor: Colors.white10,
         elevation: 0,
@@ -48,7 +49,6 @@ class _PaymentScreenState extends State<PaymentScreen> {
                 ),
               ),
               ListView(
-                padding: _padding,
                 shrinkWrap: true,
                 scrollDirection: Axis.vertical,
                 physics: ClampingScrollPhysics(),
@@ -57,7 +57,10 @@ class _PaymentScreenState extends State<PaymentScreen> {
                     visible: true,
                     child: Column(
                       children: <Widget>[
-                        Divider(),
+                        Divider(
+                          height: 1,
+                          thickness: 1,
+                        ),
                         ListTile(
                           title: Text(
                             "Cash",
@@ -72,9 +75,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                             color: Colors.green,
                             size: 25,
                           ),
-                          contentPadding: EdgeInsets.symmetric(
-                            horizontal: 2.0,
-                          ),
+                          contentPadding: _contentPadding,
                           onTap: () {
                             //
                           },
@@ -86,7 +87,10 @@ class _PaymentScreenState extends State<PaymentScreen> {
                     visible: false,
                     child: Column(
                       children: <Widget>[
-                        Divider(),
+                        Divider(
+                          height: 1,
+                          thickness: 1,
+                        ),
                         ListTile(
                           title: Text(
                             "Debit Card",
@@ -101,9 +105,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                             color: Colors.green,
                             size: 25,
                           ),
-                          contentPadding: EdgeInsets.symmetric(
-                            horizontal: 2.0,
-                          ),
+                          contentPadding: _contentPadding,
                           onTap: () {
                             //
                           },
@@ -113,7 +115,10 @@ class _PaymentScreenState extends State<PaymentScreen> {
                   ),
                   Column(
                     children: <Widget>[
-                      Divider(),
+                      Divider(
+                        height: 1,
+                        thickness: 1,
+                      ),
                       ListTile(
                         title: Text(
                           "Add payment card",
@@ -123,9 +128,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                           Icons.add,
                           size: 25,
                         ),
-                        contentPadding: EdgeInsets.symmetric(
-                          horizontal: 2.0,
-                        ),
+                        contentPadding: _contentPadding,
                         onTap: () {
                           //
                         },
@@ -134,53 +137,61 @@ class _PaymentScreenState extends State<PaymentScreen> {
                   )
                 ],
               ),
-              Divider(
-                thickness: 6.0,
-              ),
-              ListView(
-                padding: _padding,
-                shrinkWrap: true,
-                scrollDirection: Axis.vertical,
-                physics: ClampingScrollPhysics(),
-                children: <Widget>[
-                  ListTile(
-                    title: Text(
-                      "Create your Business Profile",
-                      style: _tileTextStyle,
+              Container(
+                margin: EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 27.0),
+                child: Column(
+                  children: <Widget>[
+                    Divider(
+                      thickness: 4.0,
+                      height: 0.0,
                     ),
-                    leading: Icon(MyFlutterApp.briefcase),
-                    trailing: Icon(
-                      Icons.chevron_right,
-                      size: 28,
+                    ListView(
+                      shrinkWrap: true,
+                      scrollDirection: Axis.vertical,
+                      physics: ClampingScrollPhysics(),
+                      children: <Widget>[
+                        ListTile(
+                          title: Text(
+                            "Create your Business Profile",
+                            style: _tileTextStyle,
+                          ),
+                          leading: Icon(MyFlutterApp.briefcase),
+                          trailing: Icon(
+                            Icons.chevron_right,
+                            size: 28,
+                          ),
+                          contentPadding: _contentPadding,
+                          onTap: () {
+                            //
+                          },
+                        ),
+                      ],
                     ),
-                    contentPadding: EdgeInsets.symmetric(
-                      horizontal: 2.0,
+                    Divider(
+                      thickness: 4.0,
+                      height: 0.0,
                     ),
-                    onTap: () {
-                      //
-                    },
-                  ),
-                ],
-              ),
-              Divider(
-                thickness: 6.0,
+                  ],
+                ),
               ),
               Padding(
-                padding: EdgeInsets.only(top: 30.0, left: 10.0, right: 10.0),
+                padding: _padding,
                 child: Text(
                   "Promotions",
                   style: _titleTextStyle,
                 ),
               ),
               ListView(
-                padding: _padding,
                 shrinkWrap: true,
                 scrollDirection: Axis.vertical,
                 physics: ClampingScrollPhysics(),
                 children: <Widget>[
                   Column(
                     children: <Widget>[
-                      Divider(),
+                      Divider(
+                        height: 0.0,
+                        thickness: 1,
+                      ),
                       ListTile(
                         title: Text(
                           "Enter promo code",
@@ -191,9 +202,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                           size: 25,
                         ),
                         dense: true,
-                        contentPadding: EdgeInsets.symmetric(
-                          horizontal: 2.0,
-                        ),
+                        contentPadding: _contentPadding,
                         onTap: () {
                           //
                         },
