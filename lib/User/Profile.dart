@@ -43,6 +43,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           children: <Widget>[
             RaisedButton(
               child: Text("CONNECT TO FACEBOOK"),
+              onPressed: () {},
             )
           ],
         ),
