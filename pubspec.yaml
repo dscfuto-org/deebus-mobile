@@ -36,9 +36,6 @@ dependencies:
   sliding_up_panel: ^1.0.0
   http: 0.12.0+4
 
-
-
-
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -78,8 +75,9 @@ flutter:
         - asset: assets/fonts/UbuntuMono-BI.ttf
         - asset: assets/fonts/UbuntuMono-R.ttf
         - asset: assets/fonts/UbuntuMono-RI.ttf
-
-
+    - family:  MyFlutterApp
+      fonts:
+        - asset: assets/fonts/MyFlutterApp.ttf
 
 
   # For details regarding fonts from package dependencies,
