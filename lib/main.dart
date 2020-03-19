@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
       title: appName,
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: AppColors.color3,
+        primarySwatch: AppColors.color5,
         fontFamily: 'Ubuntu',
       ),
       home: SplashScreen(),
