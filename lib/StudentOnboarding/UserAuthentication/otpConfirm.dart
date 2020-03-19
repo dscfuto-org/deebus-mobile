@@ -28,19 +28,19 @@ class _OTPScreenState extends State<OTPScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: new AppBar(
-        title: Text("Confirm Email"),
-        backgroundColor: Colors.white10,
-        elevation: 0,
-        leading: IconButton(
-          icon: Icon(
-            Icons.arrow_back,
-            color: AppColors.color4,
-            size: 35.0,
+        appBar: new AppBar(
+          title: Text("Confirm Email"),
+          backgroundColor: Colors.white10,
+          elevation: 0,
+          leading: IconButton(
+            icon: Icon(
+              Icons.arrow_back,
+              color: AppColors.color4,
+              size: 35.0,
+            ),
+            onPressed: () => navigateBack(context),
           ),
-          onPressed: () => navigateBack(context),
         ),
-      ),
 //        backgroundColor: AppColors.color4,
         body: Padding(
           padding: EdgeInsets.all(13.4),
