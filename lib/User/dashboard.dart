@@ -106,9 +106,6 @@ class DashboardState extends State<Dashboard> {
           currentLocation.longitude == destinationLocation.longitude) {
         // rider reached location
         // alert rider
-
-//        Navigator.push(context,
-//            MaterialPageRoute(builder: (context) => LocationReached()));
       }
     });
 

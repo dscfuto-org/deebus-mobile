@@ -16,10 +16,14 @@ class _SplashScreenState extends State<SplashScreen> {
 //  Animation<double> animationTurns = Tween<double>(begin: 0, end: 0.5).animate(animation);
   @override
   void initState() {
+
     splashTime().then((onValue) => navigateReplace(context, IntroScreen()));
     DashboardState().getCurrentLocation();
     super.initState();
+
+
   }
+
 
   Future splashTime() async{
     await Future.delayed(Duration(seconds: 5));
@@ -28,6 +32,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
         backgroundColor: AppColors.color4,
         body: Padding(

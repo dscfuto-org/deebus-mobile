@@ -68,7 +68,7 @@ class _IntroScreenState extends State<IntroScreen> {
 
   void onDonePress() {
     // Do what you want
-    navigatePush(context, Signup());
+    navigateReplace(context, Signup());
   }
 
   @override

@@ -139,9 +139,7 @@ class _LoginState extends State<Login> {
                     minWidth: deviceW,
                     onPressed: () => {
                       submitLogin()
-                      // navigatePush(context, OTPScreen("hhsh"))
                     },
-//
                     color: AppColors.color4,
                     child: Text(
                       "Continue",
@@ -168,7 +166,7 @@ class _LoginState extends State<Login> {
                             fontSize: 18.0,
                             fontWeight: FontWeight.w500),
                       ),
-                      onPressed: () => {navigatePush(context, Signup())},
+                      onPressed: () => {navigateReplace(context, Signup())},
                     ),
                   ],
                 ),
