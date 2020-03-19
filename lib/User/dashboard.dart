@@ -1,8 +1,5 @@
 import 'dart:async';
-
 import 'package:deebus/Constants/AppColors.dart';
-import 'package:deebus/Constants/AppColors.dart' as prefix0;
-import 'package:deebus/Constants/AssetsStrings.dart';
 import 'package:deebus/User/About.dart';
 import 'package:deebus/User/FreeRides.dart';
 import 'package:deebus/User/History.dart';
@@ -62,10 +59,10 @@ import 'package:sliding_up_panel/sliding_up_panel.dart';
 //
 class Dashboard extends StatefulWidget {
   @override
-  _DashboardState createState() => _DashboardState();
+  DashboardState createState() => DashboardState();
 }
 
-class _DashboardState extends State<Dashboard> {
+class DashboardState extends State<Dashboard> {
   GlobalKey<ScaffoldState> _scafoldKey = GlobalKey();
   // ignore: non_constant_identifier_names
   final double CAMERA_ZOOM = 16;
@@ -94,16 +91,11 @@ class _DashboardState extends State<Dashboard> {
   LocationData destinationLocation;
 // wrapper around the location API
   Location location = Location();
-  @override
-  void initState() {
-    super.initState();
 
+  getCurrentLocation(){
     // create an instance of Location
     location = new Location();
-    polylinePoints = PolylinePoints();
 
-    // subscribe to changes in the user's location
-    // by "listening" to the location's onLocationChanged event
     location.onLocationChanged().listen((LocationData cLoc) {
       // cLoc contains the lat and long of the
       // current user's position in real time,
@@ -119,6 +111,18 @@ class _DashboardState extends State<Dashboard> {
 //            MaterialPageRoute(builder: (context) => LocationReached()));
       }
     });
+
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    getCurrentLocation();
+
+    polylinePoints = PolylinePoints();
+
+    // subscribe to changes in the user's location
+    // by "listening" to the location's onLocationChanged event
     // set custom marker pins
     setSourceAndDestinationIcons();
     // set the initial location
@@ -195,7 +199,7 @@ class _DashboardState extends State<Dashboard> {
                                   backgroundColor: AppColors.color4,
 
                                   child: Icon(Icons.person, color:AppColors.color1,
-                                  size: 60.0,),
+                                  size: 50.0,),
                                 ),
                                 SizedBox(
                                   width: 10.0,
@@ -231,7 +235,7 @@ class _DashboardState extends State<Dashboard> {
                         'Free Rides',
                         style: textStyleBigLight,
                       ),
-                      leading: Icon(Icons.headset),
+                      leading: Icon(Icons.card_giftcard, color: Colors.black,),
                       onTap: () {
                         navigatePush(context, FreeRides());
                         // Update the state of the app.
@@ -244,7 +248,7 @@ class _DashboardState extends State<Dashboard> {
                         style: textStyleBigLight,
 
                       ),
-                      leading: Icon(Icons.credit_card),
+                      leading: Icon(Icons.credit_card, color: Colors.black),
                       onTap: () {
                         // Update the state of the app.
                         // ...
@@ -254,9 +258,9 @@ class _DashboardState extends State<Dashboard> {
                     ListTile(
                       title: Text(
                         'History',
-                        style: textStyleBigLight,
+                        style: textStyleBigLightC,
                       ),
-                      leading: Icon(Icons.history),
+                      leading: Icon(Icons.history, color: AppColors.color5,),
                       onTap: () {
                         navigatePush(context, History());
                         // Update the state of the app.
@@ -268,7 +272,7 @@ class _DashboardState extends State<Dashboard> {
                         'Support',
                         style: textStyleBigLight,
                       ),
-                      leading: Icon(Icons.chat),
+                      leading: Icon(Icons.chat, color: AppColors.color5, ),
                       onTap: () {
                         navigatePush(context, Support());
                         // Update the state of the app.
@@ -280,7 +284,7 @@ class _DashboardState extends State<Dashboard> {
                         'About',
                         style: textStyleBigLight,
                       ),
-                      leading: Icon(Icons.info),
+                      leading: Icon(Icons.info_outline, color: AppColors.color5, ),
                       onTap: () {
                         navigatePush(context, About());
                         // Update the state of the app.
@@ -377,14 +381,11 @@ class _DashboardState extends State<Dashboard> {
                     height: deviceH * 2 / 100,
                   ),
                   Text(
-                    'Good evening Marshall',
-                    style: TextStyle(
-                        fontSize: 18.0,
-                        fontFamily: 'Maven',
-                        fontWeight: FontWeight.w500),
+                    'Where are you going?',
+                    style: textStyleBigRegularGreet,
                   ),
                   SizedBox(
-                    height: deviceH * 2 / 100,
+                    height: deviceH * 1 / 100,
                   ),
                   Divider(
                     thickness: 2.0,
@@ -414,10 +415,12 @@ class _DashboardState extends State<Dashboard> {
                           },
                           decoration: InputDecoration(
                               hintText: 'Where to?',
-                              hintStyle: TextStyle(fontSize: 18.0),
+                              hintStyle: textStyleBigLight,
                               fillColor: Colors.black12,
                               filled: true,
-                              border: InputBorder.none),
+                              suffixIcon: Icon(Icons.search),
+                              border: InputBorder.none,
+                          ),
                         ),
                         SizedBox(
                           height: deviceH * 1 / 100,
@@ -440,8 +443,8 @@ class _DashboardState extends State<Dashboard> {
                                         CircleAvatar(
                                           backgroundColor: AppColors.color4,
                                           child: Icon(
-                                            Icons.star,
-                                            color: Colors.black,
+                                            Icons.person_pin,
+                                            color: Colors.white,
                                           ),
                                         ),
                                         SizedBox(
@@ -449,16 +452,13 @@ class _DashboardState extends State<Dashboard> {
                                         ),
                                         Text(
                                           'Choose a saved place',
-                                          style: TextStyle(
-                                              fontSize: 18.0,
-                                              fontFamily: 'Maven',
-                                              fontWeight: FontWeight.w500),
+                                          style: textStyleBigRegularB,
                                         ),
                                       ],
                                     ),
                                   ),
                                   Icon(
-                                    Icons.keyboard_arrow_right,
+                                    Icons.keyboard_arrow_down,
                                     color: Colors.black45,
                                   )
                                 ],
@@ -466,6 +466,33 @@ class _DashboardState extends State<Dashboard> {
                               SizedBox(
                                 height: deviceH * 2 / 100,
                               ),
+//                              MaterialButton(
+//                                shape: RoundedRectangleBorder(
+//                                  borderRadius: BorderRadius.all(Radius.circular(40.0)),
+//                                ),
+//                                height: 50,
+//                                onPressed: ,
+////                              async{
+////                                if(controller.text.length!=6){
+////                                  setState(() {
+////                                    hasError = true;
+////                                  });
+////                                } else if(equalsIgnoreCase(widget.tranType, "Withdrawal")){
+////                                  submitWithdrawal();
+////                                }
+////                              },
+//                                color: AppColors.color4,
+//                                child: Text(
+//                                  "Continue",
+//                                  style: TextStyle(
+//                                      color: Colors.white, fontSize: 16.0),
+//                                ),
+//                              ),
+                            Center(
+                              child: Text("You have not saved any Locations",
+                                style: textStyleBigLight,
+                              ),
+                            )
                             ],
                           ),
                         ),

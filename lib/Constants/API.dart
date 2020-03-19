@@ -1,7 +1,11 @@
-final String http = 'http://';
+final String http = 'https://';
 
-final String https = 'https://';
+final String baseURL = "deebus.herokuapp.com";
 
-final String baseURL = "taxmandev.ojpeters.com";
+final String loginPath = "/api/auth/login";
 
-final String loginPath = "/login/applogin";
+final String signUpPath = "/api/auth/register";
+
+final String verifyOtpPath = "/api/auth/verify-otp";
+
+final String resendVerifyOtpPath = "/api/auth/resend-verify-otp";

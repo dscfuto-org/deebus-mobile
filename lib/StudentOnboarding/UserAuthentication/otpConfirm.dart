@@ -7,9 +7,6 @@ import 'package:flutter/material.dart';
 import 'package:pin_code_text_field/pin_code_text_field.dart';
 
 class OTPScreen extends StatefulWidget {
-  final String tranType;
-
-  OTPScreen(this.tranType);
 
   @override
   _OTPScreenState createState() => _OTPScreenState();
@@ -148,7 +145,7 @@ class _OTPScreenState extends State<OTPScreen> {
                         ),
                         SizedBox(height: 20,),
                         Text(
-                            "OTP has been sent to your mailbox. Enter code from e-mail",
+                            "OTP has been sent to your mailbox. \n Enter code from e-mail",
                           style: textStyleBigLight,
                         ),
                         SizedBox(height: 10,),
@@ -159,9 +156,6 @@ class _OTPScreenState extends State<OTPScreen> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
-                            FlatButton(onPressed: null,
-                                child: Text( "Call me",
-                                  style: textStyleBigLightB, )),
                             FlatButton(onPressed: null,
                                 child: Text( "Resend", style: textStyleBigLightB,))
                           ],

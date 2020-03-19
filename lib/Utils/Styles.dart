@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 
 TextStyle textStyleBigLight = new TextStyle(fontSize: 16.0, fontWeight: FontWeight.w100, fontFamily: 'Ubuntu');
+TextStyle textStyleBigLightC = new TextStyle(fontSize: 16.0, fontWeight: FontWeight.w300, fontFamily: 'Ubuntu', color: Colors.black);
 
 //TextStyle textStyleSmallLight = new TextStyle(fontSize: 14.0, fontFamily: 'Ubuntu');
 
@@ -14,6 +15,7 @@ TextStyle textStyleSmallRegular = new TextStyle(fontSize: 14.0, fontFamily: 'Ubu
 
 TextStyle textStyleBigRegular = new TextStyle(fontSize: 16.0);
 TextStyle textStyleBigRegularB = new TextStyle(fontSize: 20.0);
+TextStyle textStyleBigRegularGreet = new TextStyle(fontSize: 23.0);
 
 TextStyle textStyleBigLightB = new TextStyle(fontSize: 16.0, fontWeight: FontWeight.w100, fontFamily: 'Ubuntu', color: prefix0.AppColors.color4);
 
