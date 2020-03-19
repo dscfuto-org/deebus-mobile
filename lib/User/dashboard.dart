@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:deebus/Constants/AppColors.dart';
 import 'package:deebus/Constants/AssetsStrings.dart';
+import 'package:deebus/User/About.dart';
 import 'package:deebus/User/Payments.dart';
 import 'package:deebus/User/tests.dart';
 import 'package:deebus/Utils/Navigators.dart';
@@ -261,8 +262,7 @@ class _DashboardState extends State<Dashboard> {
                     ),
                     leading: Icon(Icons.info),
                     onTap: () {
-                      // Update the state of the app.
-                      // ...
+                      navigatePush(context, AboutScreen());
                     },
                   ),
                 ],
