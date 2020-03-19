@@ -1,6 +1,7 @@
 import 'package:deebus/StudentOnboarding/slides.dart';
 import 'package:deebus/Utils/Navigators.dart';
 import 'package:flutter/material.dart';
+
 import '../Constants/AppColors.dart';
 import '../Constants/AssetsStrings.dart';
 
@@ -33,7 +34,6 @@ class _SplashScreenState extends State<SplashScreen> {
           child: Stack(
             children: <Widget>[
               Center(
-
                 child: ListView(
                   shrinkWrap: true,
                   children: <Widget>[
