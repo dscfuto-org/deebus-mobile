@@ -1,7 +1,6 @@
 
 import 'package:deebus/Constants/AppColors.dart';
 import 'package:deebus/Constants/Strings.dart';
-import 'package:deebus/StudentOnboarding/UserAuthentication/login.dart';
 import 'package:deebus/Utils/Styles.dart';
 import 'package:flutter/material.dart';
 

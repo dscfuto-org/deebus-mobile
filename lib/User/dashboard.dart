@@ -249,7 +249,7 @@ class DashboardState extends State<Dashboard> {
                       onTap: () {
                         // Update the state of the app.
                         // ...
-                        navigatePush(context, Payments());
+                        navigatePush(context, PaymentScreen());
                       },
                     ),
                     ListTile(
@@ -271,7 +271,7 @@ class DashboardState extends State<Dashboard> {
                       ),
                       leading: Icon(Icons.chat, color: AppColors.color5, ),
                       onTap: () {
-                        navigatePush(context, Support());
+                        navigatePush(context, SupportScreen());
                         // Update the state of the app.
                         // ...
                       },
@@ -283,7 +283,7 @@ class DashboardState extends State<Dashboard> {
                       ),
                       leading: Icon(Icons.info_outline, color: AppColors.color5, ),
                       onTap: () {
-                        navigatePush(context, About());
+                        navigatePush(context, AboutScreen());
                         // Update the state of the app.
                         // ...
                       },
