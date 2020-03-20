@@ -28,7 +28,6 @@ class _SplashScreenState extends State<SplashScreen> {
 
   Future splashTime() async{
     await Future.delayed(Duration(seconds: 5));
-
   }
 
   @override

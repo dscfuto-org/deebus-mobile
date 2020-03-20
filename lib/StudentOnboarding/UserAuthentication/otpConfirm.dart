@@ -1,3 +1,4 @@
+import 'package:deebus/BackEnd/OPTResendBackend.dart';
 import 'package:deebus/BackEnd/OTPBackend.dart';
 import 'package:deebus/Constants/AppColors.dart';
 import 'package:deebus/Constants/AppColors.dart' as prefix0;
@@ -154,7 +155,10 @@ class _OTPScreenState extends State<OTPScreen> {
                             Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: <Widget>[
-                                FlatButton(onPressed: null,
+                                FlatButton(
+                                    onPressed: () => {
+                                      verifyOTPResend()
+                                    },
                                     child: Text( "Resend", style: textStyleBigLightB,))
                               ],
                             ),
@@ -176,5 +180,9 @@ class _OTPScreenState extends State<OTPScreen> {
     if(otp.length ==4){
       await OTPBackend().otpVerify(context, widget.email, otp);
     }
+  }
+
+  verifyOTPResend() async {
+      await OTPResendBackend().otpResendFetch(context, widget.email);
   }
 }
