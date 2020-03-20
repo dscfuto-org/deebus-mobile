@@ -1,17 +1,18 @@
 import 'package:deebus/Constants/AppColors.dart';
 import 'package:deebus/Utils/Navigators.dart';
 import 'package:flutter/material.dart';
-class ProfilePage extends StatefulWidget {
+
+class ProfileScreen extends StatefulWidget {
   @override
-  _ProfilePageState createState() => _ProfilePageState();
+  _ProfileScreenState createState() => _ProfileScreenState();
 }
 
-class _ProfilePageState extends State<ProfilePage> {
+class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("About"),
+        title: Text("Odii Marshall"),
         backgroundColor: Colors.white10,
         elevation: 0,
         leading: IconButton(
@@ -22,8 +23,31 @@ class _ProfilePageState extends State<ProfilePage> {
           ),
           onPressed: () => navigateBack(context),
         ),
+        actions: <Widget>[
+          FlatButton(
+            onPressed: () {},
+            color: Colors.white10,
+            child: Text(
+              "LOG OUT",
+              style: TextStyle(fontWeight: FontWeight.w300, fontSize: 15.0),
+            ),
+          )
+        ],
       ),
-      body: Container(),
+      body: SingleChildScrollView(
+        scrollDirection: Axis.vertical,
+        physics: ClampingScrollPhysics(),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            RaisedButton(
+              child: Text("CONNECT TO FACEBOOK"),
+              onPressed: () {},
+            )
+          ],
+        ),
+      ),
     );
   }
 }
