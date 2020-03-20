@@ -49,11 +49,12 @@ class RegisterBackend{
         if(ResponseData.defaultResponse.status==1){
           ResponseData.signUpResponse = SignUpResponse.map(ResponseData.defaultResponse.data);
               navigateReplace(context, OTPScreen(email));
-        }else if(ResponseData.defaultResponse.status ==0){
+        }else if(ResponseData.defaultResponse.status==0){
           showErrorDialog(context, "An error occured");
         }else showErrorDialog(context, "A network Error Occured");
-      }
+      }else showErrorDialog(context, "Validation Error");
     } on Exception catch (e) {
+      showErrorDialog(context, 'Invalid Username or Password');
       throw e;
     }
   }

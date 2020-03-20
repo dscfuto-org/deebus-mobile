@@ -1,5 +1,6 @@
 import 'package:deebus/BackEnd/OTPBackend.dart';
 import 'package:deebus/Constants/AppColors.dart';
+import 'package:deebus/Constants/AppColors.dart' as prefix0;
 import 'package:deebus/Utils/Navigators.dart';
 import 'package:deebus/Utils/Styles.dart';
 import 'package:flutter/cupertino.dart';
@@ -20,13 +21,14 @@ class _OTPScreenState extends State<OTPScreen> {
 
   int pinLength = 4;
   bool hasError = false;
-  bool isLoading = false;
+  bool isLoadingOTP = false;
   String errorMessage;
   String otp;
 
 
   @override
   Widget build(BuildContext context) {
+    final deviceW = MediaQuery.of(context).size.height;
     return Scaffold(
       appBar: new AppBar(
         title: Text("Confirm Email"),
@@ -109,36 +111,29 @@ class _OTPScreenState extends State<OTPScreen> {
                               ),
                               visible: hasError,
                             ),
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: isLoading
-                                  ? CircularProgressIndicator(
-                                backgroundColor: AppColors.color2,
-                                valueColor: new AlwaysStoppedAnimation(AppColors.color1),
+                            Center(
+                              child: isLoadingOTP
+                                  ?
+                              CircularProgressIndicator(
+                                backgroundColor: AppColors.color1,
+                                valueColor: new AlwaysStoppedAnimation(prefix0.AppColors.color4),
                               )
+
                                   :
-                              Padding(
-                                padding: const EdgeInsets.all(40.0),
-                                child: Row(
-                                  children: <Widget>[
-                                    Expanded(
-                                      child: MaterialButton(
-                                        shape: RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.all(Radius.circular(40.0)),
-                                        ),
-                                        height: 50,
-                                        onPressed: () => {
-                                          verifyOTP()
-                                        },
-                                        color: AppColors.color4,
-                                        child: Text(
-                                          "Continue",
-                                          style: TextStyle(
-                                              color: Colors.white, fontSize: 16.0),
-                                        ),
-                                      ),
-                                    ),
-                                  ],
+                              MaterialButton(
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.all(Radius.circular(40.0)),
+                                ),
+                                height: 50,
+                                minWidth: deviceW,
+                                onPressed: () => {
+                                  verifyOTP()
+                                },
+                                color: AppColors.color4,
+                                child: Text(
+                                  "Continue",
+                                  style: TextStyle(
+                                      color: Colors.white, fontSize: 16.0),
                                 ),
                               ),
                             ),

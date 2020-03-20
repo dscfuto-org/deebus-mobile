@@ -42,7 +42,7 @@ class OTPBackend{
         }else if(ResponseData.defaultResponse.status ==0){
           showErrorDialog(context, "An error occured");
         }else showErrorDialog(context, "A network Error Occured");
-      }
+      }else showErrorDialog(context, "Something went wrong");
 
     }on  Exception catch (e) {
       throw e;

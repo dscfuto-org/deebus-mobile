@@ -42,7 +42,7 @@ class  LoginBackend{
         }else if(ResponseData.defaultResponse.status ==0){
           showErrorDialog(context, "An error occured");
         }else showErrorDialog(context, "A network Error Occured");
-      }
+      }else showErrorDialog(context, "Validation Error");
 
     }on  Exception catch (e) {
       throw e;

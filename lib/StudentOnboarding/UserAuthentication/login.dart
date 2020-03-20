@@ -1,5 +1,6 @@
 import 'package:deebus/BackEnd/LoginBackend.dart';
 import 'package:deebus/Constants/AppColors.dart';
+import 'package:deebus/Constants/AppColors.dart' as prefix0;
 import 'package:deebus/Constants/AssetsStrings.dart';
 import 'package:deebus/Utils/Navigators.dart';
 import 'package:deebus/Utils/Styles.dart';
@@ -127,7 +128,7 @@ class _LoginState extends State<Login> {
                       ?
                   CircularProgressIndicator(
                     backgroundColor: AppColors.color1,
-                    valueColor: new AlwaysStoppedAnimation(Colors.grey),
+                    valueColor: new AlwaysStoppedAnimation(prefix0.AppColors.color4),
                   )
 
                       :
