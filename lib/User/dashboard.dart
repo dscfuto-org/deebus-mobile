@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:deebus/Constants/AppColors.dart';
+import 'package:deebus/Data/DummyData.dart';
 import 'package:deebus/Data/ResponseData.dart';
 import 'package:deebus/User/About.dart';
 import 'package:deebus/User/FreeRides.dart';
@@ -16,49 +17,8 @@ import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
+import 'package:url_launcher/url_launcher.dart';
 
-//class DashBoard extends StatefulWidget {
-//
-//  @override
-//  _DashBoardState createState() => _DashBoardState();
-//}
-//
-//class _DashBoardState extends State<DashBoard> {
-//  final Map<String, Marker> _markers = {};
-//  @override
-//  Widget build(BuildContext context) {
-//    return new Scaffold(
-//      body: GoogleMap(
-//        mapType: MapType.hybrid,
-//        initialCameraPosition: CameraPosition(
-//          target: LatLng(40.688841, -74.044015),
-//          zoom: 11,
-//        ),
-//        markers: _markers.values.toSet(),
-//      ),
-//      floatingActionButton: FloatingActionButton(
-//        onPressed: _getLocation,
-//        tooltip: 'Increment',
-//        child: Icon(Icons.add),
-//      ),
-//    );
-//  }
-//  void _getLocation() async {
-//    var currentLocation = await Geolocator()
-//        .getCurrentPosition(desiredAccuracy: LocationAccuracy.best);
-//
-//    setState(() {
-//      _markers.clear();
-//      final marker = Marker(
-//        markerId: MarkerId("curr_loc"),
-//        position: LatLng(currentLocation.latitude, currentLocation.longitude),
-//        infoWindow: InfoWindow(title: 'Your Location'),
-//      );
-//      _markers["Current Location"] = marker;
-//    });
-//  }
-//}
-//
 class Dashboard extends StatefulWidget {
   @override
   DashboardState createState() => DashboardState();
@@ -112,6 +72,14 @@ class DashboardState extends State<Dashboard> {
       }
     });
 
+  }
+  _launchURL() async {
+    const url = 'https://codemarka.dev';
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
   }
 
   @override
@@ -208,8 +176,8 @@ class DashboardState extends State<Dashboard> {
 
                                   children: <Widget>[
                                     Text(
-                                      ResponseData.loginResponse.firstName.toString() + " "+
-                                          ResponseData.loginResponse.lastName.toString(),
+                                      ResponseData.loginResponse.firstName.toString() == null  ? DummyData.firstName : ResponseData.loginResponse.firstName.toString() + " "+
+                                          ResponseData.loginResponse.lastName.toString() == null ? DummyData.lastName : ResponseData.loginResponse.firstName.toString(),
                                       style: textStyleBigRegularB,
                                     ),
                                     SizedBox(height: 10.0,),
@@ -315,16 +283,7 @@ class DashboardState extends State<Dashboard> {
                   ),
                   minWidth: deviceW,
                   height: 50,
-                  onPressed: this.test,
-//                              async{
-//                                if(controller.text.length!=6){
-//                                  setState(() {
-//                                    hasError = true;
-//                                  });
-//                                } else if(equalsIgnoreCase(widget.tranType, "Withdrawal")){
-//                                  submitWithdrawal();
-//                                }
-//                              },
+                  onPressed: _launchURL,
                   color: AppColors.color4,
                   child: Text(
                     "SIGN UP TO DRIVE",
@@ -519,12 +478,12 @@ class DashboardState extends State<Dashboard> {
           ),
         ],
       ),
-      floatingActionButton: FloatingActionButton(
-        child: SafeArea(
-            child: Icon(Icons.location_searching),
-        ),
-        onPressed: getCurrentLocation,
-      ),
+//      floatingActionButton: FloatingActionButton(
+//        child: SafeArea(
+//            child: Icon(Icons.location_searching),
+//        ),
+//        onPressed: getCurrentLocation,
+//      ),
     );
   }
 

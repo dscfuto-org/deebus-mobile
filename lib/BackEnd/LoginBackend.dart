@@ -10,10 +10,12 @@ import 'package:deebus/Utils/AlertDialogs.dart';
 import 'package:deebus/Utils/Navigators.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as Client;
-
+import 'package:shared_preferences/shared_preferences.dart';
 class  LoginBackend{
-  Future<void> loginFetch(BuildContext context,String email, String password)async{
+  SharedPreferences sharedPreferences;
 
+  Future<void> loginFetch(BuildContext context,String email, String password)async{
+    
     final url= http+baseURL+loginPath;
     print(url);
     print(json.encode({
@@ -39,6 +41,7 @@ class  LoginBackend{
         if(ResponseData.defaultResponse.status==1){
           ResponseData.loginResponse = LoginResponse.fromJson(ResponseData.defaultResponse.data);
           navigateReplace(context, Dashboard());
+          saveEmail();
         }else if(ResponseData.defaultResponse.status ==0){
           showErrorDialog(context, "An error occured");
         }else showErrorDialog(context, "A network Error Occured");
@@ -49,5 +52,12 @@ class  LoginBackend{
     }
 
 
+  }
+  saveEmail()async{
+    sharedPreferences = await SharedPreferences.getInstance();
+    sharedPreferences.setString("email", ResponseData.loginResponse.email);
+    sharedPreferences.setString("firstName", ResponseData.loginResponse.firstName);
+    sharedPreferences.setString("lastName", ResponseData.loginResponse.lastName);
+    sharedPreferences.setBool("isLoggedInFirstTime", true);
   }
 }

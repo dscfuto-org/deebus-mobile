@@ -3,32 +3,47 @@ import 'package:deebus/StudentOnboarding/splashScreen.dart';
 import 'package:deebus/Utils/Navigators.dart';
 import 'package:flutter/material.dart';
 
-class NoNetwork extends StatelessWidget {
+class NoNetwork extends StatefulWidget {
+  @override
+  _NoNetworkState createState() => _NoNetworkState();
+}
+
+class _NoNetworkState extends State<NoNetwork> {
+
   @override
   Widget build(BuildContext context) {
-    final deviceW = MediaQuery.of(context).size.height;
+    final deviceW = MediaQuery.of(context).size.width;
     return Scaffold(
-      body: ListView(
-        children: <Widget>[
-          Text("No Internet Connection"),
-          MaterialButton(
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.all(Radius.circular(40.0)),
+        body:  Stack(
+              children: <Widget>[
+
+                Center(child:  Text("Oops No Internet Connection",
+                      textAlign: TextAlign.center,)),
+
+           Positioned(
+             bottom: 20,
+             left: 20,
+             right: 20,
+             child: MaterialButton(
+                         shape: RoundedRectangleBorder(
+                           borderRadius: BorderRadius.all(Radius.circular(40.0)),
+                         ),
+                          minWidth: deviceW,
+                         height: 50,
+                         onPressed: ()=> navigatePush(context, SplashScreen()),
+                         color: AppColors.color4,
+                         child: Text(
+                           "Try Again",
+                           style: TextStyle(
+                               color: Colors.white, fontSize: 16.0),
+                         ),
+                       ),
+           ),
+
+
+              ],
             ),
-            height: 50,
-            minWidth: deviceW,
-            onPressed: () => {
-              navigateReplace(context, SplashScreen())
-            },
-            color: AppColors.color4,
-            child: Text(
-              "Continue",
-              style: TextStyle(
-                  color: Colors.white, fontSize: 16.0),
-            ),
-          ),
-        ],
-      ),
+
     );
   }
 }
