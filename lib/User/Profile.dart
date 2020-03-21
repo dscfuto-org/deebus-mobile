@@ -1,4 +1,5 @@
 import 'package:deebus/Constants/AppColors.dart';
+import 'package:deebus/Data/ResponseData.dart';
 import 'package:deebus/Utils/Navigators.dart';
 import 'package:flutter/material.dart';
 
@@ -12,7 +13,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Odii Marshall"),
+        title: Text(ResponseData.loginResponse.firstName.toString() + " "+
+            ResponseData.loginResponse.lastName.toString(),),
         backgroundColor: Colors.white10,
         elevation: 0,
         leading: IconButton(

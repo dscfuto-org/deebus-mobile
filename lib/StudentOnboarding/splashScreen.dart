@@ -1,8 +1,9 @@
+import 'package:connectivity/connectivity.dart';
+import 'package:deebus/StudentOnboarding/noNetwork.dart';
 import 'package:deebus/StudentOnboarding/slides.dart';
 import 'package:deebus/User/dashboard.dart';
 import 'package:deebus/Utils/Navigators.dart';
 import 'package:flutter/material.dart';
-
 import '../Constants/AppColors.dart';
 import '../Constants/AssetsStrings.dart';
 
@@ -17,14 +18,20 @@ class _SplashScreenState extends State<SplashScreen> {
 //  Animation<double> animationTurns = Tween<double>(begin: 0, end: 0.5).animate(animation);
   @override
   void initState() {
-
-    splashTime().then((onValue) => navigateReplace(context, IntroScreen()));
+    checkNetwork();
     DashboardState().getCurrentLocation();
     super.initState();
 
 
   }
-
+  checkNetwork()async{
+    var connectivityResult = await (Connectivity().checkConnectivity());
+    if (connectivityResult == ConnectivityResult.mobile) {
+      splashTime().then((onValue) => navigateReplace(context, IntroScreen()));
+    } else if (connectivityResult == ConnectivityResult.wifi) {
+      splashTime().then((onValue) => navigateReplace(context, IntroScreen()));
+    } else navigatePush(context, NoNetwork());
+  }
 
   Future splashTime() async{
     await Future.delayed(Duration(seconds: 5));

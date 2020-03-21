@@ -1,9 +1,11 @@
 import 'dart:async';
 import 'package:deebus/Constants/AppColors.dart';
+import 'package:deebus/Data/ResponseData.dart';
 import 'package:deebus/User/About.dart';
 import 'package:deebus/User/FreeRides.dart';
 import 'package:deebus/User/History.dart';
 import 'package:deebus/User/Payments.dart';
+import 'package:deebus/User/Profile.dart';
 import 'package:deebus/User/Support.dart';
 import 'package:deebus/User/tests.dart';
 import 'package:deebus/Utils/Navigators.dart';
@@ -80,12 +82,13 @@ class DashboardState extends State<Dashboard> {
   Set<Polyline> _polylines = Set<Polyline>();
   List<LatLng> polylineCoordinates = [];
   PolylinePoints polylinePoints;
-  String googleAPIKey = "AIzaSyAl94Ny5NNazeIpGGCG0DdCfDYR59GWKQ8";
+  String googleAPIKey = "AIzaSyCbQB5ArOxQOvkDdgVwrT4oQJ_epy15lbk";
 // for my custom marker pins
   BitmapDescriptor sourceIcon;
   BitmapDescriptor destinationIcon;
 // the user's initial location and current location
 // as it moves
+  //AIzaSyCbQB5ArOxQOvkDdgVwrT4oQJ_epy15lbk
   LocationData currentLocation;
 // a reference to the destination location
   LocationData destinationLocation;
@@ -205,12 +208,13 @@ class DashboardState extends State<Dashboard> {
 
                                   children: <Widget>[
                                     Text(
-                                      'Odii Marshall',
+                                      ResponseData.loginResponse.firstName.toString() + " "+
+                                          ResponseData.loginResponse.lastName.toString(),
                                       style: textStyleBigRegularB,
                                     ),
                                     SizedBox(height: 10.0,),
                                     Text(
-                                      'Edit Profile              ',
+                                      ResponseData.loginResponse.email.toString(),
                                       style: TextStyle(
                                           color: Colors.black, fontWeight: FontWeight.w100),
                                     ),
@@ -227,6 +231,18 @@ class DashboardState extends State<Dashboard> {
                         padding: EdgeInsets.all(0.0)
                     ),
                   ),
+                    ListTile(
+                      title: Text(
+                        'My Profile',
+                        style: textStyleBigLight,
+                      ),
+                      leading: Icon(Icons.perm_identity, color: Colors.black,),
+                      onTap: () {
+                        navigatePush(context, ProfileScreen());
+                        // Update the state of the app.
+                        // ...
+                      },
+                    ),
                     ListTile(
                       title: Text(
                         'Free Rides',
@@ -321,7 +337,7 @@ class DashboardState extends State<Dashboard> {
           ),
         )
       ),
-      //The body of the app
+      //The body of the ap
       body: Stack(
         children: <Widget>[
           Column(
@@ -332,6 +348,7 @@ class DashboardState extends State<Dashboard> {
                 child: GoogleMap(
                     myLocationEnabled: true,
                     compassEnabled: false,
+                    myLocationButtonEnabled: false,
                     buildingsEnabled: false,
                     tiltGesturesEnabled: false,
                     markers: _markers,
@@ -501,6 +518,12 @@ class DashboardState extends State<Dashboard> {
             ),
           ),
         ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: SafeArea(
+            child: Icon(Icons.location_searching),
+        ),
+        onPressed: getCurrentLocation,
       ),
     );
   }
