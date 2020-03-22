@@ -29,12 +29,20 @@ class _SplashScreenState extends State<SplashScreen> {
   checkUser()async{
     sharedPreferences = await SharedPreferences.getInstance();
     DummyData.email = sharedPreferences.getString("email");
+    DummyData.firstName = sharedPreferences.getString("firstName");
+    DummyData.lastName = sharedPreferences.getString("lastName");
+
+    if(DummyData.email!= null){
+      navigateReplace(context, Dashboard());
+    }
   }
   checkNetwork()async{
     var connectivityResult = await (Connectivity().checkConnectivity());
     if (connectivityResult == ConnectivityResult.mobile) {
+      checkUser();
       splashTime().then((onValue) => navigateReplace(context, IntroScreen()));
     } else if (connectivityResult == ConnectivityResult.wifi) {
+      checkUser();
       splashTime().then((onValue) => navigateReplace(context, IntroScreen()));
     } else navigatePush(context, NoNetwork());
   }

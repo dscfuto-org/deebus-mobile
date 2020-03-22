@@ -18,7 +18,6 @@ class _SignupState extends State<Signup> {
   String secondName;
   String email;
   String password;
-
   bool isLoading = false;
 
   OutlineInputBorder focusedBorder() {

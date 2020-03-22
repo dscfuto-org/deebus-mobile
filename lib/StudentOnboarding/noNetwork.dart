@@ -1,6 +1,7 @@
 import 'package:deebus/Constants/AppColors.dart';
 import 'package:deebus/StudentOnboarding/splashScreen.dart';
 import 'package:deebus/Utils/Navigators.dart';
+import 'package:deebus/Utils/Styles.dart';
 import 'package:flutter/material.dart';
 
 class NoNetwork extends StatefulWidget {
@@ -18,6 +19,7 @@ class _NoNetworkState extends State<NoNetwork> {
               children: <Widget>[
 
                 Center(child:  Text("Oops No Internet Connection",
+                      style: textStyleBigLight,
                       textAlign: TextAlign.center,)),
 
            Positioned(
