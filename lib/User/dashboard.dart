@@ -1,14 +1,12 @@
 import 'dart:async';
 import 'package:deebus/Constants/AppColors.dart';
 import 'package:deebus/Data/DummyData.dart';
-import 'package:deebus/Data/ResponseData.dart';
 import 'package:deebus/User/About.dart';
 import 'package:deebus/User/FreeRides.dart';
 import 'package:deebus/User/History.dart';
 import 'package:deebus/User/Payments.dart';
 import 'package:deebus/User/Profile.dart';
 import 'package:deebus/User/Support.dart';
-import 'package:deebus/User/tests.dart';
 import 'package:deebus/Utils/Navigators.dart';
 import 'package:deebus/Utils/Styles.dart';
 import 'package:flutter/material.dart';
@@ -25,15 +23,6 @@ class Dashboard extends StatefulWidget {
 }
 
 class DashboardState extends State<Dashboard> {
-  firstLastName(){
-    if( DummyData.firstName== null||  DummyData.lastName== null){
-      return DummyData.firstName.toString() + " " + DummyData.lastName.toString();
-    } else {
-      return DummyData.firstName.toString() + " " + DummyData.lastName.toString();
-    }
-  }
-// String profileFirstName = ResponseData.loginResponse.firstName.toString() == null ? DummyData.firstName : ResponseData.loginResponse.firstName.toString();
-// String profileLastName =  ResponseData.loginResponse.lastName.toString() == null ? DummyData.lastName : ResponseData.loginResponse.lastName.toString();
 
   GlobalKey<ScaffoldState> _scafoldKey = GlobalKey();
   // ignore: non_constant_identifier_names
@@ -187,7 +176,7 @@ class DashboardState extends State<Dashboard> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: <Widget>[
                                     Text(
-                                     firstLastName(),
+                                      DummyData.firstName.toString() + " " + DummyData.lastName.toString(),
                                       // ResponseData.loginResponse.lastName.toString() == null ? DummyData.lastName : ResponseData.loginResponse.lastName.toString(),
                                       style: textStyleBigRegularB,
                                     ),
@@ -597,12 +586,6 @@ class DashboardState extends State<Dashboard> {
 
     setPolylines();
   }
-
-  void test() {
-    {navigatePush(context, Page());}
-  }
-
-
 
 }
 
