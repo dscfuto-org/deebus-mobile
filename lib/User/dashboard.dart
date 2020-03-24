@@ -319,6 +319,9 @@ class DashboardState extends State<Dashboard> {
                       showPinsOnMap();
                     }),
               ),
+              SizedBox(
+                height: deviceH*5/14,
+              )
             ],
           ),
           Positioned(
