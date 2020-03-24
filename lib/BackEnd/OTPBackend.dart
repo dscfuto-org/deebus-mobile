@@ -4,7 +4,7 @@ import 'dart:io';
 import 'package:deebus/Constants/API.dart';
 import 'package:deebus/Data/ResponseData.dart';
 import 'package:deebus/Models/DefaultResponse.dart';
-import 'package:deebus/User/dashboard.dart';
+import 'package:deebus/StudentOnboarding/UserAuthentication/login.dart';
 import 'package:deebus/Utils/AlertDialogs.dart';
 import 'package:deebus/Utils/Navigators.dart';
 import 'package:flutter/material.dart';
@@ -38,7 +38,7 @@ class OTPBackend{
         var resBody = jsonDecode(httpConnectionApi.body.toString());
         ResponseData.defaultResponse = DefaultResponseModel.fromJson(resBody);
         if(ResponseData.defaultResponse.status==1){
-          navigateReplace(context, Dashboard());
+          navigateReplace(context, Login());
         }else if(ResponseData.defaultResponse.status ==0){
           showErrorDialog(context, "An error occured");
         }else showErrorDialog(context, "A network Error Occured");

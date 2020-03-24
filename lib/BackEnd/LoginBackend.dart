@@ -2,6 +2,7 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:deebus/Constants/API.dart';
+import 'package:deebus/Data/DummyData.dart';
 import 'package:deebus/Data/ResponseData.dart';
 import 'package:deebus/Models/DefaultResponse.dart';
 import 'package:deebus/Models/LoginResponse.dart';
@@ -38,10 +39,13 @@ class  LoginBackend{
       if(httpConnectionApi.statusCode==200){
         var resBody = jsonDecode(httpConnectionApi.body.toString());
         ResponseData.defaultResponse = DefaultResponseModel.fromJson(resBody);
-        if(ResponseData.defaultResponse.status==1){
-          ResponseData.loginResponse = LoginResponse.fromJson(ResponseData.defaultResponse.data);
-          navigateReplace(context, Dashboard());
-          saveEmail();
+        if(ResponseData.defaultResponse.status==1) {
+        ResponseData.loginResponse = LoginResponse.fromJson(ResponseData.defaultResponse.data);
+         navigateReplace(context, Dashboard());
+         print(ResponseData.loginResponse.email);
+          saveEmail(); getEmail();
+          saveFirstName(); getFirstName();
+          saveLastName(); getLastName();
         }else if(ResponseData.defaultResponse.status ==0){
           showErrorDialog(context, "An error occured");
         }else showErrorDialog(context, "A network Error Occured");
@@ -55,9 +59,31 @@ class  LoginBackend{
   }
   saveEmail()async{
     sharedPreferences = await SharedPreferences.getInstance();
-    sharedPreferences.setString("email", ResponseData.loginResponse.email);
-    sharedPreferences.setString("firstName", ResponseData.loginResponse.firstName);
-    sharedPreferences.setString("lastName", ResponseData.loginResponse.lastName);
-    sharedPreferences.setBool("isLoggedInFirstTime", true);
+    sharedPreferences.setString("Email", ResponseData.loginResponse.email);
+
+
+  }
+  getEmail()async{
+    sharedPreferences = await SharedPreferences.getInstance();
+    DummyData.email = sharedPreferences.getString("Email");
+    print(DummyData.email);
+  }
+  saveFirstName() async{
+    sharedPreferences = await SharedPreferences.getInstance();
+    sharedPreferences.setString("FirstName", ResponseData.loginResponse.firstName);
+  }
+  getFirstName() async{
+    sharedPreferences = await SharedPreferences.getInstance();
+   DummyData.firstName = sharedPreferences.getString("FirstName");
+    print(DummyData.firstName);
+  }
+  saveLastName()async{
+    sharedPreferences = await SharedPreferences.getInstance();
+    sharedPreferences.setString("LastName", ResponseData.loginResponse.lastName);
+  }
+  getLastName()async{
+    sharedPreferences = await SharedPreferences.getInstance();
+    DummyData.lastName = sharedPreferences.getString("LastName");
+    print(DummyData.lastName);
   }
 }

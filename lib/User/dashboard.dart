@@ -25,6 +25,16 @@ class Dashboard extends StatefulWidget {
 }
 
 class DashboardState extends State<Dashboard> {
+  firstLastName(){
+    if( DummyData.firstName== null||  DummyData.lastName== null){
+      return DummyData.firstName.toString() + " " + DummyData.lastName.toString();
+    } else {
+      return DummyData.firstName.toString() + " " + DummyData.lastName.toString();
+    }
+  }
+// String profileFirstName = ResponseData.loginResponse.firstName.toString() == null ? DummyData.firstName : ResponseData.loginResponse.firstName.toString();
+// String profileLastName =  ResponseData.loginResponse.lastName.toString() == null ? DummyData.lastName : ResponseData.loginResponse.lastName.toString();
+
   GlobalKey<ScaffoldState> _scafoldKey = GlobalKey();
   // ignore: non_constant_identifier_names
   final double CAMERA_ZOOM = 16;
@@ -81,6 +91,7 @@ class DashboardState extends State<Dashboard> {
       throw 'Could not launch $url';
     }
   }
+
 
   @override
   void initState() {
@@ -173,16 +184,16 @@ class DashboardState extends State<Dashboard> {
                                   width: 10.0,
                                 ),
                                 Column(
-
+                                  crossAxisAlignment: CrossAxisAlignment.start,
                                   children: <Widget>[
                                     Text(
-                                      ResponseData.loginResponse.firstName.toString() == null  ? DummyData.firstName : ResponseData.loginResponse.firstName.toString() + " "+
-                                          ResponseData.loginResponse.lastName.toString() == null ? DummyData.lastName : ResponseData.loginResponse.firstName.toString(),
+                                     firstLastName(),
+                                      // ResponseData.loginResponse.lastName.toString() == null ? DummyData.lastName : ResponseData.loginResponse.lastName.toString(),
                                       style: textStyleBigRegularB,
                                     ),
                                     SizedBox(height: 10.0,),
                                     Text(
-                                      ResponseData.loginResponse.email.toString(),
+                                     DummyData.email.toString(),
                                       style: TextStyle(
                                           color: Colors.black, fontWeight: FontWeight.w100),
                                     ),
@@ -321,6 +332,21 @@ class DashboardState extends State<Dashboard> {
               ),
             ],
           ),
+          Positioned(
+            width: deviceW-15,
+            top: deviceH/2,
+            child: MaterialButton(
+              shape: CircleBorder(
+                //borderRadius: BorderRadius.all(Radius.circular(40.0)),
+              ),
+              onPressed: getCurrentLocation,
+              color: Colors.white,
+              child: Padding(
+                padding: EdgeInsets.all(12.0),
+                child: Icon(Icons.location_searching),
+              )
+            ),
+          ),
           SafeArea(
               child: Padding(
                 padding: const EdgeInsets.all(15.0),
@@ -439,6 +465,28 @@ class DashboardState extends State<Dashboard> {
                               SizedBox(
                                 height: deviceH * 2 / 100,
                               ),
+//                              MaterialButton(
+//                                shape: RoundedRectangleBorder(
+//                                  borderRadius: BorderRadius.all(Radius.circular(40.0)),
+//                                ),
+//                                height: 50,
+//                                onPressed: ,
+////                              async{
+////                                if(controller.text.length!=6){
+////                                  setState(() {
+////                                    hasError = true;
+////                                  });
+////                                } else if(equalsIgnoreCase(widget.tranType, "Withdrawal")){
+////                                  submitWithdrawal();
+////                                }
+////                              },
+//                                color: AppColors.color4,
+//                                child: Text(
+//                                  "Continue",
+//                                  style: TextStyle(
+//                                      color: Colors.white, fontSize: 16.0),
+//                                ),
+//                              ),
                             Center(
                               child: Text("You have not saved any Locations",
                                 style: textStyleBigLight,
@@ -555,4 +603,6 @@ class DashboardState extends State<Dashboard> {
   }
 
 
+
 }
+

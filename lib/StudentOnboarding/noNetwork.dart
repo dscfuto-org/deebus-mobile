@@ -19,7 +19,7 @@ class _NoNetworkState extends State<NoNetwork> {
               children: <Widget>[
 
                 Center(child:  Text("Oops No Internet Connection",
-                      style: textStyleBigLight,
+                      style: textStyleBigBold,
                       textAlign: TextAlign.center,)),
 
            Positioned(

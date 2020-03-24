@@ -21,29 +21,42 @@ class _SplashScreenState extends State<SplashScreen> {
 //  Animation<double> animationTurns = Tween<double>(begin: 0, end: 0.5).animate(animation);
   @override
   void initState() {
+    getEmail();
+    getFirstName();
+    getLastName();
     checkNetwork();
     DashboardState().getCurrentLocation();
     super.initState();
   }
+  getFirstName() async{
+    sharedPreferences = await SharedPreferences.getInstance();
+    DummyData.firstName = sharedPreferences.getString("FirstName");
+    print(DummyData.firstName);
+
+  }
+  getLastName()async{
+    sharedPreferences = await SharedPreferences.getInstance();
+    DummyData.lastName = sharedPreferences.getString("LastName");
+    print(DummyData.lastName);
+  }
+  getEmail()async{
+    sharedPreferences = await SharedPreferences.getInstance();
+    DummyData.email = sharedPreferences.getString("Email");
+    print(DummyData.email);
+
+  }
 
   checkUser()async{
-    sharedPreferences = await SharedPreferences.getInstance();
-    DummyData.email = sharedPreferences.getString("email");
-    DummyData.firstName = sharedPreferences.getString("firstName");
-    DummyData.lastName = sharedPreferences.getString("lastName");
-
-    if(DummyData.email!= null){
-      navigateReplace(context, Dashboard());
-    }
+    if(DummyData.email != null){
+      splashTime().then((onValue) => navigateReplace(context, Dashboard()));
+    } else splashTime().then((onValue) => navigateReplace(context, IntroScreen()));
   }
   checkNetwork()async{
     var connectivityResult = await (Connectivity().checkConnectivity());
     if (connectivityResult == ConnectivityResult.mobile) {
       checkUser();
-      splashTime().then((onValue) => navigateReplace(context, IntroScreen()));
     } else if (connectivityResult == ConnectivityResult.wifi) {
       checkUser();
-      splashTime().then((onValue) => navigateReplace(context, IntroScreen()));
     } else navigatePush(context, NoNetwork());
   }
 

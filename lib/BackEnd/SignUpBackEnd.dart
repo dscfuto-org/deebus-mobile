@@ -13,8 +13,10 @@ import 'package:deebus/Utils/Navigators.dart';
 import 'package:http/http.dart' as Client;
 
 import 'package:flutter/cupertino.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class RegisterBackend{
+  SharedPreferences sharedPreferences;
   
   Future<void> signUpFetch(BuildContext context, String firstName, String secondName, String email, String password) async{
     final url= http+baseURL+signUpPath;
@@ -57,5 +59,12 @@ class RegisterBackend{
       showErrorDialog(context, 'Invalid Username or Password');
       throw e;
     }
+  }
+  saveEmail()async{
+    sharedPreferences = await SharedPreferences.getInstance();
+    sharedPreferences.setString("email", ResponseData.loginResponse.email);
+    sharedPreferences.setString("firstName", ResponseData.loginResponse.firstName);
+    sharedPreferences.setString("lastName", ResponseData.loginResponse.lastName);
+    sharedPreferences.setBool("isLoggedInFirstTime", true);
   }
 }
