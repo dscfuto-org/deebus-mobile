@@ -384,7 +384,8 @@ class DashboardState extends State<Dashboard> {
                   Padding(
                     padding:
                     EdgeInsets.symmetric(horizontal: deviceW * 2 / 100),
-                    child: Column(
+                    child:
+                    Column(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       mainAxisSize: MainAxisSize.max,
                       children: <Widget>[
@@ -591,4 +592,3 @@ class DashboardState extends State<Dashboard> {
   }
 
 }
-

@@ -2,6 +2,7 @@ import 'package:deebus/Constants/AppColors.dart';
 import 'package:deebus/Utils/Navigators.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class AboutScreen extends StatefulWidget {
   @override
@@ -13,6 +14,46 @@ class _AboutScreenState extends State<AboutScreen> {
     horizontal: 16.0,
     vertical: 2.5,
   );
+  _launchURLRateApp() async {
+    const url = 'https://codemarka.dev';
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
+  _launchURLFaceBook() async {
+    const url = 'https://codemarka.dev';
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
+  _launchURLDeeBusBusiness() async {
+    const url = 'https://codemarka.dev';
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
+  _launchURLDeeBusCareers() async {
+    const url = 'https://codemarka.dev';
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
+  _launchURLTermsAndConditions() async {
+    const url = 'https://codemarka.dev';
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
 
   final _textStyle = TextStyle(
       fontSize: 21.0, fontWeight: FontWeight.w400, fontFamily: "Ubuntu");
@@ -22,7 +63,7 @@ class _AboutScreenState extends State<AboutScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text("About DeeBus"),
-        backgroundColor: Colors.white10,
+        backgroundColor: AppColors.color4,
         elevation: 0,
         leading: IconButton(
           icon: Icon(
@@ -69,9 +110,7 @@ class _AboutScreenState extends State<AboutScreen> {
                                     fontWeight: FontWeight.w200),
                               ),
                               contentPadding: _contentPadding,
-                              onTap: () {
-                                //
-                              },
+                              onTap: _launchURLRateApp,
                             ),
                             Divider(
                               height: 0,
@@ -84,9 +123,7 @@ class _AboutScreenState extends State<AboutScreen> {
                                 style: _textStyle,
                               ),
                               contentPadding: _contentPadding,
-                              onTap: () {
-                                //
-                              },
+                              onTap: _launchURLFaceBook,
                             ),
                             Divider(
                               height: 1,
@@ -118,9 +155,7 @@ class _AboutScreenState extends State<AboutScreen> {
                                   style: _textStyle,
                                 ),
                                 contentPadding: _contentPadding,
-                                onTap: () {
-                                  //
-                                },
+                                onTap: _launchURLDeeBusBusiness,
                               ),
                               Divider(
                                 height: 0,
@@ -136,9 +171,7 @@ class _AboutScreenState extends State<AboutScreen> {
                                       fontFamily: "Ubuntu"),
                                 ),
                                 contentPadding: _contentPadding,
-                                onTap: () {
-                                  //
-                                },
+                                onTap: _launchURLDeeBusCareers,
                               ),
                               Divider(
                                 height: 1,
@@ -171,9 +204,7 @@ class _AboutScreenState extends State<AboutScreen> {
                                   style: _textStyle,
                                 ),
                                 contentPadding: _contentPadding,
-                                onTap: () {
-                                  //
-                                },
+                                onTap: _launchURLTermsAndConditions,
                               ),
                               Divider(
                                 height: 1,
