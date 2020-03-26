@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:connectivity/connectivity.dart';
 import 'package:deebus/Constants/AppColors.dart';
+import 'package:deebus/Constants/AppColors.dart' as prefix0;
 import 'package:deebus/Data/DummyData.dart';
 import 'package:deebus/User/About.dart';
 import 'package:deebus/User/FreeRides.dart';
@@ -12,10 +13,11 @@ import 'package:deebus/Utils/Navigators.dart';
 import 'package:deebus/Utils/Styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:flutter_polyline_points/flutter_polyline_points.dart';
+//import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
+//import 'package:sliding_up_panel/sliding_up_panel.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class Dashboard extends StatefulWidget {
@@ -41,7 +43,7 @@ class DashboardState extends State<Dashboard> {
 // for my drawn routes on the map
   Set<Polyline> _polylines = Set<Polyline>();
   List<LatLng> polylineCoordinates = [];
-  PolylinePoints polylinePoints;
+  //PolylinePoints polylinePoints;
   String googleAPIKey = "AIzaSyCbQB5ArOxQOvkDdgVwrT4oQJ_epy15lbk";
 // for my custom marker pins
   BitmapDescriptor sourceIcon;
@@ -90,7 +92,7 @@ class DashboardState extends State<Dashboard> {
   void initState() {
     super.initState();
     getCurrentLocation();
-    polylinePoints = PolylinePoints();
+    //polylinePoints = PolylinePoints();
 
     // subscribe to changes in the user's location
     // by "listening" to the location's onLocationChanged event
@@ -365,10 +367,10 @@ class DashboardState extends State<Dashboard> {
                 //borderRadius: BorderRadius.all(Radius.circular(40.0)),
               ),
               onPressed: getCurrentLocation,
-              color: Colors.white,
+              color: prefix0.AppColors.color4,
               child: Padding(
                 padding: EdgeInsets.all(12.0),
-                child: Icon(Icons.location_searching, color: AppColors.color4,),
+                child: Icon(Icons.location_searching, color: AppColors.color1,),
               )
             ),
           ),
@@ -434,7 +436,7 @@ class DashboardState extends State<Dashboard> {
                               });
                               setSourceAndDestinationIcons();
                               setInitialLocation();
-                              setPolylines();
+                              //setPolylines();
                               showPinsOnMap();
                             }
                           },
@@ -559,26 +561,26 @@ class DashboardState extends State<Dashboard> {
     });
   }
 
-  void setPolylines() async {
-    List<PointLatLng> result = await polylinePoints.getRouteBetweenCoordinates(
-        googleAPIKey,
-        currentLocation.latitude,
-        currentLocation.longitude,
-        destinationLocation.latitude,
-        destinationLocation.longitude);
-    if (result.isNotEmpty) {
-      result.forEach((PointLatLng point) {
-        polylineCoordinates.add(LatLng(point.latitude, point.longitude));
-      });
-      setState(() {
-        _polylines.add(Polyline(
-            width: 5, // set the width of the polylines
-            polylineId: PolylineId("poly"),
-            color: Color.fromARGB(255, 40, 122, 198),
-            points: polylineCoordinates));
-      });
-    }
-  }
+//  void setPolylines() async {
+//    List<PointLatLng> result = await polylinePoints.getRouteBetweenCoordinates(
+//        googleAPIKey,
+//        currentLocation.latitude,
+//        currentLocation.longitude,
+//        destinationLocation.latitude,
+//        destinationLocation.longitude);
+//    if (result.isNotEmpty) {
+//      result.forEach((PointLatLng point) {
+//        polylineCoordinates.add(LatLng(point.latitude, point.longitude));
+//      });
+//      setState(() {
+//        _polylines.add(Polyline(
+//            width: 5, // set the width of the polylines
+//            polylineId: PolylineId("poly"),
+//            color: Color.fromARGB(255, 40, 122, 198),
+//            points: polylineCoordinates));
+//      });
+//    }
+//  }
 
   void showPinsOnMap() {
     // get a LatLng for the source location
@@ -600,7 +602,7 @@ class DashboardState extends State<Dashboard> {
         icon: destinationIcon));
     // set the route lines on the map from source to destination
 
-    setPolylines();
+    //setPolylines();
   }
 
 }

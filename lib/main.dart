@@ -1,3 +1,4 @@
+import 'package:deebus/Constants/AppColors.dart';
 import 'package:deebus/Constants/Strings.dart';
 import 'package:deebus/StudentOnboarding/splashScreen.dart';
 import 'package:flutter/material.dart';
@@ -13,7 +14,7 @@ class MyApp extends StatelessWidget {
       title: appName,
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: AppColors.color3,
         fontFamily: 'Ubuntu',
       ),
       home: SplashScreen(),
