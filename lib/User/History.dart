@@ -24,7 +24,11 @@ class _HistoryState extends State<History> {
           onPressed: () => navigateBack(context),
         ),
       ),
-      body: Container(),
+      body: ListView(
+        children: <Widget>[
+          Container()
+        ],
+      )
     );
   }
 }

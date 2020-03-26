@@ -36,19 +36,23 @@ class _ProfileScreenState extends State<ProfileScreen> {
           )
         ],
       ),
-      body: SingleChildScrollView(
-        scrollDirection: Axis.vertical,
-        physics: ClampingScrollPhysics(),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: <Widget>[
-            RaisedButton(
-              child: Text("CONNECT TO FACEBOOK"),
-              onPressed: () {},
-            )
-          ],
-        ),
+      body: ListView(
+        children: <Widget>[
+          SingleChildScrollView(
+            scrollDirection: Axis.vertical,
+            physics: ClampingScrollPhysics(),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+                RaisedButton(
+                  child: Text("CONNECT TO FACEBOOK"),
+                  onPressed: () {},
+                )
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }

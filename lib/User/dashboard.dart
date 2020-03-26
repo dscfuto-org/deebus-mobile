@@ -368,7 +368,7 @@ class DashboardState extends State<Dashboard> {
               color: Colors.white,
               child: Padding(
                 padding: EdgeInsets.all(12.0),
-                child: Icon(Icons.location_searching),
+                child: Icon(Icons.location_searching, color: AppColors.color4,),
               )
             ),
           ),
@@ -491,28 +491,7 @@ class DashboardState extends State<Dashboard> {
                               SizedBox(
                                 height: deviceH * 2 / 100,
                               ),
-//                              MaterialButton(
-//                                shape: RoundedRectangleBorder(
-//                                  borderRadius: BorderRadius.all(Radius.circular(40.0)),
-//                                ),
-//                                height: 50,
-//                                onPressed: ,
-////                              async{
-////                                if(controller.text.length!=6){
-////                                  setState(() {
-////                                    hasError = true;
-////                                  });
-////                                } else if(equalsIgnoreCase(widget.tranType, "Withdrawal")){
-////                                  submitWithdrawal();
-////                                }
-////                              },
-//                                color: AppColors.color4,
-//                                child: Text(
-//                                  "Continue",
-//                                  style: TextStyle(
-//                                      color: Colors.white, fontSize: 16.0),
-//                                ),
-//                              ),
+
                             Center(
                               child: Text("You have not saved any Locations",
                                 style: textStyleBigLight,

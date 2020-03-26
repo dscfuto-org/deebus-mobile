@@ -32,30 +32,88 @@ class _PaymentScreenState extends State<PaymentScreen> {
           onPressed: () => navigateBack(context),
         ),
       ),
-      body: Container(
-        margin: EdgeInsets.symmetric(vertical: 40.0),
-        child: SingleChildScrollView(
-          scrollDirection: Axis.vertical,
-          physics: ClampingScrollPhysics(),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Padding(
-                padding: _padding,
-                child: Text(
-                  "Payments methods",
-                  style: _titleTextStyle,
+      body: ListView(
+        children: <Widget>[
+          SingleChildScrollView(
+            scrollDirection: Axis.vertical,
+            physics: ClampingScrollPhysics(),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Padding(
+                  padding: _padding,
+                  child: Text(
+                    "Payments methods",
+                    style: _titleTextStyle,
+                  ),
                 ),
-              ),
-              ListView(
-                shrinkWrap: true,
-                scrollDirection: Axis.vertical,
-                physics: ClampingScrollPhysics(),
-                children: <Widget>[
-                  Visibility(
-                    visible: true,
-                    child: Column(
+                ListView(
+                  shrinkWrap: true,
+                  scrollDirection: Axis.vertical,
+                  physics: ClampingScrollPhysics(),
+                  children: <Widget>[
+                    Visibility(
+                      visible: true,
+                      child: Column(
+                        children: <Widget>[
+                          Divider(
+                            height: 1,
+                            thickness: 1,
+                          ),
+                          ListTile(
+                            title: Text(
+                              "Cash",
+                              style: _tileTextStyle,
+                            ),
+                            leading: Icon(
+                              MyFlutterApp.money_1,
+                              size: 25,
+                            ),
+                            trailing: Icon(
+                              Icons.check_circle,
+                              color: Colors.green,
+                              size: 25,
+                            ),
+                            contentPadding: _contentPadding,
+                            onTap: () {
+                              //
+                            },
+                          ),
+                        ],
+                      ),
+                    ),
+                    Visibility(
+                      visible: false,
+                      child: Column(
+                        children: <Widget>[
+                          Divider(
+                            height: 1,
+                            thickness: 1,
+                          ),
+                          ListTile(
+                            title: Text(
+                              "Debit Card",
+                              style: _tileTextStyle,
+                            ),
+                            leading: Icon(
+                              MyFlutterApp.cc_mastercard,
+                              size: 25,
+                            ),
+                            trailing: Icon(
+                              Icons.check_circle,
+                              color: Colors.green,
+                              size: 25,
+                            ),
+                            contentPadding: _contentPadding,
+                            onTap: () {
+                              //
+                            },
+                          ),
+                        ],
+                      ),
+                    ),
+                    Column(
                       children: <Widget>[
                         Divider(
                           height: 1,
@@ -63,16 +121,11 @@ class _PaymentScreenState extends State<PaymentScreen> {
                         ),
                         ListTile(
                           title: Text(
-                            "Cash",
+                            "Add payment card",
                             style: _tileTextStyle,
                           ),
                           leading: Icon(
-                            MyFlutterApp.money_1,
-                            size: 25,
-                          ),
-                          trailing: Icon(
-                            Icons.check_circle,
-                            color: Colors.green,
+                            Icons.add,
                             size: 25,
                           ),
                           contentPadding: _contentPadding,
@@ -81,140 +134,88 @@ class _PaymentScreenState extends State<PaymentScreen> {
                           },
                         ),
                       ],
-                    ),
-                  ),
-                  Visibility(
-                    visible: false,
-                    child: Column(
-                      children: <Widget>[
-                        Divider(
-                          height: 1,
-                          thickness: 1,
-                        ),
-                        ListTile(
-                          title: Text(
-                            "Debit Card",
-                            style: _tileTextStyle,
-                          ),
-                          leading: Icon(
-                            MyFlutterApp.cc_mastercard,
-                            size: 25,
-                          ),
-                          trailing: Icon(
-                            Icons.check_circle,
-                            color: Colors.green,
-                            size: 25,
-                          ),
-                          contentPadding: _contentPadding,
-                          onTap: () {
-                            //
-                          },
-                        ),
-                      ],
-                    ),
-                  ),
-                  Column(
+                    )
+                  ],
+                ),
+                Container(
+                  margin: EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 27.0),
+                  child: Column(
                     children: <Widget>[
                       Divider(
-                        height: 1,
-                        thickness: 1,
+                        thickness: 4.0,
+                        height: 0.0,
                       ),
-                      ListTile(
-                        title: Text(
-                          "Add payment card",
-                          style: _tileTextStyle,
-                        ),
-                        leading: Icon(
-                          Icons.add,
-                          size: 25,
-                        ),
-                        contentPadding: _contentPadding,
-                        onTap: () {
-                          //
-                        },
+                      ListView(
+                        shrinkWrap: true,
+                        scrollDirection: Axis.vertical,
+                        physics: ClampingScrollPhysics(),
+                        children: <Widget>[
+                          ListTile(
+                            title: Text(
+                              "Create your Business Profile",
+                              style: _tileTextStyle,
+                            ),
+                            leading: Icon(MyFlutterApp.briefcase),
+                            trailing: Icon(
+                              Icons.chevron_right,
+                              size: 28,
+                            ),
+                            contentPadding: _contentPadding,
+                            onTap: () {
+                              //
+                            },
+                          ),
+                        ],
+                      ),
+                      Divider(
+                        thickness: 4.0,
+                        height: 0.0,
                       ),
                     ],
-                  )
-                ],
-              ),
-              Container(
-                margin: EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 27.0),
-                child: Column(
+                  ),
+                ),
+                Padding(
+                  padding: _padding,
+                  child: Text(
+                    "Promotions",
+                    style: _titleTextStyle,
+                  ),
+                ),
+                ListView(
+                  shrinkWrap: true,
+                  scrollDirection: Axis.vertical,
+                  physics: ClampingScrollPhysics(),
                   children: <Widget>[
-                    Divider(
-                      thickness: 4.0,
-                      height: 0.0,
-                    ),
-                    ListView(
-                      shrinkWrap: true,
-                      scrollDirection: Axis.vertical,
-                      physics: ClampingScrollPhysics(),
+                    Column(
                       children: <Widget>[
+                        Divider(
+                          height: 0.0,
+                          thickness: 1,
+                        ),
                         ListTile(
                           title: Text(
-                            "Create your Business Profile",
+                            "Enter promo code",
                             style: _tileTextStyle,
                           ),
-                          leading: Icon(MyFlutterApp.briefcase),
-                          trailing: Icon(
-                            Icons.chevron_right,
-                            size: 28,
+                          leading: Icon(
+                            Icons.card_giftcard,
+                            size: 25,
                           ),
+                          dense: true,
                           contentPadding: _contentPadding,
                           onTap: () {
                             //
                           },
                         ),
                       ],
-                    ),
-                    Divider(
-                      thickness: 4.0,
-                      height: 0.0,
                     ),
                   ],
                 ),
-              ),
-              Padding(
-                padding: _padding,
-                child: Text(
-                  "Promotions",
-                  style: _titleTextStyle,
-                ),
-              ),
-              ListView(
-                shrinkWrap: true,
-                scrollDirection: Axis.vertical,
-                physics: ClampingScrollPhysics(),
-                children: <Widget>[
-                  Column(
-                    children: <Widget>[
-                      Divider(
-                        height: 0.0,
-                        thickness: 1,
-                      ),
-                      ListTile(
-                        title: Text(
-                          "Enter promo code",
-                          style: _tileTextStyle,
-                        ),
-                        leading: Icon(
-                          Icons.card_giftcard,
-                          size: 25,
-                        ),
-                        dense: true,
-                        contentPadding: _contentPadding,
-                        onTap: () {
-                          //
-                        },
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ],
+              ],
+            ),
           ),
-        ),
-      ),
+        ],
+      )
     );
   }
 }

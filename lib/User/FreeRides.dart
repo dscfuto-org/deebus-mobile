@@ -24,7 +24,11 @@ class _FreeRidesState extends State<FreeRides> {
           onPressed: () => navigateBack(context),
         ),
       ),
-      body: Container(),
+      body: ListView(
+        children: <Widget>[
+          Container()
+        ],
+      ),
     );
   }
 }
