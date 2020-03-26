@@ -20,7 +20,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Payments"),
+        title: Text("Payments", style: TextStyle(color: AppColors.color4),),
         backgroundColor: Colors.white10,
         elevation: 0,
         leading: IconButton(

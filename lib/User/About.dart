@@ -62,8 +62,8 @@ class _AboutScreenState extends State<AboutScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("About DeeBus"),
-        backgroundColor: AppColors.color4,
+        title: Text("About DeeBus", style: TextStyle(color: AppColors.color4),),
+        backgroundColor: AppColors.color1,
         elevation: 0,
         leading: IconButton(
           icon: Icon(

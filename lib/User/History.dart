@@ -12,7 +12,7 @@ class _HistoryState extends State<History> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("History"),
+        title: Text("History", style: TextStyle(color: AppColors.color4),),
         backgroundColor: Colors.white10,
         elevation: 0,
         leading: IconButton(

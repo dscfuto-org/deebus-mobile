@@ -13,8 +13,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "My Profile"
-         //DummyData.firstName.toString() + " " + DummyData.lastName.toString(),
+          "My Profile", style: TextStyle(color: AppColors.color4),
         ),
         backgroundColor: Colors.white10,
         elevation: 0,

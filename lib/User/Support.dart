@@ -20,7 +20,7 @@ class _SupportScreenState extends State<SupportScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Support"),
+        title: Text("Support", style: TextStyle(color: AppColors.color4),),
         backgroundColor: Colors.white10,
         elevation: 0,
         leading: IconButton(

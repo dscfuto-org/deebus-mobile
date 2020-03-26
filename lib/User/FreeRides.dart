@@ -12,7 +12,7 @@ class _FreeRidesState extends State<FreeRides> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Get a Free ride"),
+        title: Text("Get a Free ride", style: TextStyle(color: AppColors.color4),),
         backgroundColor: Colors.white10,
         elevation: 0,
         leading: IconButton(

@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:connectivity/connectivity.dart';
 import 'package:deebus/Constants/AppColors.dart';
 import 'package:deebus/Data/DummyData.dart';
 import 'package:deebus/User/About.dart';
@@ -54,6 +55,9 @@ class DashboardState extends State<Dashboard> {
 // wrapper around the location API
   Location location = Location();
 
+  final Connectivity _connectivity = Connectivity();
+  StreamSubscription<ConnectivityResult> _connectivitySubscription;
+
   getCurrentLocation(){
     // create an instance of Location
     location = new Location();
@@ -86,7 +90,6 @@ class DashboardState extends State<Dashboard> {
   void initState() {
     super.initState();
     getCurrentLocation();
-
     polylinePoints = PolylinePoints();
 
     // subscribe to changes in the user's location
@@ -95,7 +98,37 @@ class DashboardState extends State<Dashboard> {
     setSourceAndDestinationIcons();
     // set the initial location
     setInitialLocation();
+    _connectivitySubscription =
+        _connectivity.onConnectivityChanged.listen(_updateConnectionStatus);
   }
+  dispose() {
+    super.dispose();
+    _connectivitySubscription.cancel();
+  }
+
+  Future<void> _updateConnectionStatus(ConnectivityResult result) async {
+    var connectivityResult = await (Connectivity().checkConnectivity());
+    if (connectivityResult == ConnectivityResult.mobile) {
+    } else if (connectivityResult == ConnectivityResult.wifi) {
+    } else showNetworkErrorDialog(context, " No Internet Connection");
+  }
+  void showNetworkErrorDialog(BuildContext context, String message, ) {
+    showDialog(
+        context: context,
+        builder: (ctx) => AlertDialog(
+          title: Text('Notification'),
+          content: Text(message),
+          actions: <Widget>[
+            FlatButton(
+              child: Text('Okay'),
+              onPressed: () {
+                navigateBack(context);
+  },
+  )
+          ],
+        ));
+  }
+
 
   void setSourceAndDestinationIcons() async {
     sourceIcon = await BitmapDescriptor.fromAssetImage(
@@ -276,7 +309,7 @@ class DashboardState extends State<Dashboard> {
                 ),
               ),
               Padding(
-                padding: EdgeInsets.all(10.0),
+                padding: EdgeInsets.only(bottom: 20.0, right: 10.0, left: 10),
                 child: MaterialButton(
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.all(Radius.circular(40.0)),
@@ -299,30 +332,30 @@ class DashboardState extends State<Dashboard> {
       //The body of the ap
       body: Stack(
         children: <Widget>[
-          Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              Flexible(
-                // flex: 5,
-                child: GoogleMap(
-                    myLocationEnabled: true,
-                    compassEnabled: false,
-                    myLocationButtonEnabled: false,
-                    buildingsEnabled: false,
-                    tiltGesturesEnabled: false,
-                    markers: _markers,
-                    polylines: _polylines,
-                    mapType: MapType.normal,
-                    initialCameraPosition: initialCameraPosition,
-                    onMapCreated: (GoogleMapController controller) {
-                      _controller.complete(controller);
-                      showPinsOnMap();
-                    }),
-              ),
-              SizedBox(
-                height: deviceH*5/14,
-              )
-            ],
+          Container(
+            height: deviceH*9/14,
+            child: Column(
+              //mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                Flexible(
+                  // flex: 5,
+                  child: GoogleMap(
+                      myLocationEnabled: true,
+                      compassEnabled: false,
+                      myLocationButtonEnabled: false,
+                      buildingsEnabled: false,
+                      tiltGesturesEnabled: false,
+                      markers: _markers,
+                      polylines: _polylines,
+                      mapType: MapType.normal,
+                      initialCameraPosition: initialCameraPosition,
+                      onMapCreated: (GoogleMapController controller) {
+                        _controller.complete(controller);
+                        showPinsOnMap();
+                      }),
+                ),
+              ],
+            ),
           ),
           Positioned(
             width: deviceW-15,
