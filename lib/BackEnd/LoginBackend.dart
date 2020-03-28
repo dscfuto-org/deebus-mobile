@@ -11,15 +11,24 @@ import 'package:deebus/Utils/AlertDialogs.dart';
 import 'package:deebus/Utils/Navigators.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as Client;
+import 'package:logger/logger.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
 class  LoginBackend{
   SharedPreferences sharedPreferences;
+  var logger= Logger(
+    printer:  PrettyPrinter(
+      colors: true,
+      printEmojis: true,
+      printTime: true,
+    )
+  );
 
   Future<void> loginFetch(BuildContext context,String email, String password)async{
     
     final url= http+baseURL+loginPath;
-    print(url);
-    print(json.encode({
+    logger.i(url);
+    logger.i(json.encode({
       "email": email,
       "password": password
     }));
@@ -32,24 +41,30 @@ class  LoginBackend{
           "email": email,
           "password": password
         }),
-      );
+      ).timeout(const Duration( seconds: 60));
 
-      print(httpConnectionApi.statusCode);
-      print(httpConnectionApi.body);
+     logger.i(httpConnectionApi.statusCode);
+      logger.i(httpConnectionApi.body);
       if(httpConnectionApi.statusCode==200){
         var resBody = jsonDecode(httpConnectionApi.body.toString());
         ResponseData.defaultResponse = DefaultResponseModel.fromJson(resBody);
         if(ResponseData.defaultResponse.status==1) {
         ResponseData.loginResponse = LoginResponse.fromJson(ResponseData.defaultResponse.data);
          navigateReplace(context, Dashboard());
-         print(ResponseData.loginResponse.email);
+        logger.i(ResponseData.loginResponse.email);
           saveEmail(); getEmail();
           saveFirstName(); getFirstName();
           saveLastName(); getLastName();
         }else if(ResponseData.defaultResponse.status ==0){
           showErrorDialog(context, "An error occured");
         }else showErrorDialog(context, "A network Error Occured");
-      }else showErrorDialog(context, "Validation Error");
+      } else if (httpConnectionApi.statusCode == 401){
+        var resBody = jsonDecode(httpConnectionApi.body.toString());
+        ResponseData.defaultResponse = DefaultResponseModel.fromJson(resBody);
+        showErrorDialog(context, ResponseData.defaultResponse.message);
+      }else if (httpConnectionApi.statusCode == 400){
+        showErrorDialog(context, "Email must be a valid email address.");
+      }
 
     }on  Exception catch (e) {
       throw e;
@@ -66,7 +81,7 @@ class  LoginBackend{
   getEmail()async{
     sharedPreferences = await SharedPreferences.getInstance();
     DummyData.email = sharedPreferences.getString("Email");
-    print(DummyData.email);
+    logger.i(DummyData.email);
   }
   saveFirstName() async{
     sharedPreferences = await SharedPreferences.getInstance();
@@ -75,7 +90,7 @@ class  LoginBackend{
   getFirstName() async{
     sharedPreferences = await SharedPreferences.getInstance();
    DummyData.firstName = sharedPreferences.getString("FirstName");
-    print(DummyData.firstName);
+    logger.i(DummyData.firstName);
   }
   saveLastName()async{
     sharedPreferences = await SharedPreferences.getInstance();
@@ -84,6 +99,6 @@ class  LoginBackend{
   getLastName()async{
     sharedPreferences = await SharedPreferences.getInstance();
     DummyData.lastName = sharedPreferences.getString("LastName");
-    print(DummyData.lastName);
+    logger.i(DummyData.lastName);
   }
 }

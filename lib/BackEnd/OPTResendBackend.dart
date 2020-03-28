@@ -4,14 +4,22 @@ import 'dart:io';
 import 'package:deebus/Constants/API.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as Client;
+import 'package:logger/logger.dart';
 
 class OTPResendBackend{
+  var logger= Logger(
+      printer:  PrettyPrinter(
+        colors: true,
+        printEmojis: true,
+        printTime: true,
+      )
+  );
 
   Future<void>otpResendFetch(BuildContext context, String email) async {
     final url = http+baseURL+resendVerifyOtpPath;
 
-    print(url);
-    print(json.encode({
+    logger.i(url);
+    logger.i(json.encode({
       "email": email,
     }));
 
@@ -22,10 +30,10 @@ class OTPResendBackend{
         body: json.encode({
           "email": email,
         }),
-      );
+      ).timeout(const Duration( seconds: 60));
 
-      print(httpConnectionApi.statusCode);
-      print(httpConnectionApi.body);
+      logger.i(httpConnectionApi.statusCode);
+      logger.i(httpConnectionApi.body);
 
     } on Exception catch (e) {
       throw e;
