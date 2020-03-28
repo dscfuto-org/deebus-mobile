@@ -20,9 +20,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   final _textStyle = TextStyle(
       fontSize: 20.0, fontWeight: FontWeight.w400, fontFamily: "Ubuntu");
 
-  String _firstName,
-      _lastName,
-      _email = "";
+  String _firstName, _lastName, _email = "";
 
   @override
   Widget build(BuildContext context) {
@@ -89,7 +87,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(6.0),
                       side:
-                      BorderSide(color: AppColors().hexToColor("#3B5998"))),
+                          BorderSide(color: AppColors().hexToColor("#3B5998"))),
                   onPressed: () {},
                 ),
               ),
@@ -119,35 +117,35 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   ),
                   IntrinsicHeight(
                       child: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: <Widget>[
-                          Flexible(
-                            child: Container(
-                              padding:
+                    mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: <Widget>[
+                      Flexible(
+                        child: Container(
+                          padding:
                               const EdgeInsets.fromLTRB(20.0, 10.0, 10.0, 10.0),
-                              child: ProfileInput(
-                                hint: "First Name",
-                              ),
-                            ),
-                            flex: 12,
+                          child: ProfileInput(
+                            hint: "First Name",
                           ),
-                          Flexible(
-                            child: VerticalDivider(
-                              width: 0.0,
-                              thickness: 1.0,
-                              indent: 10.0,
-                              endIndent: 10.0,
-                            ),
-                            fit: FlexFit.tight,
-                          ),
-                          Flexible(
-                            flex: 12,
-                            child:
+                        ),
+                        flex: 12,
+                      ),
+                      Flexible(
+                        child: VerticalDivider(
+                          width: 0.0,
+                          thickness: 1.0,
+                          indent: 10.0,
+                          endIndent: 10.0,
+                        ),
+                        fit: FlexFit.tight,
+                      ),
+                      Flexible(
+                        flex: 12,
+                        child:
                             Container(child: ProfileInput(hint: "Last Name")),
-                          ),
-                        ],
-                      )),
+                      ),
+                    ],
+                  )),
                 ],
               ),
             ),
