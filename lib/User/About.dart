@@ -22,6 +22,7 @@ class _AboutScreenState extends State<AboutScreen> {
       throw 'Could not launch $url';
     }
   }
+
   _launchURLFaceBook() async {
     const url = 'https://codemarka.dev';
     if (await canLaunch(url)) {
@@ -30,6 +31,7 @@ class _AboutScreenState extends State<AboutScreen> {
       throw 'Could not launch $url';
     }
   }
+
   _launchURLDeeBusBusiness() async {
     const url = 'https://codemarka.dev';
     if (await canLaunch(url)) {
@@ -38,6 +40,7 @@ class _AboutScreenState extends State<AboutScreen> {
       throw 'Could not launch $url';
     }
   }
+
   _launchURLDeeBusCareers() async {
     const url = 'https://codemarka.dev';
     if (await canLaunch(url)) {
@@ -46,6 +49,7 @@ class _AboutScreenState extends State<AboutScreen> {
       throw 'Could not launch $url';
     }
   }
+
   _launchURLTermsAndConditions() async {
     const url = 'https://codemarka.dev';
     if (await canLaunch(url)) {
@@ -62,7 +66,10 @@ class _AboutScreenState extends State<AboutScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("About DeeBus", style: TextStyle(color: AppColors.color4),),
+        title: Text(
+          "About DeeBus",
+          style: TextStyle(color: AppColors.color4),
+        ),
         backgroundColor: AppColors.color1,
         elevation: 0,
         leading: IconButton(
@@ -165,10 +172,7 @@ class _AboutScreenState extends State<AboutScreen> {
                               ListTile(
                                 title: Text(
                                   "DeeBus Careers",
-                                  style: TextStyle(
-                                      fontSize: 21.0,
-                                      fontWeight: FontWeight.w400,
-                                      fontFamily: "Ubuntu"),
+                                  style: _textStyle,
                                 ),
                                 contentPadding: _contentPadding,
                                 onTap: _launchURLDeeBusCareers,
