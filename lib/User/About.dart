@@ -81,7 +81,7 @@ class _AboutScreenState extends State<AboutScreen> {
           onPressed: () => navigateBack(context),
         ),
       ),
-      body: Column(
+      body: ListView(
         children: <Widget>[
           Container(
             margin: EdgeInsets.symmetric(vertical: 40.0),

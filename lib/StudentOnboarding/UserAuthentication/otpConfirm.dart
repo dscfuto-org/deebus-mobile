@@ -2,7 +2,6 @@ import 'package:deebus/BackEnd/OPTResendBackend.dart';
 import 'package:deebus/BackEnd/OTPBackend.dart';
 import 'package:deebus/Constants/AppColors.dart';
 import 'package:deebus/Constants/AppColors.dart' as prefix0;
-import 'package:deebus/Utils/Navigators.dart';
 import 'package:deebus/Utils/Styles.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -35,14 +34,6 @@ class _OTPScreenState extends State<OTPScreen> {
         title: Text("Confirm Email"),
         backgroundColor: Colors.white10,
         elevation: 0,
-        leading: IconButton(
-          icon: Icon(
-            Icons.arrow_back,
-            color: AppColors.color4,
-            size: 35.0,
-          ),
-          onPressed: () => navigateBack(context),
-        ),
       ),
 //        backgroundColor: AppColors.color4,
         body: ListView(
@@ -76,6 +67,7 @@ class _OTPScreenState extends State<OTPScreen> {
                                 highlight: true,
                                 highlightColor: AppColors.color4,
                                 pinBoxRadius: 10,
+                                keyboardType: TextInputType.number,
                                 pinBoxColor: Colors.white,
                                 defaultBorderColor: AppColors.color4,
                                 hasTextBorderColor: Colors.green,

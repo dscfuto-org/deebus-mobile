@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:connectivity/connectivity.dart';
 import 'package:deebus/Constants/AppColors.dart';
+import 'package:deebus/Constants/AppColors.dart' as prefix0;
 import 'package:deebus/Data/DummyData.dart';
 import 'package:deebus/User/About.dart';
 import 'package:deebus/User/FreeRides.dart';
@@ -8,14 +9,17 @@ import 'package:deebus/User/History.dart';
 import 'package:deebus/User/Payments.dart';
 import 'package:deebus/User/Profile.dart';
 import 'package:deebus/User/Support.dart';
+import 'package:deebus/Utils/AlertDialogs.dart';
 import 'package:deebus/Utils/Navigators.dart';
 import 'package:deebus/Utils/Styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:flutter_polyline_points/flutter_polyline_points.dart';
+//import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart';
+import 'package:pin_code_text_field/pin_code_text_field.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
+//import 'package:sliding_up_panel/sliding_up_panel.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class Dashboard extends StatefulWidget {
@@ -24,6 +28,12 @@ class Dashboard extends StatefulWidget {
 }
 
 class DashboardState extends State<Dashboard> {
+
+  TextEditingController controller = TextEditingController();
+  int pinLength = 4;
+  bool hasError = false;
+  String otp;
+  bool isLoadingPayment = false;
 
   GlobalKey<ScaffoldState> _scafoldKey = GlobalKey();
   // ignore: non_constant_identifier_names
@@ -41,7 +51,7 @@ class DashboardState extends State<Dashboard> {
 // for my drawn routes on the map
   Set<Polyline> _polylines = Set<Polyline>();
   List<LatLng> polylineCoordinates = [];
-  PolylinePoints polylinePoints;
+  //PolylinePoints polylinePoints;
   String googleAPIKey = "AIzaSyCbQB5ArOxQOvkDdgVwrT4oQJ_epy15lbk";
 // for my custom marker pins
   BitmapDescriptor sourceIcon;
@@ -68,11 +78,11 @@ class DashboardState extends State<Dashboard> {
       // so we're holding on to it
       currentLocation = cLoc;
       updatePinOnMap(context);
-      if (currentLocation.latitude == destinationLocation.latitude &&
-          currentLocation.longitude == destinationLocation.longitude) {
-        // rider reached location
-        // alert rider
-      }
+//      if (currentLocation.latitude == destinationLocation.latitude &&
+//          currentLocation.longitude == destinationLocation.longitude) {
+//        // rider reached location
+//        // alert rider
+//      }
     });
 
   }
@@ -84,13 +94,11 @@ class DashboardState extends State<Dashboard> {
       throw 'Could not launch $url';
     }
   }
-
-
   @override
   void initState() {
     super.initState();
     getCurrentLocation();
-    polylinePoints = PolylinePoints();
+    //polylinePoints = PolylinePoints();
 
     // subscribe to changes in the user's location
     // by "listening" to the location's onLocationChanged event
@@ -105,7 +113,6 @@ class DashboardState extends State<Dashboard> {
     super.dispose();
     _connectivitySubscription.cancel();
   }
-
   Future<void> _updateConnectionStatus(ConnectivityResult result) async {
     var connectivityResult = await (Connectivity().checkConnectivity());
     if (connectivityResult == ConnectivityResult.mobile) {
@@ -128,8 +135,6 @@ class DashboardState extends State<Dashboard> {
           ],
         ));
   }
-
-
   void setSourceAndDestinationIcons() async {
     sourceIcon = await BitmapDescriptor.fromAssetImage(
         ImageConfiguration(devicePixelRatio: 2.5), 'assets/driving_pin.png');
@@ -138,7 +143,6 @@ class DashboardState extends State<Dashboard> {
         ImageConfiguration(devicePixelRatio: 2.5),
         'assets/destination_map_marker.png');
   }
-
   void setInitialLocation() async {
     // set the initial location by pulling the user's
     // current location from the location's getLocation()
@@ -150,14 +154,12 @@ class DashboardState extends State<Dashboard> {
       "longitude": DEST_LOCATION.longitude
     });
   }
-
   @override
   Widget build(BuildContext context) {
     final deviceH = MediaQuery.of(context).size.height;
     final deviceW = MediaQuery.of(context).size.height;
     // SystemChrome.setEnabledSystemUIOverlays([]);
     // SystemChrome.setEnabledSystemUIOverlays(SystemUiOverlay.values) ;
-
     CameraPosition initialCameraPosition = CameraPosition(
         zoom: CAMERA_ZOOM,
 //        tilt: CAMERA_TILT,
@@ -357,21 +359,21 @@ class DashboardState extends State<Dashboard> {
               ],
             ),
           ),
-          Positioned(
-            width: deviceW-15,
-            top: deviceH/2,
-            child: MaterialButton(
-              shape: CircleBorder(
-                //borderRadius: BorderRadius.all(Radius.circular(40.0)),
-              ),
-              onPressed: getCurrentLocation,
-              color: Colors.white,
-              child: Padding(
-                padding: EdgeInsets.all(12.0),
-                child: Icon(Icons.location_searching),
-              )
-            ),
-          ),
+//          Positioned(
+//            width: deviceW,
+//            top: deviceH*7/14,
+//            child: MaterialButton(
+//              shape: CircleBorder(
+//                //borderRadius: BorderRadius.all(Radius.circular(40.0)),
+//              ),
+//              onPressed: getCurrentLocation,
+//              color: prefix0.AppColors.color4,
+//              child: Padding(
+//                padding: EdgeInsets.all(12.0),
+//                child: Icon(Icons.location_searching, color: AppColors.color1,),
+//              )
+//            ),
+//          ),
           SafeArea(
               child: Padding(
                 padding: const EdgeInsets.all(15.0),
@@ -390,7 +392,7 @@ class DashboardState extends State<Dashboard> {
               )
           ),
           SlidingUpPanel(
-            maxHeight: deviceH,
+            maxHeight: deviceH-26,
             minHeight: deviceH*6/14,
             borderRadius: BorderRadius.only(
               topLeft: Radius.circular(20.0),
@@ -405,7 +407,7 @@ class DashboardState extends State<Dashboard> {
                     height: deviceH * 2 / 100,
                   ),
                   Text(
-                    'Where are you going?',
+                    'Enter Bus Code',
                     style: textStyleBigRegularGreet,
                   ),
                   SizedBox(
@@ -422,103 +424,79 @@ class DashboardState extends State<Dashboard> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       mainAxisSize: MainAxisSize.max,
                       children: <Widget>[
-                        TextField(
-                          onSubmitted: (val) {
-                            print(val);
-                            if (val.contains(',')) {
-                              destinationLocation = LocationData.fromMap({
-                                "latitude":
-                                double.tryParse(val.split(',').first),
-                                "longitude":
-                                double.tryParse(val.split(',').last)
+                        Padding(
+                          padding: const EdgeInsets.only(top: 8.0),
+                          child:
+                          PinCodeTextField(
+                            pinBoxHeight: 50,
+                            pinBoxWidth: 50,
+                            autofocus: false,
+                            controller: controller,
+                            hideCharacter: true,
+                            highlight: true,
+                            highlightColor: AppColors.color4,
+                            pinBoxRadius: 10,
+                            pinBoxColor: Colors.white,
+                            defaultBorderColor: AppColors.color4,
+                            hasTextBorderColor: Colors.green,
+                            maxLength: pinLength,
+                            hasError: hasError,
+                            keyboardType: TextInputType.number,
+                            maskCharacter: "*",
+
+                            onTextChanged: (text) {
+                              setState(() {
+                                hasError = false;
                               });
-                              setSourceAndDestinationIcons();
-                              setInitialLocation();
-                              setPolylines();
-                              showPinsOnMap();
-                            }
-                          },
-                          decoration: InputDecoration(
-                              hintText: 'Where to?',
-                              hintStyle: textStyleBigLight,
-                              fillColor: Colors.black12,
-                              filled: true,
-                              suffixIcon: Icon(Icons.search),
-                              border: InputBorder.none,
+                            },
+                            onDone: (text){
+                              otp=text;
+                              if(text.length!=4){
+                                setState(() {
+                                  hasError = true;
+                                });
+                              }
+
+                            },
+//pinCodeTextFieldLayoutType: PinCodeTextFieldLayoutType.AUTO_ADJUST_WIDTH,
+                            wrapAlignment: WrapAlignment.center,
+                            pinBoxDecoration: ProvidedPinBoxDecoration.defaultPinBoxDecoration,
+                            pinTextStyle: TextStyle(fontSize: 30.0),
+                            pinTextAnimatedSwitcherTransition: ProvidedPinBoxTextAnimation.scalingTransition,
+                            pinTextAnimatedSwitcherDuration: Duration(milliseconds: 300),
                           ),
                         ),
-                        SizedBox(
-                          height: deviceH * 1 / 100,
+                        Visibility(
+                          child: Text(
+                            "Wrong PIN!",
+                            style: TextStyle(color: Colors.red),
+                          ),
+                          visible: hasError,
                         ),
-                        FlatButton(
-                          // onTap: () {},
-                          onPressed: () {},
-                          child: Column(
-                            children: <Widget>[
-                              SizedBox(
-                                height: deviceH * 2 / 100,
-                              ),
-                              Row(
-                                mainAxisAlignment:
-                                MainAxisAlignment.spaceBetween,
-                                children: <Widget>[
-                                  Container(
-                                    child: Row(
-                                      children: <Widget>[
-                                        CircleAvatar(
-                                          backgroundColor: AppColors.color4,
-                                          child: Icon(
-                                            Icons.person_pin,
-                                            color: Colors.white,
-                                          ),
-                                        ),
-                                        SizedBox(
-                                          width: deviceW * 3 / 100,
-                                        ),
-                                        Text(
-                                          'Choose a saved place',
-                                          style: textStyleBigRegularB,
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                  Icon(
-                                    Icons.keyboard_arrow_down,
-                                    color: Colors.black45,
-                                  )
-                                ],
-                              ),
-                              SizedBox(
-                                height: deviceH * 2 / 100,
-                              ),
-//                              MaterialButton(
-//                                shape: RoundedRectangleBorder(
-//                                  borderRadius: BorderRadius.all(Radius.circular(40.0)),
-//                                ),
-//                                height: 50,
-//                                onPressed: ,
-////                              async{
-////                                if(controller.text.length!=6){
-////                                  setState(() {
-////                                    hasError = true;
-////                                  });
-////                                } else if(equalsIgnoreCase(widget.tranType, "Withdrawal")){
-////                                  submitWithdrawal();
-////                                }
-////                              },
-//                                color: AppColors.color4,
-//                                child: Text(
-//                                  "Continue",
-//                                  style: TextStyle(
-//                                      color: Colors.white, fontSize: 16.0),
-//                                ),
-//                              ),
-                            Center(
-                              child: Text("You have not saved any Locations",
-                                style: textStyleBigLight,
-                              ),
-                            )
-                            ],
+                        Center(
+                          child: isLoadingPayment
+                              ?
+                          CircularProgressIndicator(
+                            backgroundColor: AppColors.color1,
+                            valueColor: new AlwaysStoppedAnimation(prefix0.AppColors.color4),
+                          )
+
+                              :
+                          MaterialButton(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.all(Radius.circular(40.0)),
+                            ),
+                            height: 50,
+                            minWidth: deviceW,
+                            onPressed: () => {
+                              successAlert()
+                            },
+                            color: AppColors.color4,
+                            child: Text(
+                              "Continue",
+                              style: TextStyle(
+                                  color: Colors.white, fontSize: 16.0),
+                            ),
                           ),
                         ),
                       ],
@@ -538,7 +516,6 @@ class DashboardState extends State<Dashboard> {
 //      ),
     );
   }
-
   // ignore: unused_field
   static final CameraPosition _ccj = CameraPosition(
     target: LatLng(11.1446454, 75.9452897),
@@ -550,7 +527,6 @@ class DashboardState extends State<Dashboard> {
       target: LatLng(37.43296265331129, -122.08832357078792),
       tilt: 59.440717697143555,
       zoom: 19.151926040649414);
-
   void updatePinOnMap(BuildContext context) async {
     // create a new CameraPosition instance
     // every time the location changes, so the camera
@@ -580,26 +556,26 @@ class DashboardState extends State<Dashboard> {
     });
   }
 
-  void setPolylines() async {
-    List<PointLatLng> result = await polylinePoints.getRouteBetweenCoordinates(
-        googleAPIKey,
-        currentLocation.latitude,
-        currentLocation.longitude,
-        destinationLocation.latitude,
-        destinationLocation.longitude);
-    if (result.isNotEmpty) {
-      result.forEach((PointLatLng point) {
-        polylineCoordinates.add(LatLng(point.latitude, point.longitude));
-      });
-      setState(() {
-        _polylines.add(Polyline(
-            width: 5, // set the width of the polylines
-            polylineId: PolylineId("poly"),
-            color: Color.fromARGB(255, 40, 122, 198),
-            points: polylineCoordinates));
-      });
-    }
-  }
+//  void setPolylines() async {
+//    List<PointLatLng> result = await polylinePoints.getRouteBetweenCoordinates(
+//        googleAPIKey,
+//        currentLocation.latitude,
+//        currentLocation.longitude,
+//        destinationLocation.latitude,
+//        destinationLocation.longitude);
+//    if (result.isNotEmpty) {
+//      result.forEach((PointLatLng point) {
+//        polylineCoordinates.add(LatLng(point.latitude, point.longitude));
+//      });
+//      setState(() {
+//        _polylines.add(Polyline(
+//            width: 5, // set the width of the polylines
+//            polylineId: PolylineId("poly"),
+//            color: Color.fromARGB(255, 40, 122, 198),
+//            points: polylineCoordinates));
+//      });
+//    }
+//  }
 
   void showPinsOnMap() {
     // get a LatLng for the source location
@@ -621,7 +597,11 @@ class DashboardState extends State<Dashboard> {
         icon: destinationIcon));
     // set the route lines on the map from source to destination
 
-    setPolylines();
+    //setPolylines();
+  }
+
+   successAlert() async {
+    showAlertDialog(context, "Successful Payment");
   }
 
 }

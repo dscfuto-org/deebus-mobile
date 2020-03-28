@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 class ProfileInput extends StatefulWidget {
   ProfileInput({this.hint = ""});
 
-  String hint;
+  final String hint;
 
   @override
   _ProfileInputState createState() => _ProfileInputState();
