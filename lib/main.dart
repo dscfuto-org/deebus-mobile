@@ -4,7 +4,6 @@ import 'package:deebus/StudentOnboarding/splashScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
@@ -20,6 +19,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: AppColors.color3,
+        buttonTheme: ButtonThemeData(minWidth: 5),
         fontFamily: 'Ubuntu',
       ),
       home: SplashScreen(),
