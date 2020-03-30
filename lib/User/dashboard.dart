@@ -1,4 +1,5 @@
 import 'dart:async';
+
 import 'package:connectivity/connectivity.dart';
 import 'package:deebus/Constants/AppColors.dart';
 import 'package:deebus/Constants/AppColors.dart' as prefix0;
@@ -14,12 +15,10 @@ import 'package:deebus/Utils/Navigators.dart';
 import 'package:deebus/Utils/Styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-//import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart';
 import 'package:pin_code_text_field/pin_code_text_field.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
-//import 'package:sliding_up_panel/sliding_up_panel.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class Dashboard extends StatefulWidget {
@@ -28,7 +27,6 @@ class Dashboard extends StatefulWidget {
 }
 
 class DashboardState extends State<Dashboard> {
-
   TextEditingController controller = TextEditingController();
   int pinLength = 4;
   bool hasError = false;
@@ -36,39 +34,49 @@ class DashboardState extends State<Dashboard> {
   bool isLoadingPayment = false;
 
   GlobalKey<ScaffoldState> _scafoldKey = GlobalKey();
+
   // ignore: non_constant_identifier_names
   final double CAMERA_ZOOM = 16;
+
 //  final double CAMERA_TILT = 80;
   // ignore: non_constant_identifier_names
   final double CAMERA_BEARING = 30;
+
   // ignore: non_constant_identifier_names
   final LatLng SOURCE_LOCATION = LatLng(42.747932, -71.167889);
+
   // ignore: non_constant_identifier_names
   LatLng DEST_LOCATION = LatLng(37.335685, -122.0605916);
 
   Completer<GoogleMapController> _controller = Completer();
   Set<Marker> _markers = Set<Marker>();
+
 // for my drawn routes on the map
   Set<Polyline> _polylines = Set<Polyline>();
   List<LatLng> polylineCoordinates = [];
+
   //PolylinePoints polylinePoints;
   String googleAPIKey = "AIzaSyCbQB5ArOxQOvkDdgVwrT4oQJ_epy15lbk";
+
 // for my custom marker pins
   BitmapDescriptor sourceIcon;
   BitmapDescriptor destinationIcon;
+
 // the user's initial location and current location
 // as it moves
   //AIzaSyCbQB5ArOxQOvkDdgVwrT4oQJ_epy15lbk
   LocationData currentLocation;
+
 // a reference to the destination location
   LocationData destinationLocation;
+
 // wrapper around the location API
   Location location = Location();
 
   final Connectivity _connectivity = Connectivity();
   StreamSubscription<ConnectivityResult> _connectivitySubscription;
 
-  getCurrentLocation(){
+  getCurrentLocation() {
     // create an instance of Location
     location = new Location();
 
@@ -84,8 +92,8 @@ class DashboardState extends State<Dashboard> {
 //        // alert rider
 //      }
     });
-
   }
+
   _launchURL() async {
     const url = 'https://codemarka.dev';
     if (await canLaunch(url)) {
@@ -94,6 +102,7 @@ class DashboardState extends State<Dashboard> {
       throw 'Could not launch $url';
     }
   }
+
   @override
   void initState() {
     super.initState();
@@ -109,17 +118,21 @@ class DashboardState extends State<Dashboard> {
     _connectivitySubscription =
         _connectivity.onConnectivityChanged.listen(_updateConnectionStatus);
   }
+
   dispose() {
     super.dispose();
     _connectivitySubscription.cancel();
   }
+
   Future<void> _updateConnectionStatus(ConnectivityResult result) async {
     var connectivityResult = await (Connectivity().checkConnectivity());
     if (connectivityResult == ConnectivityResult.mobile) {
-    } else if (connectivityResult == ConnectivityResult.wifi) {
-    } else showNetworkErrorDialog(context, " No Internet Connection");
+    } else if (connectivityResult == ConnectivityResult.wifi) {} else
+      showNetworkErrorDialog(context, " No Internet Connection");
   }
-  void showNetworkErrorDialog(BuildContext context, String message, ) {
+
+  void showNetworkErrorDialog(BuildContext context,
+      String message,) {
     showDialog(
         context: context,
         builder: (ctx) => AlertDialog(
@@ -130,11 +143,12 @@ class DashboardState extends State<Dashboard> {
               child: Text('Okay'),
               onPressed: () {
                 navigateBack(context);
-  },
-  )
+              },
+            )
           ],
         ));
   }
+
   void setSourceAndDestinationIcons() async {
     sourceIcon = await BitmapDescriptor.fromAssetImage(
         ImageConfiguration(devicePixelRatio: 2.5), 'assets/driving_pin.png');
@@ -143,6 +157,7 @@ class DashboardState extends State<Dashboard> {
         ImageConfiguration(devicePixelRatio: 2.5),
         'assets/destination_map_marker.png');
   }
+
   void setInitialLocation() async {
     // set the initial location by pulling the user's
     // current location from the location's getLocation()
@@ -154,6 +169,7 @@ class DashboardState extends State<Dashboard> {
       "longitude": DEST_LOCATION.longitude
     });
   }
+
   @override
   Widget build(BuildContext context) {
     final deviceH = MediaQuery.of(context).size.height;
@@ -177,16 +193,15 @@ class DashboardState extends State<Dashboard> {
       key: _scafoldKey,
       //The menu bar
       drawer: Drawer(
-        child:
-        Container(
-          height: 10,
-          child: Column(
-            children: <Widget>[
-              Expanded(
-                child: ListView(
-                  padding: EdgeInsets.zero,
-                  children: <Widget>[
-                    Container(
+          child: Container(
+            height: 10,
+            child: Column(
+              children: <Widget>[
+                Expanded(
+                  child: ListView(
+                    padding: EdgeInsets.zero,
+                    children: <Widget>[
+                      Container(
                     height: 110.0,
                     child: DrawerHeader(
                         child: Column(
@@ -196,13 +211,17 @@ class DashboardState extends State<Dashboard> {
                             Row(
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: <Widget>[
-                                SizedBox(width: 15.0,),
+                                SizedBox(
+                                  width: 15.0,
+                                ),
                                 CircleAvatar(
                                   radius: deviceH * 4 / 100,
                                   backgroundColor: AppColors.color4,
-
-                                  child: Icon(Icons.person, color:AppColors.color1,
-                                  size: 50.0,),
+                                  child: Icon(
+                                    Icons.person,
+                                    color: AppColors.color1,
+                                    size: 50.0,
+                                  ),
                                 ),
                                 SizedBox(
                                   width: 10.0,
@@ -211,15 +230,20 @@ class DashboardState extends State<Dashboard> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: <Widget>[
                                     Text(
-                                      DummyData.firstName.toString() + " " + DummyData.lastName.toString(),
+                                      DummyData.firstName.toString() +
+                                          " " +
+                                          DummyData.lastName.toString(),
                                       // ResponseData.loginResponse.lastName.toString() == null ? DummyData.lastName : ResponseData.loginResponse.lastName.toString(),
                                       style: textStyleBigRegularB,
                                     ),
-                                    SizedBox(height: 10.0,),
+                                    SizedBox(
+                                      height: 10.0,
+                                    ),
                                     Text(
-                                     DummyData.email.toString(),
+                                      DummyData.email.toString(),
                                       style: TextStyle(
-                                          color: Colors.black, fontWeight: FontWeight.w100),
+                                          color: Colors.black,
+                                          fontWeight: FontWeight.w100),
                                     ),
                                   ],
                                 )
@@ -227,115 +251,124 @@ class DashboardState extends State<Dashboard> {
                             ),
                           ],
                         ),
-                        decoration: BoxDecoration(
-                            color: AppColors.color1
-                        ),
+                        decoration: BoxDecoration(color: AppColors.color1),
                         margin: EdgeInsets.all(0.0),
-                        padding: EdgeInsets.all(0.0)
-                    ),
+                        padding: EdgeInsets.all(0.0)),
                   ),
-                    ListTile(
-                      title: Text(
-                        'My Profile',
-                        style: textStyleBigLight,
+                      ListTile(
+                        title: Text(
+                          'My Profile',
+                          style: textStyleBigLight,
+                        ),
+                        leading: Icon(
+                          Icons.perm_identity,
+                          color: Colors.black,
+                        ),
+                        onTap: () {
+                          navigatePush(context, ProfileScreen());
+                          // Update the state of the app.
+                          // ...
+                        },
                       ),
-                      leading: Icon(Icons.perm_identity, color: Colors.black,),
-                      onTap: () {
-                        navigatePush(context, ProfileScreen());
-                        // Update the state of the app.
-                        // ...
-                      },
-                    ),
-                    ListTile(
-                      title: Text(
-                        'Free Rides',
-                        style: textStyleBigLight,
+                      ListTile(
+                        title: Text(
+                          'Free Rides',
+                          style: textStyleBigLight,
+                        ),
+                        leading: Icon(
+                          Icons.card_giftcard,
+                          color: Colors.black,
+                        ),
+                        onTap: () {
+                          navigatePush(context, FreeRides());
+                          // Update the state of the app.
+                          // ...
+                        },
                       ),
-                      leading: Icon(Icons.card_giftcard, color: Colors.black,),
-                      onTap: () {
-                        navigatePush(context, FreeRides());
-                        // Update the state of the app.
-                        // ...
-                      },
-                    ),
-                    ListTile(
-                      title: Text(
-                        'Payments',
-                        style: textStyleBigLight,
-
+                      ListTile(
+                        title: Text(
+                          'Payments',
+                          style: textStyleBigLight,
+                        ),
+                        leading: Icon(Icons.credit_card, color: Colors.black),
+                        onTap: () {
+                          // Update the state of the app.
+                          // ...
+                          navigatePush(context, PaymentScreen());
+                        },
                       ),
-                      leading: Icon(Icons.credit_card, color: Colors.black),
-                      onTap: () {
-                        // Update the state of the app.
-                        // ...
-                        navigatePush(context, PaymentScreen());
-                      },
-                    ),
-                    ListTile(
-                      title: Text(
-                        'History',
-                        style: textStyleBigLightC,
+                      ListTile(
+                        title: Text(
+                          'History',
+                          style: textStyleBigLightC,
+                        ),
+                        leading: Icon(
+                          Icons.history,
+                          color: AppColors.color5,
+                        ),
+                        onTap: () {
+                          navigatePush(context, History());
+                          // Update the state of the app.
+                          // ...
+                        },
                       ),
-                      leading: Icon(Icons.history, color: AppColors.color5,),
-                      onTap: () {
-                        navigatePush(context, History());
-                        // Update the state of the app.
-                        // ...
-                      },
-                    ),
-                    ListTile(
-                      title: Text(
-                        'Support',
-                        style: textStyleBigLight,
+                      ListTile(
+                        title: Text(
+                          'Support',
+                          style: textStyleBigLight,
+                        ),
+                        leading: Icon(
+                          Icons.chat,
+                          color: AppColors.color5,
+                        ),
+                        onTap: () {
+                          navigatePush(context, SupportScreen());
+                          // Update the state of the app.
+                          // ...
+                        },
                       ),
-                      leading: Icon(Icons.chat, color: AppColors.color5, ),
-                      onTap: () {
-                        navigatePush(context, SupportScreen());
-                        // Update the state of the app.
-                        // ...
-                      },
-                    ),
-                    ListTile(
-                      title: Text(
-                        'About',
-                        style: textStyleBigLight,
+                      ListTile(
+                        title: Text(
+                          'About',
+                          style: textStyleBigLight,
+                        ),
+                        leading: Icon(
+                          Icons.info_outline,
+                          color: AppColors.color5,
+                        ),
+                        onTap: () {
+                          navigatePush(context, AboutScreen());
+                          // Update the state of the app.
+                          // ...
+                        },
                       ),
-                      leading: Icon(Icons.info_outline, color: AppColors.color5, ),
-                      onTap: () {
-                        navigatePush(context, AboutScreen());
-                        // Update the state of the app.
-                        // ...
-                      },
-                    ),
-                  ],
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.only(bottom: 20.0, right: 10.0, left: 10),
-                child: MaterialButton(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(40.0)),
-                  ),
-                  minWidth: deviceW,
-                  height: 50,
-                  onPressed: _launchURL,
-                  color: AppColors.color4,
-                  child: Text(
-                    "SIGN UP TO DRIVE",
-                    style: TextStyle(
-                        color: Colors.white, fontSize: 16.0),
+                    ],
                   ),
                 ),
-              )
-            ],
-          ),
-        )
-      ),
+                Padding(
+                  padding: EdgeInsets.only(bottom: 20.0, right: 10.0, left: 10),
+                  child: MaterialButton(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(40.0)),
+                    ),
+                    minWidth: deviceW,
+                    height: 50,
+                    onPressed: _launchURL,
+                    color: AppColors.color4,
+                    child: Text(
+                      "SIGN UP TO DRIVE",
+                      style: TextStyle(color: Colors.white, fontSize: 16.0),
+                    ),
+                  ),
+                )
+              ],
+            ),
+          )),
       //The body of the ap
       body: Stack(
         children: <Widget>[
           Container(
-            height: deviceH*9/14,
+            height: deviceH * 9 / 14,
             child: Column(
               //mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
@@ -378,7 +411,8 @@ class DashboardState extends State<Dashboard> {
               child: Padding(
                 padding: const EdgeInsets.all(15.0),
                 child: InkWell(
-                  onTap: () => _scafoldKey.currentState.isDrawerOpen == true
+                  onTap: () =>
+                  _scafoldKey.currentState.isDrawerOpen == true
                       ? null
                       : _scafoldKey.currentState.openDrawer(),
                   child: CircleAvatar(
@@ -389,15 +423,13 @@ class DashboardState extends State<Dashboard> {
                     ),
                   ),
                 ),
-              )
-          ),
+              )),
           SlidingUpPanel(
-            maxHeight: deviceH-26,
-            minHeight: deviceH*6/14,
+            maxHeight: deviceH - 26,
+            minHeight: deviceH * 6 / 14,
             borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(20.0),
-              topRight: Radius.circular(20.0)
-            ),
+                topLeft: Radius.circular(20.0),
+                topRight: Radius.circular(20.0)),
             panel: Container(
               // color: Colors.red,
               child: Column(
@@ -419,15 +451,13 @@ class DashboardState extends State<Dashboard> {
                   Padding(
                     padding:
                     EdgeInsets.symmetric(horizontal: deviceW * 2 / 100),
-                    child:
-                    Column(
+                    child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       mainAxisSize: MainAxisSize.max,
                       children: <Widget>[
                         Padding(
                           padding: const EdgeInsets.only(top: 8.0),
-                          child:
-                          PinCodeTextField(
+                          child: PinCodeTextField(
                             pinBoxHeight: 50,
                             pinBoxWidth: 50,
                             autofocus: false,
@@ -449,21 +479,23 @@ class DashboardState extends State<Dashboard> {
                                 hasError = false;
                               });
                             },
-                            onDone: (text){
-                              otp=text;
-                              if(text.length!=4){
+                            onDone: (text) {
+                              otp = text;
+                              if (text.length != 4) {
                                 setState(() {
                                   hasError = true;
                                 });
                               }
-
                             },
 //pinCodeTextFieldLayoutType: PinCodeTextFieldLayoutType.AUTO_ADJUST_WIDTH,
                             wrapAlignment: WrapAlignment.center,
-                            pinBoxDecoration: ProvidedPinBoxDecoration.defaultPinBoxDecoration,
+                            pinBoxDecoration: ProvidedPinBoxDecoration
+                                .defaultPinBoxDecoration,
                             pinTextStyle: TextStyle(fontSize: 30.0),
-                            pinTextAnimatedSwitcherTransition: ProvidedPinBoxTextAnimation.scalingTransition,
-                            pinTextAnimatedSwitcherDuration: Duration(milliseconds: 300),
+                            pinTextAnimatedSwitcherTransition:
+                            ProvidedPinBoxTextAnimation.scalingTransition,
+                            pinTextAnimatedSwitcherDuration:
+                            Duration(milliseconds: 300),
                           ),
                         ),
                         Visibility(
@@ -475,22 +507,19 @@ class DashboardState extends State<Dashboard> {
                         ),
                         Center(
                           child: isLoadingPayment
-                              ?
-                          CircularProgressIndicator(
+                              ? CircularProgressIndicator(
                             backgroundColor: AppColors.color1,
-                            valueColor: new AlwaysStoppedAnimation(prefix0.AppColors.color4),
+                            valueColor: new AlwaysStoppedAnimation(
+                                prefix0.AppColors.color4),
                           )
-
-                              :
-                          MaterialButton(
+                              : MaterialButton(
                             shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.all(Radius.circular(40.0)),
+                              borderRadius:
+                              BorderRadius.all(Radius.circular(40.0)),
                             ),
                             height: 50,
                             minWidth: deviceW,
-                            onPressed: () => {
-                              successAlert()
-                            },
+                            onPressed: () => {successAlert()},
                             color: AppColors.color4,
                             child: Text(
                               "Continue",
@@ -516,17 +545,20 @@ class DashboardState extends State<Dashboard> {
 //      ),
     );
   }
+
   // ignore: unused_field
   static final CameraPosition _ccj = CameraPosition(
     target: LatLng(11.1446454, 75.9452897),
     zoom: 14.4746,
   );
+
   // ignore: unused_field
   static final CameraPosition _kLake = CameraPosition(
       bearing: 192.8334901395799,
       target: LatLng(37.43296265331129, -122.08832357078792),
       tilt: 59.440717697143555,
       zoom: 19.151926040649414);
+
   void updatePinOnMap(BuildContext context) async {
     // create a new CameraPosition instance
     // every time the location changes, so the camera
@@ -600,8 +632,7 @@ class DashboardState extends State<Dashboard> {
     //setPolylines();
   }
 
-   successAlert() async {
+  successAlert() async {
     showAlertDialog(context, "Successful Payment");
   }
-
 }
