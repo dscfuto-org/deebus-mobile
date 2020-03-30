@@ -127,26 +127,29 @@ class DashboardState extends State<Dashboard> {
   Future<void> _updateConnectionStatus(ConnectivityResult result) async {
     var connectivityResult = await (Connectivity().checkConnectivity());
     if (connectivityResult == ConnectivityResult.mobile) {
-    } else if (connectivityResult == ConnectivityResult.wifi) {} else
+    } else if (connectivityResult == ConnectivityResult.wifi) {
+    } else
       showNetworkErrorDialog(context, " No Internet Connection");
   }
 
-  void showNetworkErrorDialog(BuildContext context,
-      String message,) {
+  void showNetworkErrorDialog(
+    BuildContext context,
+    String message,
+  ) {
     showDialog(
         context: context,
         builder: (ctx) => AlertDialog(
-          title: Text('Notification'),
-          content: Text(message),
-          actions: <Widget>[
-            FlatButton(
-              child: Text('Okay'),
-              onPressed: () {
-                navigateBack(context);
-              },
-            )
-          ],
-        ));
+              title: Text('Notification'),
+              content: Text(message),
+              actions: <Widget>[
+                FlatButton(
+                  child: Text('Okay'),
+                  onPressed: () {
+                    navigateBack(context);
+                  },
+                )
+              ],
+            ));
   }
 
   void setSourceAndDestinationIcons() async {
@@ -194,14 +197,14 @@ class DashboardState extends State<Dashboard> {
       //The menu bar
       drawer: Drawer(
           child: Container(
-            height: 10,
-            child: Column(
-              children: <Widget>[
-                Expanded(
-                  child: ListView(
-                    padding: EdgeInsets.zero,
-                    children: <Widget>[
-                      Container(
+        height: 10,
+        child: Column(
+          children: <Widget>[
+            Expanded(
+              child: ListView(
+                padding: EdgeInsets.zero,
+                children: <Widget>[
+                  Container(
                     height: 110.0,
                     child: DrawerHeader(
                         child: Column(
@@ -255,115 +258,115 @@ class DashboardState extends State<Dashboard> {
                         margin: EdgeInsets.all(0.0),
                         padding: EdgeInsets.all(0.0)),
                   ),
-                      ListTile(
-                        title: Text(
-                          'My Profile',
-                          style: textStyleBigLight,
-                        ),
-                        leading: Icon(
-                          Icons.perm_identity,
-                          color: Colors.black,
-                        ),
-                        onTap: () {
-                          navigatePush(context, ProfileScreen());
-                          // Update the state of the app.
-                          // ...
-                        },
-                      ),
-                      ListTile(
-                        title: Text(
-                          'Free Rides',
-                          style: textStyleBigLight,
-                        ),
-                        leading: Icon(
-                          Icons.card_giftcard,
-                          color: Colors.black,
-                        ),
-                        onTap: () {
-                          navigatePush(context, FreeRides());
-                          // Update the state of the app.
-                          // ...
-                        },
-                      ),
-                      ListTile(
-                        title: Text(
-                          'Payments',
-                          style: textStyleBigLight,
-                        ),
-                        leading: Icon(Icons.credit_card, color: Colors.black),
-                        onTap: () {
-                          // Update the state of the app.
-                          // ...
-                          navigatePush(context, PaymentScreen());
-                        },
-                      ),
-                      ListTile(
-                        title: Text(
-                          'History',
-                          style: textStyleBigLightC,
-                        ),
-                        leading: Icon(
-                          Icons.history,
-                          color: AppColors.color5,
-                        ),
-                        onTap: () {
-                          navigatePush(context, History());
-                          // Update the state of the app.
-                          // ...
-                        },
-                      ),
-                      ListTile(
-                        title: Text(
-                          'Support',
-                          style: textStyleBigLight,
-                        ),
-                        leading: Icon(
-                          Icons.chat,
-                          color: AppColors.color5,
-                        ),
-                        onTap: () {
-                          navigatePush(context, SupportScreen());
-                          // Update the state of the app.
-                          // ...
-                        },
-                      ),
-                      ListTile(
-                        title: Text(
-                          'About',
-                          style: textStyleBigLight,
-                        ),
-                        leading: Icon(
-                          Icons.info_outline,
-                          color: AppColors.color5,
-                        ),
-                        onTap: () {
-                          navigatePush(context, AboutScreen());
-                          // Update the state of the app.
-                          // ...
-                        },
-                      ),
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(bottom: 20.0, right: 10.0, left: 10),
-                  child: MaterialButton(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(40.0)),
+                  ListTile(
+                    title: Text(
+                      'My Profile',
+                      style: textStyleBigLight,
                     ),
-                    minWidth: deviceW,
-                    height: 50,
-                    onPressed: _launchURL,
-                    color: AppColors.color4,
-                    child: Text(
-                      "SIGN UP TO DRIVE",
-                      style: TextStyle(color: Colors.white, fontSize: 16.0),
+                    leading: Icon(
+                      Icons.perm_identity,
+                      color: Colors.black,
                     ),
+                    onTap: () {
+                      navigatePush(context, ProfileScreen());
+                      // Update the state of the app.
+                      // ...
+                    },
                   ),
-                )
-              ],
+                  ListTile(
+                    title: Text(
+                      'Free Rides',
+                      style: textStyleBigLight,
+                    ),
+                    leading: Icon(
+                      Icons.card_giftcard,
+                      color: Colors.black,
+                    ),
+                    onTap: () {
+                      navigatePush(context, FreeRides());
+                      // Update the state of the app.
+                      // ...
+                    },
+                  ),
+                  ListTile(
+                    title: Text(
+                      'Payments',
+                      style: textStyleBigLight,
+                    ),
+                    leading: Icon(Icons.credit_card, color: Colors.black),
+                    onTap: () {
+                      // Update the state of the app.
+                      // ...
+                      navigatePush(context, PaymentScreen());
+                    },
+                  ),
+                  ListTile(
+                    title: Text(
+                      'History',
+                      style: textStyleBigLightC,
+                    ),
+                    leading: Icon(
+                      Icons.history,
+                      color: AppColors.color5,
+                    ),
+                    onTap: () {
+                      navigatePush(context, History());
+                      // Update the state of the app.
+                      // ...
+                    },
+                  ),
+                  ListTile(
+                    title: Text(
+                      'Support',
+                      style: textStyleBigLight,
+                    ),
+                    leading: Icon(
+                      Icons.chat,
+                      color: AppColors.color5,
+                    ),
+                    onTap: () {
+                      navigatePush(context, SupportScreen());
+                      // Update the state of the app.
+                      // ...
+                    },
+                  ),
+                  ListTile(
+                    title: Text(
+                      'About',
+                      style: textStyleBigLight,
+                    ),
+                    leading: Icon(
+                      Icons.info_outline,
+                      color: AppColors.color5,
+                    ),
+                    onTap: () {
+                      navigatePush(context, AboutScreen());
+                      // Update the state of the app.
+                      // ...
+                    },
+                  ),
+                ],
+              ),
             ),
-          )),
+            Padding(
+              padding: EdgeInsets.only(bottom: 20.0, right: 10.0, left: 10),
+              child: MaterialButton(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(40.0)),
+                ),
+                minWidth: deviceW,
+                height: 50,
+                onPressed: _launchURL,
+                color: AppColors.color4,
+                child: Text(
+                  "SIGN UP TO DRIVE",
+                  style: TextStyle(color: Colors.white, fontSize: 16.0),
+                ),
+              ),
+            )
+          ],
+        ),
+      )),
       //The body of the ap
       body: Stack(
         children: <Widget>[
@@ -409,21 +412,20 @@ class DashboardState extends State<Dashboard> {
 //          ),
           SafeArea(
               child: Padding(
-                padding: const EdgeInsets.all(15.0),
-                child: InkWell(
-                  onTap: () =>
-                  _scafoldKey.currentState.isDrawerOpen == true
-                      ? null
-                      : _scafoldKey.currentState.openDrawer(),
-                  child: CircleAvatar(
-                    backgroundColor: AppColors.color4,
-                    child: Icon(
-                      Icons.menu,
-                      color: Colors.white,
-                    ),
-                  ),
+            padding: const EdgeInsets.all(15.0),
+            child: InkWell(
+              onTap: () => _scafoldKey.currentState.isDrawerOpen == true
+                  ? null
+                  : _scafoldKey.currentState.openDrawer(),
+              child: CircleAvatar(
+                backgroundColor: AppColors.color4,
+                child: Icon(
+                  Icons.menu,
+                  color: Colors.white,
                 ),
-              )),
+              ),
+            ),
+          )),
           SlidingUpPanel(
             maxHeight: deviceH - 26,
             minHeight: deviceH * 6 / 14,
@@ -450,7 +452,7 @@ class DashboardState extends State<Dashboard> {
                   ),
                   Padding(
                     padding:
-                    EdgeInsets.symmetric(horizontal: deviceW * 2 / 100),
+                        EdgeInsets.symmetric(horizontal: deviceW * 2 / 100),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       mainAxisSize: MainAxisSize.max,
@@ -493,9 +495,9 @@ class DashboardState extends State<Dashboard> {
                                 .defaultPinBoxDecoration,
                             pinTextStyle: TextStyle(fontSize: 30.0),
                             pinTextAnimatedSwitcherTransition:
-                            ProvidedPinBoxTextAnimation.scalingTransition,
+                                ProvidedPinBoxTextAnimation.scalingTransition,
                             pinTextAnimatedSwitcherDuration:
-                            Duration(milliseconds: 300),
+                                Duration(milliseconds: 300),
                           ),
                         ),
                         Visibility(
@@ -508,25 +510,25 @@ class DashboardState extends State<Dashboard> {
                         Center(
                           child: isLoadingPayment
                               ? CircularProgressIndicator(
-                            backgroundColor: AppColors.color1,
-                            valueColor: new AlwaysStoppedAnimation(
-                                prefix0.AppColors.color4),
-                          )
+                                  backgroundColor: AppColors.color1,
+                                  valueColor: new AlwaysStoppedAnimation(
+                                      prefix0.AppColors.color4),
+                                )
                               : MaterialButton(
-                            shape: RoundedRectangleBorder(
-                              borderRadius:
-                              BorderRadius.all(Radius.circular(40.0)),
-                            ),
-                            height: 50,
-                            minWidth: deviceW,
-                            onPressed: () => {successAlert()},
-                            color: AppColors.color4,
-                            child: Text(
-                              "Continue",
-                              style: TextStyle(
-                                  color: Colors.white, fontSize: 16.0),
-                            ),
-                          ),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(40.0)),
+                                  ),
+                                  height: 50,
+                                  minWidth: deviceW,
+                                  onPressed: () => {successAlert()},
+                                  color: AppColors.color4,
+                                  child: Text(
+                                    "Continue",
+                                    style: TextStyle(
+                                        color: Colors.white, fontSize: 16.0),
+                                  ),
+                                ),
                         ),
                       ],
                     ),
@@ -576,7 +578,7 @@ class DashboardState extends State<Dashboard> {
     setState(() {
       // updated position
       var pinPosition =
-      LatLng(currentLocation.latitude, currentLocation.longitude);
+          LatLng(currentLocation.latitude, currentLocation.longitude);
 
       // the trick is to remove the marker (by id)
       // and add it again at the updated location
@@ -613,10 +615,10 @@ class DashboardState extends State<Dashboard> {
     // get a LatLng for the source location
     // from the LocationData currentLocation object
     var pinPosition =
-    LatLng(currentLocation.latitude, currentLocation.longitude);
+        LatLng(currentLocation.latitude, currentLocation.longitude);
     // get a LatLng out of the LocationData object
     var destPosition =
-    LatLng(destinationLocation.latitude, destinationLocation.longitude);
+        LatLng(destinationLocation.latitude, destinationLocation.longitude);
     // add the initial source location pin
     _markers.add(Marker(
         markerId: MarkerId('sourcePin'),
